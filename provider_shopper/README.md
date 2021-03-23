@@ -6,6 +6,20 @@ The Flutter sample and more details about how the application is structured can 
 
 The `catalog.dart` file contains the Realm sample code. 
 
+# Environment
+   Realm Flutter Preview requires Flutter 2.0.0 stable. Make sure you have it in your PATH. 
+   You can download Flutter 2.0.0 stable from here https://flutter.dev/docs/development/tools/sdk/releases?tab=windows
+   
+   * Check Flutter version
+   ```
+   flutter --version
+
+   Flutter 2.0.0 • channel stable • https://github.com/flutter/flutter.git
+   Framework • revision 60bd88df91 (3 weeks ago) • 2021-03-03 09:13:17 -0800
+   Engine • revision 40441def69
+   Tools • Dart 2.12.0
+   ```
+
 # Usage
    * Run `flutter pub get` to get all packages
    * Run `flutter run` to run the application
