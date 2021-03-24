@@ -8,7 +8,7 @@ The `catalog.dart` file contains the Realm sample code.
 
 # Environment
    Realm Flutter Preview requires Flutter 2.0.0 stable. Make sure you have it in your PATH. 
-   You can download Flutter 2.0.0 stable from here https://flutter.dev/docs/development/tools/sdk/releases?tab=windows
+   You can download Flutter 2.0.0 stable from here https://flutter.dev/docs/development/tools/sdk/releases
    
    * Check Flutter version
    ```
