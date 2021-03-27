@@ -26,4 +26,7 @@ The `catalog.dart` file contains the Realm sample code.
    * Run `flutter run` to run the application
 
 
+   ##### The "Dart" name and logo and the "Flutter" name and logo are trademarks owned by Google. 
+
+
 
