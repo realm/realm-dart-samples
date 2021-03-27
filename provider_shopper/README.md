@@ -21,6 +21,7 @@ The `catalog.dart` file contains the Realm sample code.
    ```
 
 # Usage
+   * Start an Android Emulator, an iPhone Simulator or attach an Android
    * Run `flutter pub get` to get all packages
    * Run `flutter run` to run the application
 
