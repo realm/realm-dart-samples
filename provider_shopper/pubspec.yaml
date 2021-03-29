@@ -14,7 +14,7 @@ dependencies:
   provider: ^4.0.2
 
   realm:
-    path: ../../realm-dart/flutter/realm_flutter
+    path: ../../realm-dart/packages/realm
 
 dev_dependencies:
   flutter_test:
