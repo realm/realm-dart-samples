@@ -1,3 +1,5 @@
+![Realm](https://github.com/realm/realm-dart/raw/master/logo.png)
+
 ## Description
 
 This repo contains Realm Flutter and Realm Dart SDK samples. 
