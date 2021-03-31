@@ -2,11 +2,12 @@
 
 A modified Flutter sample application that uses Realm instead of in-memory collection.
 
-The Flutter sample and more details about how the application is structured can be found here https://github.com/flutter/samples/tree/master/provider_shopper
+The Flutter sample and more details about how the application is structured can be found here https://github.com/flutter/samples/tree/master/provider_shopper.
 
 The `catalog.dart` file contains the Realm sample code. 
 
 # Environment
+
    Realm Flutter Preview requires Flutter 2.0.0 stable. Make sure it is present in PATH. 
    You can download Flutter 2.0.0 stable from here https://flutter.dev/docs/development/tools/sdk/releases
    
@@ -21,7 +22,8 @@ The `catalog.dart` file contains the Realm sample code.
    ```
 
 # Usage
-   * Start an Android Emulator, an iPhone Simulator or attach an Android
+
+   * Start an Android Emulator, an iPhone Simulator or attach an Android.
    * Run `flutter pub get` to get all packages
    * Run `flutter run` to run the application
 

@@ -2,7 +2,7 @@
 
 ## Setup
 
-* Dart SDK 2.12 stable is required from https://dart.dev/
+* Dart SDK 2.12 stable is required from https://dart.dev/.
 
     **Do not use the Dart SDK downloaded with Flutter 2.0 since it has issues and will not be able to run this sample**
 
@@ -25,6 +25,7 @@
     dart pub get
     ```
 * Install Realm Dart binary into the application
+
     ```
     dart run realm_dart install
     ```
@@ -37,6 +38,7 @@
     dart run build_runner build
     ``` 
 *  Run the application
+
     ```
     dart run myapp
     ```
