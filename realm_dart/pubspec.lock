@@ -277,17 +277,17 @@ packages:
   realm_dart:
     dependency: "direct main"
     description:
-      path: "../../realm-dart"
-      relative: true
-    source: path
-    version: "0.1.0-preview"
+      name: realm_dart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.1+preview"
   realm_generator:
     dependency: transitive
     description:
-      path: "../../realm-dart/generator"
-      relative: true
-    source: path
-    version: "0.1.0-preview"
+      name: realm_generator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0+preview"
   shelf:
     dependency: transitive
     description:

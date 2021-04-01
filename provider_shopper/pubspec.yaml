@@ -14,8 +14,7 @@ dependencies:
   # Import the provider package.
   provider: ^4.0.2
 
-  realm:
-    path: ../../realm-dart/packages/realm
+  realm: ^0.1.0+preview
 
 dev_dependencies:
   flutter_test:
