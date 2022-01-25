@@ -6,36 +6,50 @@ part of 'myapp.dart';
 // RealmObjectGenerator
 // **************************************************************************
 
-class Car extends RealmObject {
-  // ignore_for_file: unused_element, unused_local_variable
-  Car._constructor() : super.constructor();
-  Car();
+class Car extends _Car with RealmObject {
+  Car(
+    String make,
+  ) {
+    this.make = make;
+  }
 
-  @RealmProperty()
-  String get make => super['make'] as String;
-  set make(String value) => super['make'] = value;
+  Car._();
 
-  static dynamic getSchema() {
-    const dynamic type = _Car;
-    return RealmObject.getSchema('Car', [
-      SchemaProperty('make', type: 'string'),
+  @override
+  String get make => RealmObject.get<String>(this, 'make') as String;
+  @override
+  set make(String value) => RealmObject.set(this, 'make', value);
+
+  static SchemaObject get schema => _schema ??= _initSchema();
+  static SchemaObject? _schema;
+  static SchemaObject _initSchema() {
+    RealmObject.registerFactory(Car._);
+    return const SchemaObject(Car, [
+      SchemaProperty('make', RealmPropertyType.string),
     ]);
   }
 }
 
-class Person extends RealmObject {
-  // ignore_for_file: unused_element, unused_local_variable
-  Person._constructor() : super.constructor();
-  Person();
+class Person extends _Person with RealmObject {
+  Person(
+    String name,
+  ) {
+    this.name = name;
+  }
 
-  @RealmProperty()
-  String get name => super['name'] as String;
-  set name(String value) => super['name'] = value;
+  Person._();
 
-  static dynamic getSchema() {
-    const dynamic type = _Person;
-    return RealmObject.getSchema('Person', [
-      SchemaProperty('name', type: 'string'),
+  @override
+  String get name => RealmObject.get<String>(this, 'name') as String;
+  @override
+  set name(String value) => RealmObject.set(this, 'name', value);
+
+  static SchemaObject get schema => _schema ??= _initSchema();
+  static SchemaObject? _schema;
+  static SchemaObject _initSchema() {
+    RealmObject.registerFactory(Person._);
+    return const SchemaObject(Person, [
+      SchemaProperty('name', RealmPropertyType.string),
     ]);
   }
 }

@@ -20,43 +20,41 @@ import 'package:realm_dart/realm.dart';
 
 part 'myapp.g.dart';
 
+@RealmModel()
 class _Car {
-  @RealmProperty()
-  String make;
+  late String make;
 }
 
+@RealmModel()
 class _Person {
-  @RealmProperty()
-  String name; 
+  late String name;
 }
 
 void main(List<String> arguments) {
-  var config = Configuration();
-  config.schema.add(Car);
-
+  var config = Configuration([Car.schema, Person.schema]);
   var realm = Realm(config);
 
   realm.write(() {
     print('Creating Realm object of type Car');
-    var car = realm.create(Car()..make = 'Audi');
+    var car = realm.add(Car('Audi'));
     print('The car is ${car.make}');
-    
+
     car.make = 'VW';
     print('The car is ${car.make}');
   });
 
-  var objects = realm.objects<Car>();
-  var indexedCar = objects[0];
+  var allCars = realm.all<Car>();
+  var indexedCar = allCars[0];
   print('The indexedCar is ${indexedCar.make}');
 
   realm.write(() {
     print('Creating more cars');
-    var car = realm.create(Car()..make = 'Audi');
+    var car = realm.add(Car('Audi'));
     print('The car is ${car.make}');
   });
 
-  var cars = realm.objects<Car>().where("make == 'Audi'");
-  print('Found ${cars.length} Audi cars');
+  var filteredCars = realm.all<Car>().query("make == 'Audi'");
+  print('Found ${filteredCars.length} Audi cars');
 
   print('Done');
 }
