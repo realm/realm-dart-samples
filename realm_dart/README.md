@@ -2,7 +2,7 @@
 
 ## Setup
 
-* Dart SDK 2.12 stable is required from https://dart.dev/.
+* Dart SDK ^2.15 stable is required from https://dart.dev/.
 
     **Do not use the Dart SDK downloaded with Flutter 2.0 since it has issues and will not be able to run this sample**
 
