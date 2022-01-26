@@ -39,7 +39,7 @@
 *  Run the application
 
     ```
-    dart run myapp
+    dart run
     ```
 
 ##### The "Dart" name and logo and the "Flutter" name and logo are trademarks owned by Google. 
