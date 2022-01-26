@@ -6,7 +6,7 @@ environment:
   sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
-  realm_dart: 
+  realm_dart: any
 
 dev_dependencies:
   lints: ^1.0.1
