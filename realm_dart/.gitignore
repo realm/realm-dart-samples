@@ -12,4 +12,6 @@ pubspec.lock
 *.realm
 *.realm.lock
 default.realm.management
-realm_dart_extension.dll
+binary\windows\
+binary\linux\
+librealm_dart.dylib
