@@ -35,7 +35,7 @@
     If asked select `Delete` to delete any conflicts.
 
     ```
-    dart run build_runner build
+   dart run realm_dart generate
     ``` 
 *  Run the application
 
