@@ -32,7 +32,6 @@
 * [Optional] Generate Realm Realm data model classes
     
     This is needed only to regenerate Realm data model classes if they changed. 
-    If asked select `Delete` to delete any conflicts.
 
     ```
    dart run realm_dart generate
