@@ -8,6 +8,7 @@ build/
 # Directory created by dartdoc
 doc/api/
 
+pubspec.lock
 *.realm
 *.realm.lock
 default.realm.management
