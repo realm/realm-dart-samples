@@ -12,6 +12,6 @@ pubspec.lock
 *.realm
 *.realm.lock
 default.realm.management
-binary\windows\
-binary\linux\
+binary/windows/
+binary/linux/
 librealm_dart.dylib

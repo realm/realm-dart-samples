@@ -1,46 +1,68 @@
 ## A simple command-line application using Realm Dart SDK
 
-## Setup
+# Realm Dart SDK 
+
+The Realm Dart package is `realm_dart`
+
+## Environment setup for Realm Dart
+
+* Supported platforms are Windows, Mac and Linux.
 
 * Dart SDK ^2.15 stable is required from https://dart.dev/.
 
-    **Do not use the Dart SDK downloaded with Flutter 2.0 since it has issues and will not be able to run this sample**
+## Usage
 
-    Download Dart SDK 2.12 stable from here  https://dart.dev/tools/sdk/archive unzip it and add the directory to the PATH before the Flutter path.
-    
-    * On Mac
+* Add `realm_dart` package to a Dart application.
 
     ```
-    export /Users/<YOUR_PATH>/dart-sdk.2.12.0/bin:$PATH
+    dart pub add realm_dart
     ```
 
-    * On Windows
-
-    ```
-    set PATH=C:\<YOUR_PATH>\dartsdk-windows-x64-release-2.12.0\bin;%PATH% 
-    ```
-
-*  Get all dependencies
-    ```
-    dart pub get
-    ```
-* Install Realm Dart binary into the application
+* Install the `realm_dart` package into the application. This downloads and copies the required native binaries to the app directory.
 
     ```
     dart run realm_dart install
+    ``` 
+* Import Realm in a dart file (ex. `myapp.dart`).
+
+    ```dart
+    import 'package:realm_dart/realm.dart';
     ```
-* [Optional] Generate Realm Realm data model classes
-    
-    This is needed only to regenerate Realm data model classes if they changed. 
+
+* Declare a part file `myapp.g.dart` in the begining of the `myapp.dart` dart file after all imports.
+
+    ```dart
+    import 'dart:io';
+
+    part 'myapp.g.dart';
+    ```
+
+* Create a data model class.
+
+    It should start with an underscore `_Car` and be annotated with `@RealmModel()`
+
+    ```dart
+    @RealmModel()
+    class _Car {
+      late String make;
+    }
+    ```
+
+* To generate RealmObject classes with realm_dart use this command.
 
     ```
-   dart run realm_dart generate
-    ``` 
+    dart run realm_dart generate
+    ```
+    A new file `myapp.g.dart` will be created next to the `myapp.dart`.
+    
+    _*This file should be committed to source control_
+
+
 *  Run the application
 
     ```
     dart run
     ```
 
-##### The "Dart" name and logo and the "Flutter" name and logo are trademarks owned by Google. 
+##### The "Dart" name and logo are trademarks owned by Google. 
 
