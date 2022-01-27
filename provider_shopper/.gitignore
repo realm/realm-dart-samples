@@ -25,6 +25,7 @@
 .packages
 .pub-cache/
 .pub/
+.flutter-plugins-dependencies
 /build/
 /binary/
 realm_dart.dll
