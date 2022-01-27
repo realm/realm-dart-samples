@@ -1,10 +1,11 @@
 // Copyright 2019 The Flutter team. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
-import 'dart:io';
 import 'package:flutter/material.dart';
+
 // Realm: Import realm
 import 'package:realm/realm.dart';
+
 // Realm: Declare a part file
 part 'catalog.g.dart';
 
@@ -16,7 +17,7 @@ class _Item {
   late final String name;
   @Ignored()
   late Color color = CatalogModel.GetColor(0);
-  late final int price;
+  late final int price = 0;
 }
 
 /// A proxy of the catalog of items the user can buy.

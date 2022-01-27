@@ -10,13 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  realm:
-    path: ../../realm-dart/flutter/realm_flutter
-
-  # Import the provider package.
   provider: ^5.0.0
-  
+  realm: ^0.2.0-alpha
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
+
 part of 'catalog.dart';
 
 // **************************************************************************
@@ -11,11 +12,11 @@ class Item extends _Item with RealmObject {
   Item(
     int id,
     String name, {
-    int price = 42,
+    int price = 0,
   }) {
     if (!_defaultsSet) {
       _defaultsSet = RealmObject.setDefaults<Item>({
-        'price': 42,
+        'price': 0,
       });
     }
     RealmObject.set(this, 'id', id);
@@ -37,6 +38,8 @@ class Item extends _Item with RealmObject {
 
   @override
   int get price => RealmObject.get<int>(this, 'price') as int;
+  @override
+  set price(int value) => throw RealmUnsupportedSetError();
 
   static SchemaObject get schema => _schema ??= _initSchema();
   static SchemaObject? _schema;
