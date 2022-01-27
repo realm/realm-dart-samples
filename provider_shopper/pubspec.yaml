@@ -1,0 +1,33 @@
+name: provider_shopper
+description: A shopping app sample that uses Provider for state management.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.15.0 <3.0.0"
+  flutter: ">=2.8.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  realm:
+    path: ../../realm-dart/flutter/realm_flutter
+
+  # Import the provider package.
+  provider: ^5.0.0
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: Corben
+      fonts:
+        - asset: fonts/Corben/Corben-Bold.ttf
+          weight: 700
