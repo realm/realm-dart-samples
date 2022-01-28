@@ -2,7 +2,7 @@
 
 This repo contains Realm Flutter and Realm Dart SDK samples. 
 
-The official Realm and Realm Dart packages are located here https://github.com/realm/realm-dart
+The Realm Flutter and Realm Dart SDK are located at https://github.com/realm/realm-dart
 
 
 ## Usage 
