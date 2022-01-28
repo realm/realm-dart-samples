@@ -1,0 +1,17 @@
+# Files and directories created by pub
+.dart_tool/
+.packages
+
+# Conventional directory for build outputs
+build/
+
+# Directory created by dartdoc
+doc/api/
+
+pubspec.lock
+*.realm
+*.realm.lock
+default.realm.management
+binary/windows/
+binary/linux/
+librealm_dart.dylib
