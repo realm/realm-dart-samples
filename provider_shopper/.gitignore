@@ -27,6 +27,12 @@
 .pub/
 .flutter-plugins-dependencies
 /build/
+/binary/
+realm_dart.dll
+default.realm
+default.realm.lock
+/default.realm.management/
+pubspec.lock
 
 # Android related
 **/android/**/gradle-wrapper.jar

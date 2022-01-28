@@ -18,7 +18,7 @@ void main() {
         ChangeNotifierProxyProvider<CatalogModel, CartModel>(
           create: (context) => CartModel(),
           update: (context, catalog, cart) {
-            cart.catalog = catalog;
+            cart!.catalog = catalog;
             return cart;
           },
         ),
@@ -26,8 +26,8 @@ void main() {
       child: MaterialApp(
         initialRoute: '/',
         routes: {
-          '/': (context) => MyLogin(),
-          '/catalog': (context) => MyCatalog(),
+          '/': (context) => const MyLogin(),
+          '/catalog': (context) => const MyCatalog(),
         },
       ),
     ));

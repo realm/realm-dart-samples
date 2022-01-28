@@ -11,14 +11,13 @@ import 'package:provider_shopper/screens/cart.dart';
 import 'package:provider_shopper/screens/catalog.dart';
 import 'package:provider_shopper/screens/login.dart';
 
-import 'package:realm/realm.dart';
-
 void main() {
-  initRealm();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // Using MultiProvider is convenient when providing multiple objects.
@@ -44,9 +43,9 @@ class MyApp extends StatelessWidget {
         theme: appTheme,
         initialRoute: '/',
         routes: {
-          '/': (context) => MyLogin(),
-          '/catalog': (context) => MyCatalog(),
-          '/cart': (context) => MyCart(),
+          '/': (context) => const MyLogin(),
+          '/catalog': (context) => const MyCatalog(),
+          '/cart': (context) => const MyCart(),
         },
       ),
     );

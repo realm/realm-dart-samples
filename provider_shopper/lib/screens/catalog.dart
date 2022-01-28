@@ -8,13 +8,15 @@ import 'package:provider_shopper/models/cart.dart';
 import 'package:provider_shopper/models/catalog.dart';
 
 class MyCatalog extends StatelessWidget {
+  const MyCatalog({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           _MyAppBar(),
-          SliverToBoxAdapter(child: SizedBox(height: 12)),
+          const SliverToBoxAdapter(child: SizedBox(height: 12)),
           SliverList(
             delegate: SliverChildBuilderDelegate(
                 (context, index) => _MyListItem(index)),
@@ -28,7 +30,7 @@ class MyCatalog extends StatelessWidget {
 class _AddButton extends StatelessWidget {
   final Item item;
 
-  const _AddButton({this.item, Key key}) : super(key: key);
+  const _AddButton({required this.item, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,14 +57,16 @@ class _AddButton extends StatelessWidget {
               cart.add(item);
             },
       style: ButtonStyle(
-        overlayColor: MaterialStateProperty.resolveWith<Color>((states) {
+        overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
           if (states.contains(MaterialState.pressed)) {
             return Theme.of(context).primaryColor;
           }
           return null; // Defer to the widget's default.
         }),
       ),
-      child: isInCart ? Icon(Icons.check, semanticLabel: 'ADDED') : Text('ADD'),
+      child: isInCart
+          ? const Icon(Icons.check, semanticLabel: 'ADDED')
+          : const Text('ADD'),
     );
   }
 }
@@ -75,7 +79,7 @@ class _MyAppBar extends StatelessWidget {
       floating: true,
       actions: [
         IconButton(
-          icon: Icon(Icons.shopping_cart),
+          icon: const Icon(Icons.shopping_cart),
           onPressed: () => Navigator.pushNamed(context, '/cart'),
         ),
       ],
@@ -86,7 +90,7 @@ class _MyAppBar extends StatelessWidget {
 class _MyListItem extends StatelessWidget {
   final int index;
 
-  _MyListItem(this.index, {Key key}) : super(key: key);
+  const _MyListItem(this.index, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -106,14 +110,14 @@ class _MyListItem extends StatelessWidget {
             AspectRatio(
               aspectRatio: 1,
               child: Container(
-                color: Colors.blue,
+                color: item.color,
               ),
             ),
-            SizedBox(width: 24),
+            const SizedBox(width: 24),
             Expanded(
               child: Text(item.name, style: textTheme),
             ),
-            SizedBox(width: 24),
+            const SizedBox(width: 24),
             _AddButton(item: item),
           ],
         ),

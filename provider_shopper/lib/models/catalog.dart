@@ -1,7 +1,6 @@
 // Copyright 2019 The Flutter team. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 
 // Realm: Import realm
@@ -11,67 +10,60 @@ import 'package:realm/realm.dart';
 part 'catalog.g.dart';
 
 // Realm: Creating a Realm object data model class
+@RealmModel()
 class _Item {
-  @RealmProperty(primaryKey: true)
-  int id;
+  @PrimaryKey()
+  late final int id;
+  
+  late String name;
 
-  @RealmProperty()
-  String name;
-
-  @RealmProperty(defaultValue: '42')
-  int price;
+  @Ignored()
+  late Color color = CatalogModel.GetColor(0);
+  
+  late int price = 0;
 }
 
 /// A proxy of the catalog of items the user can buy.
-///
-/// In a real app, this might be backed by a backend and cached on device.
-/// In this sample app, the catalog is procedurally generated and infinite.
-///
-/// For simplicity, the catalog is expected to be immutable (no products are
-/// expected to be added, removed or changed during the execution of the app).
 class CatalogModel {
-  Realm realm;
+  late Realm realm;
 
   CatalogModel() {
-    var config = Configuration();
-    config.schema.add(Item);
-
+    var config = Configuration([Item.schema]);
     realm = Realm(config);
 
-      var objects = realm.objects<Item>();
+    var allItems = realm.all<Item>();
 
-      if (objects.length == 0) {
-        realm.write(() {
-          realm.create(Item()..id = 0..name = 'Code-Smell'..price = 20);
-          realm.create(Item()..id = 1..name = 'Control-Flow'..price = 1);
-          realm.create(Item()..id = 2..name = 'Interpreter'..price = 2);
-          realm.create(Item()..id = 3..name = 'Recursion'..price = 3);
-          realm.create(Item()..id = 4..name = 'Sprint'..price = 4);
-          realm.create(Item()..id = 5..name = 'Heisenbug'..price = 5);
-          realm.create(Item()..id = 6..name = 'Spaghetti'..price = 6);
-          realm.create(Item()..id = 7..name = 'Hydra-Code'..price = 7);
-          realm.create(Item()..id = 8..name = 'Off-By-One'..price = 8);
-          realm.create(Item()..id = 9..name = 'Scope'..price = 9);
-          realm.create(Item()..id = 10..name = 'Callback'..price = 10);
-          realm.create(Item()..id = 11..name = 'Closure'..price = 11);
-          realm.create(Item()..id = 12..name = 'Automata'..price = 12);
-          realm.create(Item()..id = 13..name = 'Bit-Shift'..price = 13);
-          realm.create(Item()..id = 14..name = 'Currying'..price = 14);
-        });
-      }
+    if (allItems.isEmpty) {
+      realm.write(() {
+        realm.addAll([
+          Item(0, 'Code Smell', price: 0)..color = GetColor(0),
+          Item(1, 'Control-Flow', price: 1)..color = GetColor(1),
+          Item(2, 'Interpreter', price: 2)..color = GetColor(2),
+          Item(3, 'Recursion', price: 3)..color = GetColor(3),
+          Item(4, 'Sprint', price: 4)..color = GetColor(4),
+          Item(5, 'Heisenbug', price: 5)..color = GetColor(5),
+          Item(6, 'Spaghetti', price: 6)..color = GetColor(6),
+          Item(7, 'Hydra-Code', price: 7)..color = GetColor(7),
+          Item(8, 'Off-By-One', price: 8)..color = GetColor(8),
+          Item(9, 'Scope', price: 9)..color = GetColor(9),
+          Item(10, 'Callback', price: 10)..color = GetColor(10),
+          Item(11, 'Closure', price: 11)..color = GetColor(11),
+          Item(12, 'Automata', price: 12)..color = GetColor(12),
+          Item(13, 'Bit-Shift', price: 13)..color = GetColor(13),
+          Item(14, 'Currying', price: 14)..color = GetColor(14)
+        ]);
+      });
+    }
   }
 
-  /// Get item by [id].
-  ///
-  /// In this sample, the catalog is infinite, looping over [itemNames].
-  Item getById(int id) {
-    
-    //realm objects in the database are not infinte. calculate the real object id
-    var objId = id % 14;
-   
-    var item = realm.find<Item>(objId);
-    return item;
+  static Color GetColor(int num) => Colors.primaries[num % Colors.primaries.length];
 
+  /// Get item by [id].
+  Item getById(int id) {
+    final objId = id % 14;
+
+    final item = realm.find<Item>(objId)!;
+    return item;
   }
 
   /// Get item by its position in the catalog.

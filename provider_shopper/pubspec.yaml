@@ -4,23 +4,19 @@ description: A shopping app sample that uses Provider for state management.
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.10.0 <3.0.0'
+  sdk: ">=2.15.0 <3.0.0"
+  flutter: ">=2.8.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
-  # Import the provider package.
-  provider: ^4.0.2
-
-  realm:
-    path: ../../realm-dart/flutter/realm_flutter
+  provider: ^5.0.0
+  realm: ^0.2.0-alpha
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic: ^1.10.0
-  build_runner: ^1.10.0
+  flutter_lints: ^1.0.0
 
 flutter:
   uses-material-design: true

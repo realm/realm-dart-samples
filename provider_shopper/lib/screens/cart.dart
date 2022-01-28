@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 import 'package:provider_shopper/models/cart.dart';
 
 class MyCart extends StatelessWidget {
+  const MyCart({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +26,7 @@ class MyCart extends StatelessWidget {
                 child: _CartList(),
               ),
             ),
-            Divider(height: 4, color: Colors.black),
+            const Divider(height: 4, color: Colors.black),
             _CartTotal()
           ],
         ),
@@ -45,9 +47,9 @@ class _CartList extends StatelessWidget {
     return ListView.builder(
       itemCount: cart.items.length,
       itemBuilder: (context, index) => ListTile(
-        leading: Icon(Icons.done),
+        leading: const Icon(Icons.done),
         trailing: IconButton(
-          icon: Icon(Icons.remove_circle_outline),
+          icon: const Icon(Icons.remove_circle_outline),
           onPressed: () {
             cart.remove(cart.items[index]);
           },
@@ -65,7 +67,7 @@ class _CartTotal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var hugeStyle =
-        Theme.of(context).textTheme.headline1.copyWith(fontSize: 48);
+        Theme.of(context).textTheme.headline1!.copyWith(fontSize: 48);
 
     return SizedBox(
       height: 200,
@@ -82,14 +84,14 @@ class _CartTotal extends StatelessWidget {
             Consumer<CartModel>(
                 builder: (context, cart, child) =>
                     Text('\$${cart.totalPrice}', style: hugeStyle)),
-            SizedBox(width: 24),
+            const SizedBox(width: 24),
             TextButton(
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Buying not supported yet.')));
+                    const SnackBar(content: Text('Buying not supported yet.')));
               },
               style: TextButton.styleFrom(primary: Colors.white),
-              child: Text('BUY'),
+              child: const Text('BUY'),
             ),
           ],
         ),

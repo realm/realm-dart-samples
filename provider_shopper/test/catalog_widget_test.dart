@@ -3,7 +3,6 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_shopper/models/cart.dart';
@@ -16,36 +15,18 @@ Widget createCatalogScreen() => MultiProvider(
         ChangeNotifierProxyProvider<CatalogModel, CartModel>(
           create: (context) => CartModel(),
           update: (context, catalog, cart) {
-            cart.catalog = catalog;
+            cart!.catalog = catalog;
             return cart;
           },
         ),
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         home: MyCatalog(),
       ),
     );
 
 void main() {
-  var itemNames = [
-    'Code Smell',
-    'Control Flow',
-    'Interpreter',
-    'Recursion',
-    'Sprint',
-    'Heisenbug',
-    'Spaghetti',
-    'Hydra Code',
-    'Off-By-One',
-    'Scope',
-    'Callback',
-    'Closure',
-    'Automata',
-    'Bit Shift',
-    'Currying',
-  ];
-
-  final catalogListItems = itemNames.sublist(0, 3);
+  final catalogListItems = CatalogModel.itemNames.sublist(0, 3);
 
   group('CatalogScreen Widget Tests', () {
     testWidgets('Testing item row counts and text', (tester) async {

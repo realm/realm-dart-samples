@@ -7,7 +7,7 @@ import 'package:provider_shopper/models/catalog.dart';
 
 class CartModel extends ChangeNotifier {
   /// The private field backing [catalog].
-  CatalogModel _catalog;
+  late CatalogModel _catalog;
 
   /// Internal, private state of the cart. Stores the ids of each item.
   final List<int> _itemIds = [];

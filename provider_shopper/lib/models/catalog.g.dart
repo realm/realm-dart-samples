@@ -6,29 +6,49 @@ part of 'catalog.dart';
 // RealmObjectGenerator
 // **************************************************************************
 
-class Item extends RealmObject {
-  // ignore_for_file: unused_element, unused_local_variable
-  Item._constructor() : super.constructor();
-  Item();
+class Item extends _Item with RealmObject {
+  static var _defaultsSet = false;
 
-  @RealmProperty(primaryKey: true)
-  int get id => super['id'] as int;
-  set id(int value) => super['id'] = value;
+  Item(
+    int id,
+    String name, {
+    int price = 0,
+  }) {
+    if (!_defaultsSet) {
+      _defaultsSet = RealmObject.setDefaults<Item>({
+        'price': 0,
+      });
+    }
+    RealmObject.set(this, 'id', id);
+    RealmObject.set(this, 'name', name);
+    RealmObject.set(this, 'price', price);
+  }
 
-  @RealmProperty()
-  String get name => super['name'] as String;
-  set name(String value) => super['name'] = value;
+  Item._();
 
-  @RealmProperty(defaultValue: '42')
-  int get price => super['price'] as int;
-  set price(int value) => super['price'] = value;
+  @override
+  int get id => RealmObject.get<int>(this, 'id') as int;
+  @override
+  set id(int value) => throw RealmUnsupportedSetError();
 
-  static dynamic getSchema() {
-    const dynamic type = _Item;
-    return RealmObject.getSchema('Item', [
-      SchemaProperty('id', type: 'int', primaryKey: true),
-      SchemaProperty('name', type: 'string'),
-      SchemaProperty('price', type: 'int', defaultValue: '42'),
+  @override
+  String get name => RealmObject.get<String>(this, 'name') as String;
+  @override
+  set name(String value) => throw RealmUnsupportedSetError();
+
+  @override
+  int get price => RealmObject.get<int>(this, 'price') as int;
+  @override
+  set price(int value) => throw RealmUnsupportedSetError();
+
+  static SchemaObject get schema => _schema ??= _initSchema();
+  static SchemaObject? _schema;
+  static SchemaObject _initSchema() {
+    RealmObject.registerFactory(Item._);
+    return const SchemaObject(Item, [
+      SchemaProperty('id', RealmPropertyType.int, primaryKey: true),
+      SchemaProperty('name', RealmPropertyType.string),
+      SchemaProperty('price', RealmPropertyType.int),
     ]);
   }
 }
