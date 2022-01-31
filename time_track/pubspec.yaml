@@ -1,0 +1,16 @@
+name: time_track
+description: >-
+  A simple command-line time tracking application 
+  demonstrating usage of Realm for Dart
+
+version: 0.1.0
+homepage: https://github.com/realm/realm-dart
+
+environment:
+  sdk: '>=2.15.0 <3.0.0'
+
+dev_dependencies:
+  lints: ^1.0.1
+
+dependencies: 
+  realm_dart: ^0.2.0-alpha.2
