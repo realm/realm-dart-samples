@@ -20,8 +20,8 @@ class Item extends _Item with RealmObject {
       });
     }
     RealmObject.set(this, 'id', id);
-    RealmObject.set(this, 'name', name);
-    RealmObject.set(this, 'price', price);
+    this.name = name;
+    this.price = price;
   }
 
   Item._();
@@ -34,12 +34,12 @@ class Item extends _Item with RealmObject {
   @override
   String get name => RealmObject.get<String>(this, 'name') as String;
   @override
-  set name(String value) => throw RealmUnsupportedSetError();
+  set name(String value) => RealmObject.set(this, 'name', value);
 
   @override
   int get price => RealmObject.get<int>(this, 'price') as int;
   @override
-  set price(int value) => throw RealmUnsupportedSetError();
+  set price(int value) => RealmObject.set(this, 'price', value);
 
   static SchemaObject get schema => _schema ??= _initSchema();
   static SchemaObject? _schema;
