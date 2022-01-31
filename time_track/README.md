@@ -1,5 +1,8 @@
-# A simple time tracking application using Realm for dart for persistence 
+![Realm](https://github.com/realm/realm-dart/raw/master/logo.png)
 
+[![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
+
+## A simple time tracking application using Realm Dart SDK for persistence 
 
 ## Usage
 * Get dependencies (realm_dart)
@@ -27,3 +30,5 @@
 ```
 
 For further information see: https://github.com/realm/realm-dart.
+
+##### The "Dart" name and logo and the "Flutter" name and logo are trademarks owned by Google. 
