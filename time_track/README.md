@@ -14,7 +14,7 @@
 ```
     dart run realm_dart generate
 ```
-* Compile to native for speed
+* [Optional] Compile to native for speed
 ```
     dart compile exe bin/time_track.dart -o now    
 ```

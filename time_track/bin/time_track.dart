@@ -10,7 +10,7 @@ class _Category {
 
 @RealmModel()
 class _Now {
-  late final int time; // no DateTime yet (stay tuned)
+  late int time; // no DateTime yet (stay tuned)
   _Category? category;
 }
 
@@ -33,7 +33,7 @@ void main(List<String> arguments) {
           DateTime.now().millisecondsSinceEpoch,
           category: category,
         );
-        // Persist new entry
+        // Add new entry
         realm.write(() => realm.add(now));
       }
     }

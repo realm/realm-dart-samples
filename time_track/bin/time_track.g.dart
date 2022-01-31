@@ -35,7 +35,7 @@ class Now extends _Now with RealmObject {
     int time, {
     Category? category,
   }) {
-    RealmObject.set(this, 'time', time);
+    this.time = time;
     this.category = category;
   }
 
@@ -44,7 +44,7 @@ class Now extends _Now with RealmObject {
   @override
   int get time => RealmObject.get<int>(this, 'time') as int;
   @override
-  set time(int value) => throw RealmUnsupportedSetError();
+  set time(int value) => RealmObject.set(this, 'time', value);
 
   @override
   Category? get category =>
