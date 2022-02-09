@@ -2,7 +2,12 @@
 
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
 
-## A simple time tracking application using Realm Dart SDK for persistence 
+## Time track
+
+A simple time tracking application using Realm Dart SDK for persistence 
+
+[![asciicast](https://asciinema.org/a/rE6itBIrq0Ts4JNkzhaFUAPI1.png)](https://asciinema.org/a/rE6itBIrq0Ts4JNkzhaFUAPI1)
+
 
 ## Usage
 * Get dependencies (realm_dart)
