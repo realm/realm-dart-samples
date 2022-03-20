@@ -6,7 +6,7 @@ part of 'time_track.dart';
 // RealmObjectGenerator
 // **************************************************************************
 
-class Category extends _Category with RealmObject {
+class Category extends _Category with RealmEntity, RealmObject {
   Category(
     String name,
   ) {
@@ -20,6 +20,10 @@ class Category extends _Category with RealmObject {
   @override
   set name(String value) => throw RealmUnsupportedSetError();
 
+  @override
+  Stream<RealmObjectChanges<Category>> get changes =>
+      RealmObject.getChanges<Category>(this);
+
   static SchemaObject get schema => _schema ??= _initSchema();
   static SchemaObject? _schema;
   static SchemaObject _initSchema() {
@@ -30,13 +34,13 @@ class Category extends _Category with RealmObject {
   }
 }
 
-class Now extends _Now with RealmObject {
+class Now extends _Now with RealmEntity, RealmObject {
   Now(
     int time, {
     Category? category,
   }) {
-    this.time = time;
-    this.category = category;
+    RealmObject.set(this, 'time', time);
+    RealmObject.set(this, 'category', category);
   }
 
   Now._();
@@ -52,6 +56,10 @@ class Now extends _Now with RealmObject {
   @override
   set category(covariant Category? value) =>
       RealmObject.set(this, 'category', value);
+
+  @override
+  Stream<RealmObjectChanges<Now>> get changes =>
+      RealmObject.getChanges<Now>(this);
 
   static SchemaObject get schema => _schema ??= _initSchema();
   static SchemaObject? _schema;

@@ -23,6 +23,12 @@
 ```
 * Take for a spin
 ```
+    // if not compiled
+    ./dart run bin/time_track work
+    ./dart run bin/time_track eat
+    ./dart run bin/time_track sleep
+    
+    // if compiled
     ./now work
     ./now eat
     ./now work

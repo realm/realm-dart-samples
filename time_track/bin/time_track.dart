@@ -23,7 +23,7 @@ part 'time_track.g.dart';
 @RealmModel()
 class _Category {
   @PrimaryKey()
-  late final String name;
+  late String name;
 }
 
 @RealmModel()
