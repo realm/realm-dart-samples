@@ -22,7 +22,7 @@ part 'myapp.g.dart';
 
 @RealmModel()
 class _Car {
-  late final String make;
+  late String make;
   String? model;
   int? kilometers = 500;
   _Person? owner;

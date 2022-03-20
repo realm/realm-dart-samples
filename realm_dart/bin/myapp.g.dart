@@ -6,7 +6,7 @@ part of 'myapp.dart';
 // RealmObjectGenerator
 // **************************************************************************
 
-class Car extends _Car with RealmObject {
+class Car extends _Car with RealmEntity, RealmObject {
   static var _defaultsSet = false;
 
   Car(
@@ -21,9 +21,9 @@ class Car extends _Car with RealmObject {
       });
     }
     RealmObject.set(this, 'make', make);
-    this.model = model;
-    this.kilometers = kilometers;
-    this.owner = owner;
+    RealmObject.set(this, 'model', model);
+    RealmObject.set(this, 'kilometers', kilometers);
+    RealmObject.set(this, 'owner', owner);
   }
 
   Car._();
@@ -31,7 +31,7 @@ class Car extends _Car with RealmObject {
   @override
   String get make => RealmObject.get<String>(this, 'make') as String;
   @override
-  set make(String value) => throw RealmUnsupportedSetError();
+  set make(String value) => RealmObject.set(this, 'make', value);
 
   @override
   String? get model => RealmObject.get<String>(this, 'model') as String?;
@@ -48,6 +48,10 @@ class Car extends _Car with RealmObject {
   @override
   set owner(covariant Person? value) => RealmObject.set(this, 'owner', value);
 
+  @override
+  Stream<RealmObjectChanges<Car>> get changes =>
+      RealmObject.getChanges<Car>(this);
+
   static SchemaObject get schema => _schema ??= _initSchema();
   static SchemaObject? _schema;
   static SchemaObject _initSchema() {
@@ -62,7 +66,7 @@ class Car extends _Car with RealmObject {
   }
 }
 
-class Person extends _Person with RealmObject {
+class Person extends _Person with RealmEntity, RealmObject {
   static var _defaultsSet = false;
 
   Person(
@@ -74,8 +78,8 @@ class Person extends _Person with RealmObject {
         'age': 1,
       });
     }
-    this.name = name;
-    this.age = age;
+    RealmObject.set(this, 'name', name);
+    RealmObject.set(this, 'age', age);
   }
 
   Person._();
@@ -89,6 +93,10 @@ class Person extends _Person with RealmObject {
   int get age => RealmObject.get<int>(this, 'age') as int;
   @override
   set age(int value) => RealmObject.set(this, 'age', value);
+
+  @override
+  Stream<RealmObjectChanges<Person>> get changes =>
+      RealmObject.getChanges<Person>(this);
 
   static SchemaObject get schema => _schema ??= _initSchema();
   static SchemaObject? _schema;
