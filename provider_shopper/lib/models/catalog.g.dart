@@ -6,7 +6,7 @@ part of 'catalog.dart';
 // RealmObjectGenerator
 // **************************************************************************
 
-class Item extends _Item with RealmObject {
+class Item extends _Item with RealmEntity, RealmObject {
   static var _defaultsSet = false;
 
   Item(
@@ -20,8 +20,8 @@ class Item extends _Item with RealmObject {
       });
     }
     RealmObject.set(this, 'id', id);
-    this.name = name;
-    this.price = price;
+    RealmObject.set(this, 'name', name);
+    RealmObject.set(this, 'price', price);
   }
 
   Item._();
@@ -40,6 +40,10 @@ class Item extends _Item with RealmObject {
   int get price => RealmObject.get<int>(this, 'price') as int;
   @override
   set price(int value) => RealmObject.set(this, 'price', value);
+
+  @override
+  Stream<RealmObjectChanges<Item>> get changes =>
+      RealmObject.getChanges<Item>(this);
 
   static SchemaObject get schema => _schema ??= _initSchema();
   static SchemaObject? _schema;

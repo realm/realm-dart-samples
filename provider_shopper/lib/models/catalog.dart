@@ -13,14 +13,14 @@ part 'catalog.g.dart';
 @RealmModel()
 class _Item {
   @PrimaryKey()
-  late final int id;
+  late int id;
   
   late String name;
 
+  late int price = 0;
+
   @Ignored()
   late Color color = CatalogModel.GetColor(0);
-  
-  late int price = 0;
 }
 
 /// A proxy of the catalog of items the user can buy.
