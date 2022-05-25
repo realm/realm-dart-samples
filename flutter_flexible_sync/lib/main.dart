@@ -1,10 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:realm/realm.dart';
+import 'model.dart';
 
-void main() {
+void main() async {
+  const String appId = "dartapp-wkhjw";
+
+  MyApp.allTasksRealm = await createRealm(appId);
+  MyApp.importantTasksRealm = await createRealm(appId, importantTasksOnly: true);
+  MyApp.normalTasksRealm = await createRealm(appId, importantTasksOnly: false);
+
   runApp(const MyApp());
 }
 
+Future<Realm> createRealm(String appId, {bool? importantTasksOnly}) async {
+  final appConfig = AppConfiguration(appId);
+  final app = App(appConfig);
+  final user = await app.logIn(Credentials.anonymous());
+  final flxConfig = Configuration.flexibleSync(user, [Task.schema]);
+  final realm = Realm(flxConfig);
+  final RealmResults<Task> query;
+
+  if (importantTasksOnly == null) {
+    query = realm.all<Task>();
+  } else {
+    query = realm.query<Task>(r'isImportant == $0', [importantTasksOnly]);
+  }
+
+  realm.subscriptions.update((mutableSubscriptions) {
+    mutableSubscriptions.add(query);
+  });
+
+  await realm.subscriptions.waitForSynchronization();
+  return realm;
+}
+
 class MyApp extends StatelessWidget {
+  static late Realm allTasksRealm;
+  static late Realm importantTasksRealm;
+  static late Realm normalTasksRealm;
+
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -33,14 +67,22 @@ class _MyHomePageState extends State<MyHomePage> {
   int _normalTasksCount = 0;
 
   void _createImportantTasks() {
+    var importantTasks = MyApp.importantTasksRealm.all<Task>();
+    MyApp.allTasksRealm.write(() {
+      MyApp.allTasksRealm.add(Task(ObjectId(), "Important task ${importantTasks.length + 1}", false, true));
+    });
     setState(() {
-      _importantTasksCount++;
+      _importantTasksCount = importantTasks.length;
     });
   }
 
   void _createNormalTasks() {
+    var normalTasks = MyApp.normalTasksRealm.all<Task>();
+    MyApp.allTasksRealm.write(() {
+      MyApp.allTasksRealm.add(Task(ObjectId(), "Normal task ${normalTasks.length + 1}", false, false));
+    });
     setState(() {
-      _normalTasksCount++;
+      _normalTasksCount = normalTasks.length;
     });
   }
 
