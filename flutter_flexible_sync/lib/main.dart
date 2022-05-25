@@ -16,10 +16,11 @@ Future<Realm> createRealm(String appId, {bool? importantTasksOnly}) async {
   final appConfig = AppConfiguration(appId);
   final app = App(appConfig);
   final user = await app.logIn(Credentials.anonymous());
-  final flxConfig = Configuration.flexibleSync(user, [Task.schema]);
+  final flxConfig = Configuration.flexibleSync(user, [Task.schema], path: "mongodb-realm/db${importantTasksOnly?.toString()}");
   final realm = Realm(flxConfig);
-  final RealmResults<Task> query;
+  print(realm.config.path);
 
+  final RealmResults<Task> query;  
   if (importantTasksOnly == null) {
     query = realm.all<Task>();
   } else {
