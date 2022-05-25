@@ -16,11 +16,17 @@ Future<Realm> createRealm(String appId, {bool? importantTasksOnly}) async {
   final appConfig = AppConfiguration(appId);
   final app = App(appConfig);
   final user = await app.logIn(Credentials.anonymous());
-  final flxConfig = Configuration.flexibleSync(user, [Task.schema], path: "mongodb-realm/db${importantTasksOnly?.toString()}");
+  String dbName = (importantTasksOnly == null
+          ? "allTasks"
+          : importantTasksOnly
+              ? "importantTasks"
+              : "normalTaks")
+      .toString();
+  final flxConfig = Configuration.flexibleSync(user, [Task.schema], path: "mongodb-realm/db_$dbName");
   final realm = Realm(flxConfig);
-  print(realm.config.path);
+  print("Created local realm db: ${realm.config.path}");
 
-  final RealmResults<Task> query;  
+  final RealmResults<Task> query;
   if (importantTasksOnly == null) {
     query = realm.all<Task>();
   } else {
@@ -67,21 +73,25 @@ class _MyHomePageState extends State<MyHomePage> {
   int _importantTasksCount = MyApp.importantTasksRealm.all<Task>().length;
   int _normalTasksCount = MyApp.normalTasksRealm.all<Task>().length;
 
-  void _createImportantTasks() {
+  void _createImportantTasks() async {
     var importantTasks = MyApp.importantTasksRealm.all<Task>();
     MyApp.allTasksRealm.write(() {
       MyApp.allTasksRealm.add(Task(ObjectId(), "Important task ${importantTasks.length + 1}", false, true));
     });
+    await MyApp.allTasksRealm.syncSession.waitForUpload();
+    await MyApp.importantTasksRealm.subscriptions.waitForSynchronization();
     setState(() {
       _importantTasksCount = importantTasks.length;
     });
   }
 
-  void _createNormalTasks() {
+  void _createNormalTasks() async {
     var normalTasks = MyApp.normalTasksRealm.all<Task>();
     MyApp.allTasksRealm.write(() {
       MyApp.allTasksRealm.add(Task(ObjectId(), "Normal task ${normalTasks.length + 1}", false, false));
     });
+    await MyApp.allTasksRealm.syncSession.waitForUpload();
+    await MyApp.normalTasksRealm.subscriptions.waitForSynchronization();
     setState(() {
       _normalTasksCount = normalTasks.length;
     });
