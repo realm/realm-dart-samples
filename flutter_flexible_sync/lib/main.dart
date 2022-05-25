@@ -63,8 +63,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _importantTasksCount = 0;
-  int _normalTasksCount = 0;
+  int _importantTasksCount = MyApp.importantTasksRealm.all<Task>().length;
+  int _normalTasksCount = MyApp.normalTasksRealm.all<Task>().length;
 
   void _createImportantTasks() {
     var importantTasks = MyApp.importantTasksRealm.all<Task>();
@@ -116,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
         floatingActionButton: Stack(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(left: 31),
+              padding: EdgeInsets.only(left: 0.0),
               child: Align(
                   alignment: Alignment.bottomLeft,
                   child: FloatingActionButton(

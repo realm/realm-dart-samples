@@ -10,6 +10,8 @@
 .svn/
 migrate_working_dir/
 mongodb-realm/
+build/
+pubspec.lock
 
 # IntelliJ related
 *.iml
