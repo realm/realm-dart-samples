@@ -9,6 +9,7 @@
 .history
 .svn/
 migrate_working_dir/
+mongodb-realm/
 
 # IntelliJ related
 *.iml
