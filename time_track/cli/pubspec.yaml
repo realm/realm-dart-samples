@@ -3,7 +3,7 @@ description: >-
   A simple command-line time tracking application 
   demonstrating usage of Realm Dart SDK
 
-version: 0.2.0
+version: 0.3.0
 homepage: https://github.com/realm/realm-dart
 
 environment:
@@ -15,4 +15,4 @@ dependencies:
   dart_console: ^1.1.2
 
 dev_dependencies:
-  lints: ^1.0.1
+  lints: ^2.0.0

@@ -1,0 +1,29 @@
+import 'package:realm_dart/realm.dart';
+
+part 'settings.g.dart';
+
+enum Settings {
+  appId(''),
+  baseUrl('https://realm.mongodb.com'),
+  logLevel('info');
+
+  final String defaultValue;
+  const Settings(this.defaultValue);
+
+  static void init(String path) => _realm = Realm(Configuration.local([Setting.schema], path: path));
+
+  String get value => _realm.find<Setting>(name)?.value ?? defaultValue;
+  set value(String v) {
+    final setting = _realm.find<Setting>(name) ?? _realm.write(() => _realm.add(Setting(name, v)));
+    _realm.write(() => setting!.value = v);
+  }
+}
+
+late Realm _realm;
+
+@RealmModel()
+class _Setting {
+  @PrimaryKey()
+  late String key;
+  late String value;
+}
