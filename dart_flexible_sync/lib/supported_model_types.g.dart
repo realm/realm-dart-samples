@@ -92,6 +92,7 @@ class AllPrimitiveOptional extends _AllPrimitiveOptional
 class AllPrimitiveRequired extends _AllPrimitiveRequired
     with RealmEntity, RealmObject {
   AllPrimitiveRequired(
+    ObjectId id,
     String stringProp,
     bool boolProp,
     DateTime dateProp,
@@ -100,6 +101,7 @@ class AllPrimitiveRequired extends _AllPrimitiveRequired
     Uuid uuidProp,
     int intProp,
   ) {
+    RealmObject.set(this, '_id', id);
     RealmObject.set(this, 'stringProp', stringProp);
     RealmObject.set(this, 'boolProp', boolProp);
     RealmObject.set(this, 'dateProp', dateProp);
@@ -110,6 +112,11 @@ class AllPrimitiveRequired extends _AllPrimitiveRequired
   }
 
   AllPrimitiveRequired._();
+
+  @override
+  ObjectId get id => RealmObject.get<ObjectId>(this, '_id') as ObjectId;
+  @override
+  set id(ObjectId value) => throw RealmUnsupportedSetError();
 
   @override
   String get stringProp =>
@@ -160,6 +167,8 @@ class AllPrimitiveRequired extends _AllPrimitiveRequired
   static SchemaObject _initSchema() {
     RealmObject.registerFactory(AllPrimitiveRequired._);
     return const SchemaObject(AllPrimitiveRequired, 'AllPrimitiveRequired', [
+      SchemaProperty('_id', RealmPropertyType.objectid,
+          mapTo: '_id', primaryKey: true),
       SchemaProperty('stringProp', RealmPropertyType.string),
       SchemaProperty('boolProp', RealmPropertyType.bool),
       SchemaProperty('dateProp', RealmPropertyType.timestamp),

@@ -14,6 +14,9 @@ class _AllPrimitiveOptional {
 
 @RealmModel()
 class _AllPrimitiveRequired {
+  @PrimaryKey()
+  @MapTo('_id')
+  late ObjectId id;
   late String stringProp;
   late bool boolProp;
   late DateTime dateProp;
