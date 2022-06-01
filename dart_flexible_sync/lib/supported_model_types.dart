@@ -2,7 +2,18 @@ import 'package:realm_dart/realm.dart';
 part 'supported_model_types.g.dart';
 
 @RealmModel()
-class _AllTypes {
+class _AllPrimitiveOptional {
+  late String? stringProp;
+  late bool? boolProp;
+  late DateTime? dateProp;
+  late double? doubleProp;
+  late ObjectId? objectIdProp;
+  late Uuid? uuidProp;
+  late int? intProp;
+}
+
+@RealmModel()
+class _AllPrimitiveRequired {
   late String stringProp;
   late bool boolProp;
   late DateTime dateProp;
@@ -13,7 +24,7 @@ class _AllTypes {
 }
 
 @RealmModel()
-class _AllCollections {
+class _AllPrimitiveLists {
   late List<String> strings;
   late List<bool> bools;
   late List<DateTime> dates;
@@ -23,19 +34,3 @@ class _AllCollections {
   late List<int> ints;
 }
 
-@RealmModel()
-class _NullableTypes {
-  @PrimaryKey()
-  @MapTo('_id')
-  late ObjectId id;
-
-  late ObjectId differentiator;
-
-  late String? stringProp;
-  late bool? boolProp;
-  late DateTime? dateProp;
-  late double? doubleProp;
-  late ObjectId? objectIdProp;
-  late Uuid? uuidProp;
-  late int? intProp;
-}
