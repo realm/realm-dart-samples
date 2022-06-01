@@ -27,4 +27,5 @@ void main(List<String> arguments) async {
   print("Filtered records that matche the query. ${r.length}");
 
   realm.close();
+  Realm.shutdown();
 }
