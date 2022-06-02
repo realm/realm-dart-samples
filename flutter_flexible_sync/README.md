@@ -10,7 +10,7 @@ Then the data are downloaded back by the synchronization process to two separate
 
 # Realm Flutter SDK 
 
-The Realm Flutter package is `realm` and it is available in [pub.dev](https://pub.dev/packages/realm)
+The Realm Flutter package is `realm` and it is available at [pub.dev](https://pub.dev/packages/realm)
 
 # Environment
 
