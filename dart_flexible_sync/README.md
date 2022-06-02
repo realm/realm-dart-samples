@@ -35,7 +35,7 @@ The Realm Dart package is `realm_dart` and it is available on [pub.dev](https://
     * Create a new queryable field used for filtering data between both realms in this application. For our sample the fields are `status` and `progressMinutes`. 
         Since it is not available in the selection list, just start writing inside the selection box and then choose `Create status`. 
         It will be created.
-        Do the same for field `progressMinutes`.
+        Do the same for the field `progressMinutes`.
     * Define permission - for the purpose of this sample please choose the option `Users can read and write all data`.
     * Click the button `Enable Sync` and confirm.
     * Click the button in the blue line above - `Review draft & deploy`, again.
