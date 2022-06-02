@@ -72,11 +72,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _allTasksCount = MyApp.allTasksRealm.all<Task>().length;
   int _importantTasksCount = MyApp.importantTasksRealm.all<Task>().length;
   int _normalTasksCount = MyApp.normalTasksRealm.all<Task>().length;
 
   void _createImportantTasks() async {
     var importantTasks = MyApp.importantTasksRealm.all<Task>();
+    var allTasksCount = MyApp.allTasksRealm.all<Task>();
     MyApp.allTasksRealm.write(() {
       MyApp.allTasksRealm.add(Task(ObjectId(), "Important task ${importantTasks.length + 1}", false, true));
     });
@@ -84,11 +86,13 @@ class _MyHomePageState extends State<MyHomePage> {
     await MyApp.importantTasksRealm.subscriptions.waitForSynchronization();
     setState(() {
       _importantTasksCount = importantTasks.length;
+      _allTasksCount = allTasksCount.length;
     });
   }
 
   void _createNormalTasks() async {
     var normalTasks = MyApp.normalTasksRealm.all<Task>();
+    var allTasksCount = MyApp.allTasksRealm.all<Task>();
     MyApp.allTasksRealm.write(() {
       MyApp.allTasksRealm.add(Task(ObjectId(), "Normal task ${normalTasks.length + 1}", false, false));
     });
@@ -96,6 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
     await MyApp.normalTasksRealm.subscriptions.waitForSynchronization();
     setState(() {
       _normalTasksCount = normalTasks.length;
+      _allTasksCount = allTasksCount.length;
     });
   }
 
@@ -111,17 +116,38 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               const Text(
                 'Important tasks count:',
+                style: TextStyle(fontWeight: FontWeight.bold)
               ),
               Text(
                 '$_importantTasksCount',
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.headline4
               ),
+              Text(
+                'Realm path: ${MyApp.importantTasksRealm.config.path}'
+              ),
+              const Spacer(),
               const Text(
                 'Normal tasks count:',
+                style: TextStyle(fontWeight: FontWeight.bold)
               ),
               Text(
                 '$_normalTasksCount',
+                style: Theme.of(context).textTheme.headline4
+              ),
+              Text(
+                'Realm path: ${MyApp.normalTasksRealm.config.path}'
+              ),
+              const Spacer(),
+              const Text(
+                'All tasks count:',
+                style: TextStyle(fontWeight: FontWeight.bold)
+              ),
+              Text(
+                '$_allTasksCount',
                 style: Theme.of(context).textTheme.headline4,
+              ),
+              Text(
+                'Realm path: ${MyApp.allTasksRealm.config.path}'
               ),
             ],
           ),
@@ -129,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
         floatingActionButton: Stack(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(left: 10.0),
+              padding: const EdgeInsets.only(left: 0.0),
               child: Align(
                   alignment: Alignment.bottomLeft,
                   child: FloatingActionButton(
