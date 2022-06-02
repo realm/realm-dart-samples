@@ -1,16 +1,23 @@
-# flutter_flexible_sync
+![Realm](https://github.com/realm/realm-dart/raw/master/logo.png)
 
-A new Flutter project.
+[![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
 
-## Getting Started
+## A simple application using Realm Flutter SDK Flexible Sync with [Atlas App Services application](https://www.mongodb.com/docs/atlas/app-services/).
+This sample demonstrates the usage of Flexible Sync. 
+Writing to a local realm named `db_allTasks.realm` sends the data automatically to the Atlas Collection.
+Then the data are downloaded back by the synchronization process to two separated realms
+ `db_importantTasks.realm` and  `db_normalTaks.realm` filtered by specific subscription query.
 
-This project is a starting point for a Flutter application.
+# Realm Flutter SDK 
 
-A few resources to get you started if this is your first Flutter project:
+The Realm Flutter package is `realm` and it is available in [pub.dev](https://pub.dev/packages/realm)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# Environment
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Flutter ^3.0.1 
+* Flutter Mobile on Android and iOS
+* Flutter Desktop on Windows, Linux and MacOS
+
+## Usage
+
+Create an account in [realm.mongodb.com](https://realm.mongodb.com)
