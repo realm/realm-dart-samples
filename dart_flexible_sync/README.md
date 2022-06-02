@@ -28,7 +28,7 @@ The Realm Dart package is `realm_dart` and it is available on [pub.dev](https://
 * Go to `Authentication Providers` menu from the left panel and make sure the option "Allow users to log in anonymously" is ON.
     Read [this page](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other types of authentication.
 * Go to `Sync` menu and [Enable Flexible Sync](https://www.mongodb.com/docs/atlas/app-services/sync/configure/enable-sync/#enable-flexible-sync).
-    * You can skip button "Create a Schema". Choose "No thanks, continue to Sync".
+    * Don't create a schema. Skip by choosing "No thanks, continue to Sync".
     * Please choose button "Flexible Sync". Only Flexible Sync is supported in Realm Dart SDK.
     * Switch ON ["Development mode"](https://www.mongodb.com/docs/atlas/app-services/sync/data-model/development-mode/) option. 
     * Choose to create a new database collection and set a name of this database.
