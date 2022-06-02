@@ -11,7 +11,7 @@ All other items will exist only in Atlas cloud collection.
 
 # Realm Dart SDK
 
-The Realm Dart package is `realm_dart` and it is available in [pub.dev](https://pub.dev/packages/realm_dart)
+The Realm Dart package is `realm_dart` and it is available on [pub.dev](https://pub.dev/packages/realm_dart)
 
 ## Environment setup for Realm Dart
 
