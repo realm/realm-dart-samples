@@ -20,7 +20,7 @@ The Realm Flutter package is `realm` and it is available at [pub.dev](https://pu
 
 # Atlas App Services Configuration Steps
 
-* Create an account in [realm.mongodb.com](https://realm.mongodb.com) - follow the instructions: [Get Started with Atlas](https://www.mongodb.com/docs/atlas/getting-started)
+* Create an account on [realm.mongodb.com](https://realm.mongodb.com) - follow the instructions: [Get Started with Atlas](https://www.mongodb.com/docs/atlas/getting-started)
 * Creat a new app following the instruction: [Create an App with Atlas App Services UI](https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-realm-ui).
     For the purpose of this sample you don't need to create an app from a template. You can just create an empty application.
 * Click the button in the blue line above - `Review draft & deploy`.
