@@ -6,7 +6,7 @@ environment:
   sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
-  realm_dart: 0.3.0-beta
+  realm_dart: 0.3.0+beta
   path: ^1.8.0
 
 dev_dependencies:
