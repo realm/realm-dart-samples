@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  realm: 0.3.0-beta
+  realm: 0.3.0+beta
   
   cupertino_icons: ^1.0.2
   path_provider: ^2.0.10
