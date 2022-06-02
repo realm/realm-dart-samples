@@ -4,7 +4,7 @@
 
 ## A simple application using the [Realm Flutter SDK](https://www.mongodb.com/docs/realm/sdk/flutter/) Flexible Sync with an [Atlas App Services application](https://www.mongodb.com/docs/atlas/app-services/).
 This sample demonstrates the usage of Flexible Sync. 
-Writing to a local realm named `db_allTasks.realm` sends the data automatically to the Atlas Collection.
+Writing to a local realm named `db_allTasks.realm` sends the data automatically to the Atlas collection.
 Then the data are downloaded back by the synchronization process to two separated realms
  `db_importantTasks.realm` and  `db_normalTaks.realm` filtered by specific subscription query.
 
