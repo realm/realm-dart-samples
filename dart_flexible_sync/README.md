@@ -39,7 +39,7 @@ The Realm Dart package is `realm_dart` and it is available on [pub.dev](https://
     * Define permission - for the purpose of this sample choose the option `Users can read and write all data`.
     * Click the button `Enable Sync` and confirm.
     * Click the button in the blue line above - `Review draft & deploy`, again.
-* Copy App ID of your new application. Follow [Find an App ID](https://www.mongodb.com/docs/atlas/app-services/reference/find-your-project-or-app-id/?_ga=2.267445390.1225817147.1654079983-1571915642.1647002315&_gac=1.229371374.1654173423.CjwKCAjwv-GUBhAzEiwASUMm4jBtzETN-YJq0KELgeGLKk-4_6wVAfImtPoBbo-A35_eKjZ1p0Lh_BoCotcQAvD_BwE#find-an-app-id)
+* Copy the App ID of your new application. Follow [Find an App ID](https://www.mongodb.com/docs/atlas/app-services/reference/find-your-project-or-app-id/?_ga=2.267445390.1225817147.1654079983-1571915642.1647002315&_gac=1.229371374.1654173423.CjwKCAjwv-GUBhAzEiwASUMm4jBtzETN-YJq0KELgeGLKk-4_6wVAfImtPoBbo-A35_eKjZ1p0Lh_BoCotcQAvD_BwE#find-an-app-id)
 * Go to `tasktracker.dart` in this sample and set your App ID to the constant `appId` as follow: 
     ```dart
     String appId = "tasktracker-fleld";;
