@@ -24,7 +24,7 @@ The Realm Flutter package is `realm` and it is available at [pub.dev](https://pu
 * Create a new app following the instructions: [Create an App with Atlas App Services UI](https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-realm-ui).
     For the purpose of this sample you don't need to create an app from a template. You can just create an empty application.
 * Click the button in the blue line above - `Review draft & deploy`.
-* Go to `Authentication Providers` menu from the left panel and make sure the option "Allow users to log in anonymously" is ON.
+* Go to the `Authentication Providers` menu on the left panel and make sure the option "Allow users to log in anonymously" is ON.
     Read [this page](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other types of authentication.
 * Go to `Sync` menu and [Enable Flexible Sync](https://www.mongodb.com/docs/atlas/app-services/sync/configure/enable-sync/#enable-flexible-sync).
     * You can skip button "Create a Schema". Choose "No thanks, continue to Sync".
