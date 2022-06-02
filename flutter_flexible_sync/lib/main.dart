@@ -1,10 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:realm/realm.dart';
 import 'model.dart';
 
 void main() async {
   const String appId = "flutter_flx_sync-plfhm";
-
+  WidgetsFlutterBinding.ensureInitialized();
   MyApp.allTasksRealm = await createRealm(appId);
   print("All tasks count: ${MyApp.allTasksRealm}");
   MyApp.importantTasksRealm = await createRealm(appId, importantTasksOnly: true);
@@ -23,7 +26,13 @@ Future<Realm> createRealm(String appId, {bool? importantTasksOnly}) async {
               ? "importantTasks"
               : "normalTaks")
       .toString();
-  final flxConfig = Configuration.flexibleSync(user, [Task.schema], path: "mongodb-realm/db_$dbName.realm");
+  final appDocsDirectory = await getApplicationDocumentsDirectory();
+  final realmDirectory = '${appDocsDirectory.path}/mongodb-realm/';
+  if (!Directory(realmDirectory).existsSync()) {
+    Directory(realmDirectory).createSync(recursive: true);
+  }
+  final flxConfig = Configuration.flexibleSync(user, [Task.schema], path: "$realmDirectory/db_$dbName.realm");
+
   var realm = Realm(flxConfig);
   print("Created local realm db: ${realm.config.path}");
 
