@@ -6,6 +6,7 @@ void main() async {
   const String appId = "dartapp-wkhjw";
 
   MyApp.allTasksRealm = await createRealm(appId);
+  print("All tasks count: ${MyApp.allTasksRealm}");
   MyApp.importantTasksRealm = await createRealm(appId, importantTasksOnly: true);
   MyApp.normalTasksRealm = await createRealm(appId, importantTasksOnly: false);
 
@@ -22,8 +23,8 @@ Future<Realm> createRealm(String appId, {bool? importantTasksOnly}) async {
               ? "importantTasks"
               : "normalTaks")
       .toString();
-  final flxConfig = Configuration.flexibleSync(user, [Task.schema], path: "mongodb-realm/db_$dbName");
-  final realm = Realm(flxConfig);
+  final flxConfig = Configuration.flexibleSync(user, [Task.schema], path: "mongodb-realm/db_$dbName.realm");
+  var realm = Realm(flxConfig);
   print("Created local realm db: ${realm.config.path}");
 
   final RealmResults<Task> query;
@@ -38,6 +39,7 @@ Future<Realm> createRealm(String appId, {bool? importantTasksOnly}) async {
   });
 
   await realm.subscriptions.waitForSynchronization();
+  print("Syncronization finished for: ${realm.config.path}");
   return realm;
 }
 
@@ -127,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
         floatingActionButton: Stack(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(left: 0.0),
+              padding: const EdgeInsets.only(left: 10.0),
               child: Align(
                   alignment: Alignment.bottomLeft,
                   child: FloatingActionButton(
@@ -136,13 +138,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: const Icon(Icons.add),
                   )),
             ),
-            Align(
-                alignment: Alignment.bottomRight,
-                child: FloatingActionButton(
-                  onPressed: _createNormalTasks,
-                  tooltip: 'Normal task',
-                  child: const Icon(Icons.add),
-                )),
+            Padding(
+              padding: const EdgeInsets.only(right: 40.0),
+              child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: FloatingActionButton(
+                    onPressed: _createNormalTasks,
+                    tooltip: 'Normal task',
+                    child: const Icon(Icons.add),
+                  )),
+            ),
           ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.startFloat);

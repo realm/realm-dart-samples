@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   realm:
-    path: ../../realm-dart/flutter/realm_flutter
+    path: C:\Temp\packages\realm\
 
 
   cupertino_icons: ^1.0.2
