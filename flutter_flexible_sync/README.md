@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
 
-## A simple application using [Realm Flutter SDK](https://www.mongodb.com/docs/realm/sdk/flutter/) Flexible Sync with [Atlas App Services application](https://www.mongodb.com/docs/atlas/app-services/).
+## A simple application using the [Realm Flutter SDK](https://www.mongodb.com/docs/realm/sdk/flutter/) Flexible Sync with an [Atlas App Services application](https://www.mongodb.com/docs/atlas/app-services/).
 This sample demonstrates the usage of Flexible Sync. 
 Writing to a local realm named `db_allTasks.realm` sends the data automatically to the Atlas Collection.
 Then the data are downloaded back by the synchronization process to two separated realms
