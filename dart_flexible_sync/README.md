@@ -17,26 +17,26 @@ The Realm Dart package is `realm_dart` and it is available on [pub.dev](https://
 
 * Supported platforms are Windows, Mac and Linux.
 
-* Dart SDK ^2.17.1
+* Dart SDK ^2.17.0
 
 # Atlas App Services Configuration Steps
 
-* Create an account in [realm.mongodb.com](https://realm.mongodb.com) - follow the instructions: [Get Started with Atlas](https://www.mongodb.com/docs/atlas/getting-started)
+* Create an account on [realm.mongodb.com](https://realm.mongodb.com) - follow the instructions: [Get Started with Atlas](https://www.mongodb.com/docs/atlas/getting-started)
 * Create a new app following the instructions here: [Create an App with Atlas App Services UI](https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-realm-ui).
     For the purpose of this sample you don't need to create an app from a template. You can just create an empty application.
 * Click the button in the blue line above - `Review draft & deploy`.
-* Go to `Authentication Providers` menu from the left panel and make sure the option "Allow users to log in anonymously" is ON.
+* Go to the `Authentication Providers` menu in the left panel and make sure the option "Allow users to log in anonymously" is ON.
     Read [this page](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other types of authentication.
-* Go to `Sync` menu and [Enable Flexible Sync](https://www.mongodb.com/docs/atlas/app-services/sync/configure/enable-sync/#enable-flexible-sync).
+* Go to the `Sync` menu and [Enable Flexible Sync](https://www.mongodb.com/docs/atlas/app-services/sync/configure/enable-sync/#enable-flexible-sync).
     * Don't create a schema. Skip by choosing "No thanks, continue to Sync".
-    * Please choose button "Flexible Sync". Only Flexible Sync is supported in Realm Dart SDK.
-    * Switch ON ["Development mode"](https://www.mongodb.com/docs/atlas/app-services/sync/data-model/development-mode/) option. 
-    * Choose to create a new database collection and set a name of this database.
+    * Press the "Flexible Sync" button. Only Flexible Sync is supported in the Realm Dart SDK.
+    * Switch ON the ["Development mode"](https://www.mongodb.com/docs/atlas/app-services/sync/data-model/development-mode/) option. 
+    * Create a new database collection and choose a name for it.
     * Create a new queryable field used for filtering data between both realms in this application. For our sample the fields are `status` and `progressMinutes`. 
         Since it is not available in the selection list, just start writing inside the selection box and then choose `Create status`. 
         It will be created.
         Do the same for field `progressMinutes`.
-    * Define permission - for the purpose of this sample choose the option `Users can read and write all data`.
+    * Define permission - for the purpose of this sample please choose the option `Users can read and write all data`.
     * Click the button `Enable Sync` and confirm.
     * Click the button in the blue line above - `Review draft & deploy`, again.
 * Copy the App ID of your new application. Follow [Find an App ID](https://www.mongodb.com/docs/atlas/app-services/reference/find-your-project-or-app-id/?_ga=2.267445390.1225817147.1654079983-1571915642.1647002315&_gac=1.229371374.1654173423.CjwKCAjwv-GUBhAzEiwASUMm4jBtzETN-YJq0KELgeGLKk-4_6wVAfImtPoBbo-A35_eKjZ1p0Lh_BoCotcQAvD_BwE#find-an-app-id)
@@ -49,12 +49,6 @@ These steps are for the purpose of the sample. You can follow the instructions
 in [MongoDB Atlas](https://www.mongodb.com/docs/atlas) for more advanced and secured configurations.
 
 ## Usage
-
-* Add `realm_dart` package to a Dart application.
-
-    ```
-    dart pub add realm_dart
-    ```
 
 * Install the `realm_dart` package into the application. This downloads and copies the required native binaries to the app directory.
 
