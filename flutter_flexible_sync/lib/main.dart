@@ -3,7 +3,7 @@ import 'package:realm/realm.dart';
 import 'model.dart';
 
 void main() async {
-  const String appId = "dartapp-wkhjw";
+  const String appId = "flutter_flx_sync-plfhm";
 
   MyApp.allTasksRealm = await createRealm(appId);
   print("All tasks count: ${MyApp.allTasksRealm}");
