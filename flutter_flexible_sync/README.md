@@ -26,7 +26,7 @@ The Realm Flutter package is `realm` and it is available at [pub.dev](https://pu
 * Click the button in the blue line above - `Review draft & deploy`.
 * Go to the `Authentication Providers` menu on the left panel and make sure the option "Allow users to log in anonymously" is ON.
     Read [this page](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other types of authentication.
-* Go to `Sync` menu and [Enable Flexible Sync](https://www.mongodb.com/docs/atlas/app-services/sync/configure/enable-sync/#enable-flexible-sync).
+* Go to the `Sync` menu and [Enable Flexible Sync](https://www.mongodb.com/docs/atlas/app-services/sync/configure/enable-sync/#enable-flexible-sync).
     * You can skip button "Create a Schema". Choose "No thanks, continue to Sync".
     * Please choose button "Flexible Sync". Only Flexible Sync is supported in Realm Flutter SDK.
     * Switch ON ["Development mode"](https://www.mongodb.com/docs/atlas/app-services/sync/data-model/development-mode/) option. 
