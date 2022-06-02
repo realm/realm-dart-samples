@@ -11,10 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  realm:
-    path: C:\Temp\packages\realm\
-
-
+  realm: 0.3.0-beta
+  
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
