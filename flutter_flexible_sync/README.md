@@ -18,6 +18,41 @@ The Realm Flutter package is `realm` and it is available in [pub.dev](https://pu
 * Flutter Mobile on Android and iOS
 * Flutter Desktop on Windows, Linux and MacOS
 
-## Usage
+## Atlas App Services Configuration Steps
 
-Create an account in [realm.mongodb.com](https://realm.mongodb.com)
+* Create an account in [realm.mongodb.com](https://realm.mongodb.com) - follow the instructions: [Get Started with Atlas](https://www.mongodb.com/docs/atlas/getting-started)
+* Creat a new app following the instruction: [Create an App with Atlas App Services UI](https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-realm-ui).
+    For the purpose of this sample you don't need to create an app from a template. You can just create an empty application.
+* Click the button in the blue line above - `Review draft & deploy`.
+* Go to `Authentication Providers` menu from the left panel and make sure the option "Allow users to log in anonymously" is ON.
+    Read [this page](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other types of authentication.
+* Go to `Sync` menu and [Enable Flexible Sync](https://www.mongodb.com/docs/atlas/app-services/sync/configure/enable-sync/#enable-flexible-sync).
+   * You can skip button "Create a Schema". Choose "No thanks, continue to Sync".
+   * Please choose button "Flexible Sync". Only Flexible Sync is supported in Realm Flutter SDK.
+   * Switch ON ["Development mode"](https://www.mongodb.com/docs/atlas/app-services/sync/data-model/development-mode/) option. 
+   * Choose to create a new database collection and set a name of this database.
+   * Create a new queryable field used for filtering data between both realms in this application. For our sample the field is `isImportant`. 
+        Since it is not available in the selection list, just start writing inside the selection box and then choose `Create isImportant`. 
+        It will be created.
+   * Define permission - for the purpose of this sample please choose the optionn `Users can read and write all data`.
+   * Click the button `Enable Sync` and confirm.
+   * Click again the button in the blue line above - `Review draft & deploy`.
+* Copy App ID of your new application. Follow [Find an App ID](https://www.mongodb.com/docs/atlas/app-services/reference/find-your-project-or-app-id/?_ga=2.267445390.1225817147.1654079983-1571915642.1647002315&_gac=1.229371374.1654173423.CjwKCAjwv-GUBhAzEiwASUMm4jBtzETN-YJq0KELgeGLKk-4_6wVAfImtPoBbo-A35_eKjZ1p0Lh_BoCotcQAvD_BwE#find-an-app-id)
+* Go to `main.dart` in this sample and set your App ID to the constant `appId` as follow: 
+    ```dart
+    const String appId = "flutter_flx_sync-plfhm";
+    ```
+
+These steps are for the purpose of the sample. You can follow the instructions 
+in [MongoDB Atlas](https://www.mongodb.com/docs/atlas) for more advanced and secured configurations.
+
+# Usage
+
+   * Start an Android Emulator, an iPhone Simulator, attach an Android device or setup [Flutter Desktop environment](https://docs.flutter.dev/desktop)
+
+   * Run `flutter pub get` to get all packages
+   
+   * Run `flutter run` to run the application
+
+
+   ##### The "Dart" name and logo and the "Flutter" name and logo are trademarks owned by Google. 
