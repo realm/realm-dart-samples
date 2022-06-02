@@ -18,7 +18,7 @@ The Realm Flutter package is `realm` and it is available in [pub.dev](https://pu
 * Flutter Mobile on Android and iOS
 * Flutter Desktop on Windows, Linux and MacOS
 
-## Atlas App Services Configuration Steps
+# Atlas App Services Configuration Steps
 
 * Create an account in [realm.mongodb.com](https://realm.mongodb.com) - follow the instructions: [Get Started with Atlas](https://www.mongodb.com/docs/atlas/getting-started)
 * Creat a new app following the instruction: [Create an App with Atlas App Services UI](https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-realm-ui).
