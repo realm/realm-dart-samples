@@ -7,40 +7,32 @@ import 'model.dart';
 
 void main() async {
   const String appId = "flutter_flx_sync-plfhm";
+
   WidgetsFlutterBinding.ensureInitialized();
-  MyApp.allTasksRealm = await createRealm(appId);
-  print("All tasks count: ${MyApp.allTasksRealm}");
-  MyApp.importantTasksRealm = await createRealm(appId, importantTasksOnly: true);
-  MyApp.normalTasksRealm = await createRealm(appId, importantTasksOnly: false);
+
+  MyApp.allTasksRealm = await createRealm(appId, CollectionType.allTasks);
+  MyApp.importantTasksRealm = await createRealm(appId, CollectionType.importantTasks);
+  MyApp.normalTasksRealm = await createRealm(appId, CollectionType.normalTasks);
 
   runApp(const MyApp());
 }
 
-Future<Realm> createRealm(String appId, {bool? importantTasksOnly}) async {
+enum CollectionType { allTasks, importantTasks, normalTasks }
+
+Future<Realm> createRealm(String appId, CollectionType collectionType) async {
   final appConfig = AppConfiguration(appId);
   final app = App(appConfig);
   final user = await app.logIn(Credentials.anonymous());
-  String dbName = (importantTasksOnly == null
-          ? "allTasks"
-          : importantTasksOnly
-              ? "importantTasks"
-              : "normalTaks")
-      .toString();
-  final appDocsDirectory = await getApplicationDocumentsDirectory();
-  final realmDirectory = '${appDocsDirectory.path}/mongodb-realm/';
-  if (!Directory(realmDirectory).existsSync()) {
-    Directory(realmDirectory).createSync(recursive: true);
-  }
-  final flxConfig = Configuration.flexibleSync(user, [Task.schema], path: "$realmDirectory/db_$dbName.realm");
 
+  final flxConfig = Configuration.flexibleSync(user, [Task.schema], path: await absolutePath("db_${collectionType.name}.realm"));
   var realm = Realm(flxConfig);
-  print("Created local realm db: ${realm.config.path}");
+  print("Created local realm db at: ${realm.config.path}");
 
   final RealmResults<Task> query;
-  if (importantTasksOnly == null) {
+  if (collectionType == CollectionType.allTasks) {
     query = realm.all<Task>();
   } else {
-    query = realm.query<Task>(r'isImportant == $0', [importantTasksOnly]);
+    query = realm.query<Task>(r'isImportant == $0', [collectionType == CollectionType.importantTasks]);
   }
 
   realm.subscriptions.update((mutableSubscriptions) {
@@ -48,8 +40,17 @@ Future<Realm> createRealm(String appId, {bool? importantTasksOnly}) async {
   });
 
   await realm.subscriptions.waitForSynchronization();
-  print("Syncronization finished for: ${realm.config.path}");
+  print("Syncronization completed for realm: ${realm.config.path}");
   return realm;
+}
+
+Future<String> absolutePath(String fileName) async {
+  final appDocsDirectory = await getApplicationDocumentsDirectory();
+  final realmDirectory = '${appDocsDirectory.path}/mongodb-realm';
+  if (!Directory(realmDirectory).existsSync()) {
+    await Directory(realmDirectory).create(recursive: true);
+  }
+  return "$realmDirectory/$fileName";
 }
 
 class MyApp extends StatelessWidget {

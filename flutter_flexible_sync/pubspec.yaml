@@ -1,8 +1,7 @@
 name: flutter_flexible_sync
 description: A new Flutter project.
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
+publish_to: 'none' 
 version: 1.0.0+1
 
 environment:
@@ -12,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   realm: 0.3.0+beta
-  
+
   cupertino_icons: ^1.0.2
   path_provider: ^2.0.10
 
