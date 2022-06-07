@@ -76,13 +76,14 @@ abstract class CommandBase extends Command<Future<void>> {
 
   @override
   Future<void> run() async {
-    final config = Configuration([Category.schema, Now.schema]);
+    final config = Configuration.local([Category.schema, Now.schema]);
     final realm = Realm(config);
     try {
       await runWithRealm(realm);
     } finally {
       // Always remember to close!
       realm.close();
+      Realm.shutdown();
     }
   }
 

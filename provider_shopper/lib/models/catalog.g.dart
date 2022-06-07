@@ -49,7 +49,7 @@ class Item extends _Item with RealmEntity, RealmObject {
   static SchemaObject? _schema;
   static SchemaObject _initSchema() {
     RealmObject.registerFactory(Item._);
-    return const SchemaObject(Item, [
+    return const SchemaObject(Item, 'Item', [
       SchemaProperty('id', RealmPropertyType.int, primaryKey: true),
       SchemaProperty('name', RealmPropertyType.string),
       SchemaProperty('price', RealmPropertyType.int),
