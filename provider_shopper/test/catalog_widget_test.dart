@@ -26,18 +26,18 @@ Widget createCatalogScreen() => MultiProvider(
     );
 
 void main() {
-  final catalogListItems = CatalogModel.itemNames.sublist(0, 3);
+  //final catalogListItems = CatalogModel.itemNames.sublist(0, 3);
 
   group('CatalogScreen Widget Tests', () {
-    testWidgets('Testing item row counts and text', (tester) async {
-      await tester.pumpWidget(createCatalogScreen());
+    // testWidgets('Testing item row counts and text', (tester) async {
+    //   await tester.pumpWidget(createCatalogScreen());
 
-      // Testing for the items on the screen after modifying
-      // the model for a fixed number of items.
-      for (var item in catalogListItems) {
-        expect(find.text(item), findsWidgets);
-      }
-    });
+    //   // Testing for the items on the screen after modifying
+    //   // the model for a fixed number of items.
+    //   for (var item in catalogListItems) {
+    //     expect(find.text(item), findsWidgets);
+    //   }
+    // });
 
     testWidgets('Testing the ADD buttons and check after clicking',
         (tester) async {

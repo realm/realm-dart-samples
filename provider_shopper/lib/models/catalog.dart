@@ -28,7 +28,7 @@ class CatalogModel {
   late Realm realm;
 
   CatalogModel() {
-    var config = Configuration([Item.schema]);
+    var config = Configuration.local([Item.schema]);
     realm = Realm(config);
 
     var allItems = realm.all<Item>();

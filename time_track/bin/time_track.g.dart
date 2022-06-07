@@ -28,7 +28,7 @@ class Category extends _Category with RealmEntity, RealmObject {
   static SchemaObject? _schema;
   static SchemaObject _initSchema() {
     RealmObject.registerFactory(Category._);
-    return const SchemaObject(Category, [
+    return const SchemaObject(Category, 'Category', [
       SchemaProperty('name', RealmPropertyType.string, primaryKey: true),
     ]);
   }
@@ -65,7 +65,7 @@ class Now extends _Now with RealmEntity, RealmObject {
   static SchemaObject? _schema;
   static SchemaObject _initSchema() {
     RealmObject.registerFactory(Now._);
-    return const SchemaObject(Now, [
+    return const SchemaObject(Now, 'Now', [
       SchemaProperty('time', RealmPropertyType.int),
       SchemaProperty('category', RealmPropertyType.object,
           optional: true, linkTarget: 'Category'),

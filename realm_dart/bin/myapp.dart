@@ -35,7 +35,7 @@ class _Person {
 }
 
 void main(List<String> arguments) {
-  var config = Configuration([Car.schema, Person.schema]);
+  var config = Configuration.local([Car.schema, Person.schema]);
   var realm = Realm(config);
 
   var myCar = Car("Tesla", model: "Model Y", kilometers: 1);
@@ -66,6 +66,7 @@ void main(List<String> arguments) {
   print('Found ${filteredCars.length} Tesla cars');
 
   realm.close();
+  Realm.shutdown();
 
   print("Done");
 }
