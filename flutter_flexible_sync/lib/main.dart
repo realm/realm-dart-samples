@@ -11,16 +11,16 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  MyApp.allTasksRealm = await createRealm(appId, CollectionType.allTasks);
-  MyApp.importantTasksRealm = await createRealm(appId, CollectionType.importantTasks);
-  MyApp.normalTasksRealm = await createRealm(appId, CollectionType.normalTasks);
+  MyApp.allTasksRealm = await openRealm(appId, CollectionType.allTasks);
+  MyApp.importantTasksRealm = await openRealm(appId, CollectionType.importantTasks);
+  MyApp.normalTasksRealm = await openRealm(appId, CollectionType.normalTasks);
 
   runApp(const MyApp());
 }
 
 enum CollectionType { allTasks, importantTasks, normalTasks }
 
-Future<Realm> createRealm(String appId, CollectionType collectionType) async {
+Future<Realm> openRealm(String appId, CollectionType collectionType) async {
   final appConfig = AppConfiguration(appId);
   final app = App(appConfig);
   final user = await app.logIn(Credentials.anonymous());
@@ -30,6 +30,7 @@ Future<Realm> createRealm(String appId, CollectionType collectionType) async {
     [Task.schema],
     path: await absolutePath("db_${collectionType.name}.realm"),
     syncErrorHandler: (SyncError e) {
+      Realm.logger.log(RealmLogLevel.error, e);
       if (e.message!.startsWith("Host not found") && !completer.isCompleted) {
         completer.complete();
       }
