@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -23,8 +24,17 @@ Future<Realm> createRealm(String appId, CollectionType collectionType) async {
   final appConfig = AppConfiguration(appId);
   final app = App(appConfig);
   final user = await app.logIn(Credentials.anonymous());
-
-  final flxConfig = Configuration.flexibleSync(user, [Task.schema], path: await absolutePath("db_${collectionType.name}.realm"));
+  final Completer<void> completer = Completer<void>();
+  final flxConfig = Configuration.flexibleSync(
+    user,
+    [Task.schema],
+    path: await absolutePath("db_${collectionType.name}.realm"),
+    syncErrorHandler: (SyncError e) {
+      if (e.message!.startsWith("Host not found") && !completer.isCompleted) {
+        completer.complete();
+      }
+    },
+  );
   var realm = Realm(flxConfig);
   print("Created local realm db at: ${realm.config.path}");
 
@@ -35,11 +45,17 @@ Future<Realm> createRealm(String appId, CollectionType collectionType) async {
     query = realm.query<Task>(r'isImportant == $0', [collectionType == CollectionType.importantTasks]);
   }
 
-  realm.subscriptions.update((mutableSubscriptions) {
-    mutableSubscriptions.add(query);
-  });
+  if (realm.subscriptions.find(query) == null) {
+    realm.subscriptions.update((mutableSubscriptions) {
+      mutableSubscriptions.add(query);
+    });
 
-  await realm.subscriptions.waitForSynchronization();
+    realm.subscriptions.waitForSynchronization().whenComplete(() {
+      if (!completer.isCompleted) completer.complete();
+    });
+    await completer.future;
+  }
+
   print("Syncronization completed for realm: ${realm.config.path}");
   return realm;
 }
@@ -86,32 +102,34 @@ class _MyHomePageState extends State<MyHomePage> {
   int _importantTasksCount = MyApp.importantTasksRealm.all<Task>().length;
   int _normalTasksCount = MyApp.normalTasksRealm.all<Task>().length;
 
-  void _createImportantTasks() async {
+  void updateState() {
+    var normalTasks = MyApp.normalTasksRealm.all<Task>();
     var importantTasks = MyApp.importantTasksRealm.all<Task>();
     var allTasksCount = MyApp.allTasksRealm.all<Task>();
-    MyApp.allTasksRealm.write(() {
-      MyApp.allTasksRealm.add(Task(ObjectId(), "Important task ${importantTasks.length + 1}", false, true));
-    });
-    await MyApp.allTasksRealm.syncSession.waitForUpload();
-    await MyApp.importantTasksRealm.subscriptions.waitForSynchronization();
+
     setState(() {
       _importantTasksCount = importantTasks.length;
       _allTasksCount = allTasksCount.length;
+      _normalTasksCount = normalTasks.length;
     });
+  }
+
+  void _createImportantTasks() async {
+    var importantTasks = MyApp.importantTasksRealm.all<Task>();
+    MyApp.allTasksRealm.write(() {
+      MyApp.allTasksRealm.add(Task(ObjectId(), "Important task ${importantTasks.length + 1}", false, true));
+    });
+    MyApp.allTasksRealm.syncSession.waitForUpload().whenComplete(() => updateState());
+    updateState();
   }
 
   void _createNormalTasks() async {
     var normalTasks = MyApp.normalTasksRealm.all<Task>();
-    var allTasksCount = MyApp.allTasksRealm.all<Task>();
     MyApp.allTasksRealm.write(() {
       MyApp.allTasksRealm.add(Task(ObjectId(), "Normal task ${normalTasks.length + 1}", false, false));
     });
-    await MyApp.allTasksRealm.syncSession.waitForUpload();
-    await MyApp.normalTasksRealm.subscriptions.waitForSynchronization();
-    setState(() {
-      _normalTasksCount = normalTasks.length;
-      _allTasksCount = allTasksCount.length;
-    });
+    MyApp.allTasksRealm.syncSession.waitForUpload().whenComplete(() => updateState());
+    updateState();
   }
 
   @override
