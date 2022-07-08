@@ -126,13 +126,10 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               const Text('Important tasks count:', style: TextStyle(fontWeight: FontWeight.bold)),
               Text('$_importantTasksCount', style: Theme.of(context).textTheme.headline4),
-              Text('Realm path: ${MyApp.importantTasksRealm.config.path}'),
               const Text('Normal tasks count:', style: TextStyle(fontWeight: FontWeight.bold)),
               Text('$_normalTasksCount', style: Theme.of(context).textTheme.headline4),
-              Text('Realm path: ${MyApp.normalTasksRealm.config.path}'),
               const Text('All tasks count:', style: TextStyle(fontWeight: FontWeight.bold)),
               Text('$_allTasksCount', style: Theme.of(context).textTheme.headline4),
-              Text('Realm path: ${MyApp.allTasksRealm.config.path}'),
             ],
           ),
         ),
