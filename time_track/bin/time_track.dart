@@ -187,10 +187,10 @@ extension on Console {
 
   void displayEntries(Iterable<Now> entries) {
     final table = Table()
-      ..addColumnDefinition(header: 'Time')
-      ..addColumnDefinition(header: 'Category')
-      ..addColumnDefinition(header: 'Duration')
-      ..addRows([
+      ..insertColumn(header: 'Time')
+      ..insertColumn(header: 'Category')
+      ..insertColumn(header: 'Duration')
+      ..insertRows([
         for (final tt in entries)
           [
             DateTime.fromMicrosecondsSinceEpoch(tt.time),
