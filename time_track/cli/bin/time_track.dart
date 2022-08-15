@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:crypto/crypto.dart';
 import 'package:dart_console/dart_console.dart';
@@ -112,6 +113,8 @@ class NowCommand extends CommandBase {
       }
 
       console.displayEntry(latest!);
+    } else {
+      usageException('You need to specify what is happening now');
     }
   }
 }
@@ -309,10 +312,17 @@ void main(List<String> arguments) async {
       defaultsTo: false,
     );
 
-  await runner.run(arguments);
-  Realm.logger.info('shutdown');
-  Realm.shutdown();
-  Realm.logger.info('shutdown done');
+  try {
+    await runner.run(arguments);
+  } catch (error) {
+    if (error is! UsageException) rethrow;
+    print(error);
+    exit(64); // Exit code 64 indicates a usage error.
+  } finally {
+    Realm.logger.info('shutdown');
+    Realm.shutdown();
+    Realm.logger.info('shutdown done');
+  }
 }
 
 final console = Console();
