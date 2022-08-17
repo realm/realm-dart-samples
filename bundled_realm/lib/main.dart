@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:realm/realm.dart';
-import 'package:flutter/services.dart'; // is required
+import 'package:flutter/services.dart';
 import 'model.dart';
 
 late Realm realm;

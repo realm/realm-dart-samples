@@ -22,8 +22,10 @@ flutter:
 
 ### How to load bundled realm
 Create a configuration and just before to open a realm check if the realm file doesn't exist at `config.path` location to ensure that this is the first time you try to open a realm.
-Then copy the bundled realm from assets into `config.path` location. After that the realm that is opened will de the pre-poluted realm.
+Then copy the bundled realm from assets into `config.path` location. After that the realm that is opened will be the pre-poluted realm.
 ```dart
+import 'package:flutter/services.dart';
+
 Future<Realm> initRealm(String assetKey) async {
   final config = Configuration.local([Car.schema]);
   final file = File(config.path);
