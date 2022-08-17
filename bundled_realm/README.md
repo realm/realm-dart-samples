@@ -21,22 +21,25 @@ flutter:
 ```
 
 ### How to load bundled realm
-Create a function in your app
+Create a configuration and just before to open a realm check if the realm file doesn't exist at `config.path` location to ensure that this is the first time you try to open a realm.
+Then copy the bundled realm from assets into `config.path` location. After that the realm that is opened will de the pre-poluted realm.
 ```dart
-Future<void> copyAsset(BuildContext context, String assetKey, String path) async {
-  var assets = DefaultAssetBundle.of(context);
-  final byteData = await assets.load(assetKey);
-  final file = File(path);
-  await file.writeAsBytes(byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes), mode: FileMode.write);
+Future<Realm> initRealm(String assetKey) async {
+  final config = Configuration.local([Car.schema]);
+  final file = File(config.path);
+  if (!await file.exists()) {
+    ByteData realmBytes = await rootBundle.load(assetKey);
+    await file.writeAsBytes(realmBytes.buffer.asUint8List(realmBytes.offsetInBytes, realmBytes.lengthInBytes), mode: FileMode.write);
+  }
+  return Realm(config);
 }
 ```
-Create a function to copy initial.realm into default realm location before realm to be opened
+
+You can call `initRealm` before `runApp` for example:
 ```dart
-Realm loadInitialRealmOnFirstTimeOpening(BuildContext context) {
-  final defaultRealmPathConfig = Configuration.local([Car.schema]).path;
-  final config = Configuration.local([Car.schema], initialDataCallback: (realm) async {
-    await copyAsset(context, "realm/initial.realm", defaultRealmPathConfig);
-  });
-  return Realm(config);
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  realm = await initRealm("realm/initial.realm");
+  runApp(const MyApp());
 }
 ```

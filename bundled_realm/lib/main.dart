@@ -2,18 +2,24 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:realm/realm.dart';
-
+import 'package:flutter/services.dart'; // is required
 import 'model.dart';
 
-void main() {
+late Realm realm;
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  realm = await initRealm("realm/initial.realm");
   runApp(const MyApp());
 }
 
-Future<void> copyAsset(BuildContext context, String assetKey, String path) async {
-  var assets = DefaultAssetBundle.of(context);
-  final byteData = await assets.load(assetKey);
-  final file = File(path);
-  await file.writeAsBytes(byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes), mode: FileMode.write);
+Future<Realm> initRealm(String assetKey) async {
+  final config = Configuration.local([Car.schema]);
+  final file = File(config.path);
+  if (!await file.exists()) {
+    ByteData realmBytes = await rootBundle.load(assetKey);
+    await file.writeAsBytes(realmBytes.buffer.asUint8List(realmBytes.offsetInBytes, realmBytes.lengthInBytes), mode: FileMode.write);
+  }
+  return Realm(config);
 }
 
 class MyApp extends StatelessWidget {
@@ -43,14 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String text = "";
 
   void _incrementCars() {
-    //In realm 0.3.2+beta use the static member Configuration.defaultRealmPath instead Configuration.local([Car.schema]).path;
-    final defaultRealmPathConfig = Configuration.local([Car.schema]).path;
-    final config = Configuration.local([Car.schema], initialDataCallback: (realm) async {
-      await copyAsset(context, "realm/initial.realm", defaultRealmPathConfig);
-    });
-
     setState(() {
-      final realm = Realm(config);
       realm.write(() => realm.add(Car("New make", model: "${carsList.length + 1}")));
       text = getCarsList(realm);
     });
