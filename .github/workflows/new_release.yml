@@ -6,7 +6,7 @@ on:
     inputs:
       version:
         description: Use this to provide a version of realm for updating the samples.
-        required: false
+        required: true
         type: string
 
 
