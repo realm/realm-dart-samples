@@ -1,14 +1,12 @@
 name: CI new release
 
 on:
-  pull_request:
   workflow_dispatch:
     inputs:
       version:
         description: Use this to provide a version of realm for updating the samples.
         required: true
         type: string
-
 
 jobs:
    build:
