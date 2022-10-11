@@ -30,7 +30,7 @@ jobs:
           include: '**pubspec.yaml'
 
       - name: Create Version Upgrade PR
-        uses: peter-evans/create-pull-request@7380612b49221684fefa025244f2ef4008ae50ad #! 3.10.1
+        uses: peter-evans/create-pull-request@v4.1.3
         with:
           branch: release/${{ inputs.version }}
           base: master
