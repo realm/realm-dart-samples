@@ -30,6 +30,7 @@ jobs:
           include: '**pubspec.yaml'
 
       - name: Configure functions
+        working-directory: .
         run: |
           ci.sh --get
           ci.sh --generate

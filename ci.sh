@@ -45,10 +45,13 @@ runGenerator() {
             dart pub get
             printf "\ndart run realm_dart install"
             dart run realm_dart install
+            printf "\ndart run realm_dart generate"
             dart run realm_dart generate
+            printf "\ndart run"
             dart run
         else if grep -q 'realm:' "pubspec.yaml"; 
             then
+                printf "\nflutter packages get"
                 flutter packages get
                 flutter pub run realm generate
             fi
