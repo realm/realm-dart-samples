@@ -29,7 +29,15 @@ jobs:
           replace: 'realm: ${{ inputs.version }}'
           include: '**pubspec.yaml'
 
-      - name: Configure functions
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Enable Flutter Desktop support
+        run: flutter config --enable-linux-desktop
+
+      - name: Install dependencies and run generator
         working-directory: .
         run: |
           chmod +x .github/workflows/ci.sh
