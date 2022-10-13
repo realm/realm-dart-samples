@@ -32,8 +32,9 @@ jobs:
       - name: Configure functions
         working-directory: .
         run: |
-          chmod +x .github/workflows/ci.sh --get
-          chmod +x .github/workflows/ci.sh --generate
+          chmod +x .github/workflows/ci.sh
+          .github/workflows/ci.sh --get
+          .github/workflows/ci.sh --generate
         shell: bash
 
       - name: Create Version Upgrade PR
