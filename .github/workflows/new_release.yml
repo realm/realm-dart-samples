@@ -29,6 +29,11 @@ jobs:
           replace: 'realm: ${{ inputs.version }}'
           include: '**pubspec.yaml'
 
+      - name: Configure functions
+        run: |
+          ci.sh --get
+          ci.sh --generate
+
       - name: Create Version Upgrade PR
         uses: peter-evans/create-pull-request@v4.1.3
         with:
