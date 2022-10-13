@@ -41,18 +41,19 @@ runGenerator() {
     if [ -f "pubspec.yaml" ]; then
         if grep -q 'realm_dart:' "pubspec.yaml";
         then
-            printf "\ndart pub get"
+            printf "\ndart pub get\n"
             dart pub get
-            printf "\ndart run realm_dart install"
+            printf "\ndart run realm_dart install\n"
             dart run realm_dart install
-            printf "\ndart run realm_dart generate"
+            printf "\ndart run realm_dart generate\n"
             dart run realm_dart generate
-            printf "\ndart run"
+            printf "\ndart run\n"
             dart run
         else if grep -q 'realm:' "pubspec.yaml";
             then
-                printf "\nflutter packages get"
-                flutter packages get
+                printf "\nflutter pub get\n"
+                flutter pub get
+                printf "\nflutter pub run realm generate\n"
                 flutter pub run realm generate
             fi
         fi
