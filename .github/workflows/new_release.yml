@@ -37,7 +37,7 @@ jobs:
       - name: Enable Flutter Desktop support
         run: flutter config --enable-linux-desktop
 
-      - name: Install dependencies and run generator
+      - name: Install dependencies, run generator, run realm on dart
         working-directory: .
         run: |
           chmod +x .github/workflows/ci.sh
