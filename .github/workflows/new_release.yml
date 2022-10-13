@@ -34,6 +34,7 @@ jobs:
         run: |
           ci.sh --get
           ci.sh --generate
+        shell: bash
 
       - name: Create Version Upgrade PR
         uses: peter-evans/create-pull-request@v4.1.3
