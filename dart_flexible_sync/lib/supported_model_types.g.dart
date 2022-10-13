@@ -72,6 +72,10 @@ class AllPrimitiveOptional extends _AllPrimitiveOptional
   Stream<RealmObjectChanges<AllPrimitiveOptional>> get changes =>
       RealmObject.getChanges<AllPrimitiveOptional>(this);
 
+  @override
+  AllPrimitiveOptional freeze() =>
+      RealmObject.freezeObject<AllPrimitiveOptional>(this);
+
   static SchemaObject get schema => _schema ??= _initSchema();
   static SchemaObject? _schema;
   static SchemaObject _initSchema() {
@@ -116,7 +120,7 @@ class AllPrimitiveRequired extends _AllPrimitiveRequired
   @override
   ObjectId get id => RealmObject.get<ObjectId>(this, '_id') as ObjectId;
   @override
-  set id(ObjectId value) => throw RealmUnsupportedSetError();
+  set id(ObjectId value) => RealmObject.set(this, '_id', value);
 
   @override
   String get stringProp =>
@@ -161,6 +165,10 @@ class AllPrimitiveRequired extends _AllPrimitiveRequired
   @override
   Stream<RealmObjectChanges<AllPrimitiveRequired>> get changes =>
       RealmObject.getChanges<AllPrimitiveRequired>(this);
+
+  @override
+  AllPrimitiveRequired freeze() =>
+      RealmObject.freezeObject<AllPrimitiveRequired>(this);
 
   static SchemaObject get schema => _schema ??= _initSchema();
   static SchemaObject? _schema;
@@ -257,6 +265,10 @@ class AllPrimitiveLists extends _AllPrimitiveLists
   @override
   Stream<RealmObjectChanges<AllPrimitiveLists>> get changes =>
       RealmObject.getChanges<AllPrimitiveLists>(this);
+
+  @override
+  AllPrimitiveLists freeze() =>
+      RealmObject.freezeObject<AllPrimitiveLists>(this);
 
   static SchemaObject get schema => _schema ??= _initSchema();
   static SchemaObject? _schema;
