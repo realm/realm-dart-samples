@@ -26,7 +26,7 @@ allDirs() {
 runGet() {
     cd $1
     if [ -f "pubspec.yaml" ]; then
-        if grep -q 'realm_dart:' "pubspec.yaml"; 
+        if grep -q 'realm_dart:' "pubspec.yaml";
         then
             dart pub get
         else
