@@ -25,74 +25,64 @@ where:
 allDirs() {
     dirs=(`find . -maxdepth 2 -type d`)
     for dir in "${dirs[@]}"; do
-        $1 $dir
+        cd $dir
+            if [ -f "pubspec.yaml" ]; then
+                $1 $dir
+            fi
+        cd - > /dev/null
     done
 }
 
 
 runUpgrade() {
-    cd $1
-    if [ -f "pubspec.yaml" ]; then
-        if grep -q 'realm_dart:' "pubspec.yaml";
-        then
-            printf "\ndart pub upgrade --major-versions\n"
-            dart pub upgrade --major-versions
-        else
-            printf "\nflutter pub upgrade --major-versions\n"
-            flutter pub upgrade --major-versions
-        fi
+    if grep -q 'realm_dart:' "pubspec.yaml";
+    then
+        printf "\ndart pub upgrade --major-versions\n"
+        dart pub upgrade --major-versions
+    else
+        printf "\nflutter pub upgrade --major-versions\n"
+        flutter pub upgrade --major-versions
     fi
-    cd - > /dev/null
 }
 
 runGet() {
-    cd $1
-    if [ -f "pubspec.yaml" ]; then
-        if grep -q 'realm_dart:' "pubspec.yaml";
-        then
-            printf "\ndart pub get\n"
-            dart pub get
-        else
-            printf "\nflutter pub get\n"
-            flutter pub get
-        fi
+    if grep -q 'realm_dart:' "pubspec.yaml";
+    then
+        printf "\ndart pub get\n"
+        dart pub get
+    else
+        printf "\nflutter pub get\n"
+        flutter pub get
     fi
-    cd - > /dev/null
 }
 
 runInstall() {
-    cd $1
-    if [ -f "pubspec.yaml" -a grep -q 'realm_dart:' "pubspec.yaml" ]; then
+    if grep -q 'realm_dart:' "pubspec.yaml";
+    then
         printf "\ndart run realm_dart install\n"
         dart run realm_dart install
     fi
-    cd - > /dev/null
 }
 
 runGenerate() {
-    cd $1
-    if [ -f "pubspec.yaml" ]; then
-        if grep -q 'realm_dart:' "pubspec.yaml";
+    if grep -q 'realm_dart:' "pubspec.yaml";
+    then
+        printf "\ndart run realm_dart generate\n"
+        dart run realm_dart generate
+    else if grep -q 'realm:' "pubspec.yaml";
         then
-            printf "\ndart run realm_dart generate\n"
-            dart run realm_dart generate
-        else if grep -q 'realm:' "pubspec.yaml";
-            then
-                printf "\nflutter pub run realm generate\n"
-                flutter pub run realm generate
-            fi
+            printf "\nflutter pub run realm generate\n"
+            flutter pub run realm generate
         fi
     fi
-    cd - > /dev/null
 }
 
 runDart() {
-    cd $1
-    if [ -f "pubspec.yaml" -a  grep -q 'realm_dart:' "pubspec.yaml"]; then
+    if grep -q 'realm_dart:' "pubspec.yaml";
+    then
         printf "\ndart run\n"
         dart run
     fi
-    cd - > /dev/null
 }
 
 # if no arguments passed
