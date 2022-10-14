@@ -36,7 +36,7 @@ jobs:
         run: .github/workflows/ci.sh --run
         shell: bash
 
-      - name: Create Version Upgrade PR
+      - name: Create upgrade version PR
         uses: peter-evans/create-pull-request@v4.1.3
         with:
           branch: release/${{ inputs.version }}
