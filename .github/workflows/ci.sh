@@ -29,8 +29,7 @@ allDirs() {
             if [ -f "pubspec.yaml" ]; then
                 set -e
                 $1 $dir
-                echo $?
-                exit_if_error $?
+                exit_if_error $? $1
             fi
         cd - > /dev/null
     done
@@ -90,10 +89,9 @@ runDart() {
 exit_if_error() {
     exit_status=$1
     if [ ${exit_status} -ne 0 ]; then
-        echo "An error occured during 'ci.sh' execution."
-        echo $exit_status
-        exit "${exit_status}"
-       
+        echo "An error occured during execution on command '$2' of script file 'ci.sh'."
+        echo "Exit code: $exit_status"
+        exit $exit_status
     fi
 }
 
