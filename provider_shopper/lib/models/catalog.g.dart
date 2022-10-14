@@ -29,7 +29,7 @@ class Item extends _Item with RealmEntity, RealmObject {
   @override
   int get id => RealmObject.get<int>(this, 'id') as int;
   @override
-  set id(int value) => RealmObject.set(this, 'id', value);
+  set id(int value) => throw RealmUnsupportedSetError();
 
   @override
   String get name => RealmObject.get<String>(this, 'name') as String;
@@ -44,9 +44,6 @@ class Item extends _Item with RealmEntity, RealmObject {
   @override
   Stream<RealmObjectChanges<Item>> get changes =>
       RealmObject.getChanges<Item>(this);
-
-  @override
-  Item freeze() => RealmObject.freezeObject<Item>(this);
 
   static SchemaObject get schema => _schema ??= _initSchema();
   static SchemaObject? _schema;

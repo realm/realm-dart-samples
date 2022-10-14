@@ -18,14 +18,11 @@ class Category extends _Category with RealmEntity, RealmObject {
   @override
   String get name => RealmObject.get<String>(this, 'name') as String;
   @override
-  set name(String value) => RealmObject.set(this, 'name', value);
+  set name(String value) => throw RealmUnsupportedSetError();
 
   @override
   Stream<RealmObjectChanges<Category>> get changes =>
       RealmObject.getChanges<Category>(this);
-
-  @override
-  Category freeze() => RealmObject.freezeObject<Category>(this);
 
   static SchemaObject get schema => _schema ??= _initSchema();
   static SchemaObject? _schema;
@@ -63,9 +60,6 @@ class Now extends _Now with RealmEntity, RealmObject {
   @override
   Stream<RealmObjectChanges<Now>> get changes =>
       RealmObject.getChanges<Now>(this);
-
-  @override
-  Now freeze() => RealmObject.freezeObject<Now>(this);
 
   static SchemaObject get schema => _schema ??= _initSchema();
   static SchemaObject? _schema;
