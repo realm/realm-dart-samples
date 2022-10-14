@@ -45,7 +45,7 @@ jobs:
         uses: peter-evans/create-pull-request@v4.1.3
         with:
           branch: release/${{ inputs.version }}
-          base: ds/ci_after_release_workflow
+          base: master
           title: '[Realm version upgrade ${{ inputs.version }}]'
           draft: false
           body: An automated PR for released realm version.
