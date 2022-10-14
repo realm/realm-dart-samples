@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 show_help() {
-    printf "\n\nusage: $0 [--get] [--install] [--generate] [--run]
+    printf "\n\nusage: $0 [--upgrade ] [--get] [--install] [--generate] [--run]
 
 Tool for managing CI builds.
 (run from root of repo)
 
 where:
+    --upgrade
+        upgrade major versions of all dependencies
     --get
         get all dependencies
     --install
@@ -25,6 +27,22 @@ allDirs() {
     for dir in "${dirs[@]}"; do
         $1 $dir
     done
+}
+
+
+runUpgrade() {
+    cd $1
+    if [ -f "pubspec.yaml" ]; then
+        if grep -q 'realm_dart:' "pubspec.yaml";
+        then
+            printf "\ndart pub upgrade --major-versions\n"
+            dart pub upgrade --major-versions
+        else
+            printf "\nflutter pub upgrade --major-versions\n"
+            flutter pub upgrade --major-versions
+        fi
+    fi
+    cd - > /dev/null
 }
 
 runGet() {
@@ -83,6 +101,9 @@ if [ -z $1 ]; then show_help; fi
 if ! [ -d .git ]; then printf "\nError: not in root of repo"; show_help; fi
 
 case $1 in
+    --upgrade)
+        allDirs "runUpgrade"
+        ;;
     --get)
         allDirs "runGet"
         ;;

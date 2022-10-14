@@ -21,8 +21,8 @@ jobs:
           channel: 'stable'
 
       - name: Upgrade dependencies
-        working-directory: .
-        run: dart pub upgrade --major-versions
+        run: .github/workflows/ci.sh --upgrade
+        shell: bash
 
       - name: Get dependencies
         run: .github/workflows/ci.sh --get
