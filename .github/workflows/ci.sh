@@ -101,7 +101,7 @@ case $1 in
         allDirs "runInstall"
         ;;
     --generate)
-        allDirs "runGenerator"
+        allDirs "runGenerate"
         ;;
     --run)
         allDirs "runDart"

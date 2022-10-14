@@ -24,10 +24,6 @@ jobs:
         run: .github/workflows/ci.sh --upgrade
         shell: bash
 
-      - name: Get dependencies
-        run: .github/workflows/ci.sh --get
-        shell: bash
-
       - name: Install realm_dart
         run: .github/workflows/ci.sh --install
         shell: bash
