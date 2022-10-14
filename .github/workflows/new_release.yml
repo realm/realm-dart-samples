@@ -37,7 +37,6 @@ jobs:
       - name: Install dependencies, run generator, run realm on dart
         working-directory: .
         run: |
-          chmod +x .github/workflows/ci.sh
           .github/workflows/ci.sh --get
           .github/workflows/ci.sh --generate
         shell: bash
