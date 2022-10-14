@@ -27,12 +27,14 @@ allDirs() {
     for dir in "${dirs[@]}"; do
         cd $dir
             if [ -f "pubspec.yaml" ]; then
+                set -e
                 $1 $dir
+                echo $?
+                exit_if_error $?
             fi
         cd - > /dev/null
     done
 }
-
 
 runUpgrade() {
     if grep -q 'realm_dart:' "pubspec.yaml";
@@ -49,10 +51,10 @@ runGet() {
     if grep -q 'realm_dart:' "pubspec.yaml";
     then
         printf "\ndart pub get\n"
-        dart pub get
+        echo dart pub get
     else
         printf "\nflutter pub get\n"
-        flutter pub get
+        echo flutter pub get
     fi
 }
 
@@ -82,6 +84,16 @@ runDart() {
     then
         printf "\ndart run\n"
         dart run
+    fi
+}
+
+exit_if_error() {
+    exit_status=$1
+    if [ ${exit_status} -ne 0 ]; then
+        echo "An error occured during 'ci.sh' execution."
+        echo $exit_status
+        exit "${exit_status}"
+       
     fi
 }
 
