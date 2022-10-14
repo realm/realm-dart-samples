@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 show_help() {
-    printf "\n\nusage: $0 [--get] [--generate]
+    printf "\n\nusage: $0 [--get] [--install] [--generate] [--run]
 
 Tool for managing CI builds.
 (run from root of repo)
@@ -8,8 +8,12 @@ Tool for managing CI builds.
 where:
     --get
         get all dependencies
+    --install
+        install realm_dart package
     --generate
         generate realm models
+    --run
+        run dart projects
 "
     exit 1
 }
@@ -28,35 +32,47 @@ runGet() {
     if [ -f "pubspec.yaml" ]; then
         if grep -q 'realm_dart:' "pubspec.yaml";
         then
+            printf "\ndart pub get\n"
             dart pub get
         else
-            flutter packages get
+            printf "\nflutter pub get\n"
+            flutter pub get
         fi
     fi
     cd - > /dev/null
 }
 
-runGenerator() {
+runInstall() {
+    cd $1
+    if [ -f "pubspec.yaml" -a grep -q 'realm_dart:' "pubspec.yaml" ]; then
+        printf "\ndart run realm_dart install\n"
+        dart run realm_dart install
+    fi
+    cd - > /dev/null
+}
+
+runGenerate() {
     cd $1
     if [ -f "pubspec.yaml" ]; then
         if grep -q 'realm_dart:' "pubspec.yaml";
         then
-            printf "\ndart pub get\n"
-            dart pub get
-            printf "\ndart run realm_dart install\n"
-            dart run realm_dart install
             printf "\ndart run realm_dart generate\n"
             dart run realm_dart generate
-            printf "\ndart run\n"
-            dart run
         else if grep -q 'realm:' "pubspec.yaml";
             then
-                printf "\nflutter pub get\n"
-                flutter pub get
                 printf "\nflutter pub run realm generate\n"
                 flutter pub run realm generate
             fi
         fi
+    fi
+    cd - > /dev/null
+}
+
+runDart() {
+    cd $1
+    if [ -f "pubspec.yaml" -a  grep -q 'realm_dart:' "pubspec.yaml"]; then
+        printf "\ndart run\n"
+        dart run
     fi
     cd - > /dev/null
 }
@@ -70,8 +86,14 @@ case $1 in
     --get)
         allDirs "runGet"
         ;;
+    --install)
+        allDirs "runInstall"
+        ;;
     --generate)
         allDirs "runGenerator"
+        ;;
+    --run)
+        allDirs "runDart"
         ;;
     *)
 esac

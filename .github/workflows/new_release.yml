@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: Released new version of Realm (0.X.0+beta).
+        description: Released new version of Realm (0.X.0).
         required: true
         type: string
 
@@ -15,37 +15,36 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Update realm_dart in pubspec.yaml
-        uses: jacobtomlinson/gha-find-replace@v2
-        with:
-          find: 'realm_dart: .*'
-          replace: 'realm_dart: ${{ inputs.version }}'
-          include: '**pubspec.yaml'
-
-      - name: Update realm in pubspec.yaml
-        uses: jacobtomlinson/gha-find-replace@v2
-        with:
-          find: 'realm: .*'
-          replace: 'realm: ${{ inputs.version }}'
-          include: '**pubspec.yaml'
-
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
 
-      - name: Install dependencies, run generator, run realm on dart
+      - name: Upgrade dependencies
         working-directory: .
-        run: |
-          .github/workflows/ci.sh --get
-          .github/workflows/ci.sh --generate
+        run: dart pub upgrade --major-versions
+
+      - name: Get dependencies
+        run: .github/workflows/ci.sh --get
+        shell: bash
+
+      - name: Install realm_dart
+        run: .github/workflows/ci.sh --install
+        shell: bash
+
+      - name: Generate realm models
+        run: .github/workflows/ci.sh --generate
+        shell: bash
+
+      - name: Run dart projects
+        run: .github/workflows/ci.sh --run
         shell: bash
 
       - name: Create Version Upgrade PR
         uses: peter-evans/create-pull-request@v4.1.3
         with:
           branch: release/${{ inputs.version }}
-          base: master
+          base: ds/ci_after_release_workflow
           title: '[Realm version upgrade ${{ inputs.version }}]'
           draft: false
           body: An automated PR for released realm version.
