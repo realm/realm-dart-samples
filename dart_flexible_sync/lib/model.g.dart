@@ -6,55 +6,55 @@ part of 'model.dart';
 // RealmObjectGenerator
 // **************************************************************************
 
-class Task extends _Task with RealmEntity, RealmObject {
+class Task extends _Task with RealmEntity, RealmObjectBase, RealmObject {
   Task(
     ObjectId id,
     String title,
     String status,
     int progressMinutes,
   ) {
-    RealmObject.set(this, '_id', id);
-    RealmObject.set(this, 'title', title);
-    RealmObject.set(this, 'status', status);
-    RealmObject.set(this, 'progressMinutes', progressMinutes);
+    RealmObjectBase.set(this, '_id', id);
+    RealmObjectBase.set(this, 'title', title);
+    RealmObjectBase.set(this, 'status', status);
+    RealmObjectBase.set(this, 'progressMinutes', progressMinutes);
   }
 
   Task._();
 
   @override
-  ObjectId get id => RealmObject.get<ObjectId>(this, '_id') as ObjectId;
+  ObjectId get id => RealmObjectBase.get<ObjectId>(this, '_id') as ObjectId;
   @override
-  set id(ObjectId value) => RealmObject.set(this, '_id', value);
+  set id(ObjectId value) => RealmObjectBase.set(this, '_id', value);
 
   @override
-  String get title => RealmObject.get<String>(this, 'title') as String;
+  String get title => RealmObjectBase.get<String>(this, 'title') as String;
   @override
-  set title(String value) => RealmObject.set(this, 'title', value);
+  set title(String value) => RealmObjectBase.set(this, 'title', value);
 
   @override
-  String get status => RealmObject.get<String>(this, 'status') as String;
+  String get status => RealmObjectBase.get<String>(this, 'status') as String;
   @override
-  set status(String value) => RealmObject.set(this, 'status', value);
+  set status(String value) => RealmObjectBase.set(this, 'status', value);
 
   @override
   int get progressMinutes =>
-      RealmObject.get<int>(this, 'progressMinutes') as int;
+      RealmObjectBase.get<int>(this, 'progressMinutes') as int;
   @override
   set progressMinutes(int value) =>
-      RealmObject.set(this, 'progressMinutes', value);
+      RealmObjectBase.set(this, 'progressMinutes', value);
 
   @override
   Stream<RealmObjectChanges<Task>> get changes =>
-      RealmObject.getChanges<Task>(this);
+      RealmObjectBase.getChanges<Task>(this);
 
   @override
-  Task freeze() => RealmObject.freezeObject<Task>(this);
+  Task freeze() => RealmObjectBase.freezeObject<Task>(this);
 
   static SchemaObject get schema => _schema ??= _initSchema();
   static SchemaObject? _schema;
   static SchemaObject _initSchema() {
-    RealmObject.registerFactory(Task._);
-    return const SchemaObject(Task, 'Task', [
+    RealmObjectBase.registerFactory(Task._);
+    return const SchemaObject(ObjectType.realmObject, Task, 'Task', [
       SchemaProperty('_id', RealmPropertyType.objectid,
           mapTo: '_id', primaryKey: true),
       SchemaProperty('title', RealmPropertyType.string),
