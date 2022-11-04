@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^6.0.3
-  realm: ^0.6.0+beta
+  realm: ^0.7.0+rc
 
 dev_dependencies:
   flutter_test:
