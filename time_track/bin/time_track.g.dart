@@ -73,7 +73,7 @@ class Now extends _Now with RealmEntity, RealmObjectBase, RealmObject {
   static SchemaObject _initSchema() {
     RealmObjectBase.registerFactory(Now._);
     return const SchemaObject(ObjectType.realmObject, Now, 'Now', [
-      SchemaProperty('time', RealmPropertyType.int),
+      SchemaProperty('time', RealmPropertyType.int, indexed: true),
       SchemaProperty('category', RealmPropertyType.object,
           optional: true, linkTarget: 'Category'),
     ]);
