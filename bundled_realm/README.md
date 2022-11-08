@@ -29,9 +29,13 @@ import 'package:flutter/services.dart';
 Future<Realm> initRealm(String assetKey) async {
   final config = Configuration.local([Car.schema]);
   final file = File(config.path);
+  // await file.delete(); // <-- uncomment this to start over on every restart
   if (!await file.exists()) {
     ByteData realmBytes = await rootBundle.load(assetKey);
-    await file.writeAsBytes(realmBytes.buffer.asUint8List(realmBytes.offsetInBytes, realmBytes.lengthInBytes), mode: FileMode.write);
+    await file.writeAsBytes(
+      realmBytes.buffer.asUint8List(realmBytes.offsetInBytes, realmBytes.lengthInBytes),
+      mode: FileMode.write,
+    );
   }
   return Realm(config);
 }
