@@ -5,5 +5,8 @@
 # Conventional directory for build output.
 build/
 
+# Directory for realm native libraries
+binary/
+
 # Default realm
 default.realm*

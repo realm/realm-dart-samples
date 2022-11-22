@@ -1,0 +1,20 @@
+name: domain
+description: A starting point for Dart libraries or applications.
+version: 1.0.0
+
+publish_to: 'none'
+
+environment:
+  sdk: '>=2.17.5 <3.0.0'
+
+dependencies:
+  crypto: any
+  realm_dart: ^0.8.0+rc
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.16.0
+
+#dependency_overrides:
+#  realm_dart:
+#    path: ../../../realm-dart  

@@ -1,0 +1,41 @@
+name: time_track
+description: A simple time tracking application for Flutter, demonstrating usage of the Realm Flutter/Dart SDK
+publish_to: 'none'
+
+version: 0.3.2+beta
+
+environment:
+  sdk: ">=2.17.5 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter  
+  flutter_login: ^4.0.0 # be mindful when/if upgrading this, it handles credentials
+  realm: ^0.8.0+rc
+  realm_dart: ^0.8.0+rc
+  domain:
+    path: ../domain 
+  riverpod: ^2.0.2
+  time_track_cli:
+    path: ../cli
+
+  cupertino_icons: ^1.0.2
+  mobile_scanner: ^2.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+  - assets/images/mongodb_logo_forrest_green.png
+
+#dependency_overrides:
+#  realm_dart:
+#    path: ../../../realm-dart 
+#  realm:
+#    path: ../../../realm-dart/flutter/realm_flutter 
+
