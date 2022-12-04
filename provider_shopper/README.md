@@ -1,4 +1,4 @@
-![Realm](https://github.com/realm/realm-dart/raw/master/logo.png)
+![Realm](https://github.com/realm/realm-dart/raw/main/logo.png)
 
 # provider_shopper
 
@@ -6,7 +6,7 @@
 
 The Flutter sample and more details about how the application is structured can be found here https://github.com/flutter/samples/tree/master/provider_shopper.
 
-The [`catalog.dart`](https://github.com/realm/realm-dart-samples/blob/master/provider_shopper/lib/models/catalog.dart)  contains the Realm sample code. 
+The [`catalog.dart`](https://github.com/realm/realm-dart-samples/blob/main/provider_shopper/lib/models/catalog.dart)  contains the Realm sample code. 
 
 # Environment
 
