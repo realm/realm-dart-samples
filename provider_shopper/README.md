@@ -6,11 +6,11 @@
 
 The Flutter sample and more details about how the application is structured can be found here https://github.com/flutter/samples/tree/master/provider_shopper.
 
-The [`catalog.dart`](https://github.com/realm/realm-dart-samples/blob/main/provider_shopper/lib/models/catalog.dart)  contains the Realm sample code. 
+The [`catalog.dart`](https://github.com/realm/realm-dart-samples/blob/main/provider_shopper/lib/models/catalog.dart) contains the Realm sample code.
 
 # Environment
 
-* Flutter ^2.8 
+* Flutter ^2.8
 * Flutter Mobile on Android and iOS
 * Flutter Desktop on Windows and MacOS
 * For Flutter Desktop environment setup check the guide [here](https://docs.flutter.dev/desktop)
@@ -20,7 +20,7 @@ The [`catalog.dart`](https://github.com/realm/realm-dart-samples/blob/main/provi
    * Start an Android Emulator, an iPhone Simulator or attach an Android device.
 
    * Run `flutter pub get` to get all packages
-   
+
    * Run `flutter run` to run the application
 
 
