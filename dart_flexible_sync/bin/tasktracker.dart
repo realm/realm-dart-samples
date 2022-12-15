@@ -23,8 +23,9 @@ void main(List<String> arguments) async {
   });
 
   await realm.subscriptions.waitForSynchronization();
-  var r = realm.query<Task>(r'status == $0 AND progressMinutes == $1', ["completed", 100]);
-  print("Filtered records that matche the query. ${r.length}");
+  var resultsAfterSubscriptionChanged = realm.all<Task>();
+  print(
+      "Filtered records that matche the query. ${resultsAfterSubscriptionChanged.length}");
 
   realm.close();
   Realm.shutdown();
