@@ -14,7 +14,6 @@ The Realm Flutter package is `realm` and it is available at [pub.dev](https://pu
 
 # Environment
 
-* Flutter ^3.0.1 
 * Flutter Mobile on Android and iOS
 * Flutter Desktop on Windows, Linux and MacOS
 

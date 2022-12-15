@@ -12,7 +12,7 @@ The Realm Dart package is `realm_dart`
 
 * Supported platforms are Windows, Mac and Linux.
 
-* Dart SDK ^2.17.5
+* Dart SDK
 
 ## Usage
 

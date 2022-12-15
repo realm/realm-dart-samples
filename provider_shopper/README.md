@@ -10,7 +10,6 @@ The [`catalog.dart`](https://github.com/realm/realm-dart-samples/blob/main/provi
 
 # Environment
 
-* Flutter ^2.8
 * Flutter Mobile on Android and iOS
 * Flutter Desktop on Windows and MacOS
 * For Flutter Desktop environment setup check the guide [here](https://docs.flutter.dev/desktop)
