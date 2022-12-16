@@ -12,7 +12,7 @@ The Realm Flutter and Realm Dart SDK repository is located at https://github.com
 
 Also you may find our [Quick Start - Flutter SDK]( https://www.mongodb.com/docs/realm/sdk/flutter/quick-start/) helpfull if you are running the Realm for the first time.
 
-Read more about Realm with [Device Sync](https://www.mongodb.com/docs/realm/sdk/flutter/sync/) and [Atlas App Services](https://www.mongodb.com/docs/atlas/app-services/).
+Read more about using the Realm with [Device Sync](https://www.mongodb.com/docs/realm/sdk/flutter/sync/) and connecting to [Atlas App Services](https://www.mongodb.com/docs/realm/sdk/flutter/app-services/).
 
 # Samples
 ## [`realm_dart`](https://github.com/realm/realm-dart-samples/tree/main/realm_dart) - Dart console application
