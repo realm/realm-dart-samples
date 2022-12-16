@@ -4,9 +4,15 @@
 
 # Description
 
-This repo contains Realm Flutter and Realm Dart SDK samples. 
+This repo contains Flutter and Dart samples that demonstate the usage of [Realm Flutter/Dart SDK](https://www.mongodb.com/docs/realm/sdk/flutter/).
 
-The Realm Flutter and Realm Dart SDK are located at https://github.com/realm/realm-dart
+To build your own app with Realm use [realm](https://pub.dev/packages/realm) package for Flutter and [realm_dart](https://pub.dev/packages/realm_dart) package for Dart applications.
+
+The Realm Flutter and Realm Dart SDK repository is located at https://github.com/realm/realm-dart
+
+Also you may find our [Quick Start - Flutter SDK]( https://www.mongodb.com/docs/realm/sdk/flutter/quick-start/) helpfull if you are running the Realm for the first time.
+
+Read more about Realm with [Device Sync](https://www.mongodb.com/docs/realm/sdk/flutter/sync/) and [Atlas App Services](https://www.mongodb.com/docs/atlas/app-services/).
 
 # Samples
 ## [`realm_dart`](https://github.com/realm/realm-dart-samples/tree/main/realm_dart) - Dart console application
