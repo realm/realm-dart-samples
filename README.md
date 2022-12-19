@@ -6,7 +6,7 @@
 
 This repo contains Flutter and Dart samples that demonstate the usage of [Realm Flutter and Dart Standalone SDKs](https://www.mongodb.com/docs/realm/sdk/flutter/).
 
-To build your own app with Realm use [realm](https://pub.dev/packages/realm) package for Flutter and [realm_dart](https://pub.dev/packages/realm_dart) package for Dart applications.
+To build your own app with Realm, use the [realm](https://pub.dev/packages/realm) package for Flutter and the [realm_dart](https://pub.dev/packages/realm_dart) package for Dart applications.
 
 The Realm Flutter and Realm Dart SDK repository is located at https://github.com/realm/realm-dart
 
