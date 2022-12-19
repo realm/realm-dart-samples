@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
 
-# Description
+# Realm Dart Samples
 
 This repo contains Flutter and Dart samples that demonstate the usage of [Realm Flutter and Dart Standalone SDKs](https://www.mongodb.com/docs/realm/sdk/flutter/).
 
@@ -13,7 +13,6 @@ The Realm Flutter and Realm Dart SDK repository is located at https://github.com
 You may find the [Quick Start - Flutter SDK]( https://www.mongodb.com/docs/realm/sdk/flutter/quick-start/) helpful if you are running using Realm for the first time.
 You can also read more about using the Realm with [Atlas Device Sync](https://www.mongodb.com/docs/realm/sdk/flutter/sync/) and connecting to [Atlas App Services](https://www.mongodb.com/docs/realm/sdk/flutter/app-services/).
 
-# Samples
 ## [`realm_dart`](https://github.com/realm/realm-dart-samples/tree/main/realm_dart) - Dart console application
 
 This sample is using [Realm Dart SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) to demonstrates the following simple operations with a local realm:
@@ -39,11 +38,11 @@ To run the app follow the instructions: [provider_shopper\ReadMe.md](https://git
 
 ## [`time_track`](https://github.com/realm/realm-dart-samples/tree/main/time_track) - Dart console application listener
 
-This sample is using [Realm Dart SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) and provides custom CLI with commands `clear`, `show`, `watch`, `now`.
-- `now` registers a time entry;
-- `clear` deletes all existing entries;
-- `show` shows all existing entries;
-- `watch` monitors entries as they happen;
+This sample is using [Realm Dart Standalone SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) and provides custom CLI with the following commands:
+- `now` registers a time entry
+- `clear` deletes all existing entries
+- `show` shows all existing entries
+- `watch` monitors entries as they happen
 
 The command `watch` is using RealmResult.changes to listen for changes when the contents of the collection change.
 
@@ -51,9 +50,9 @@ To run the app follow the instructions in the README: [time_track\README.md](htt
 
 ## [`dart_flexible_sync`](https://github.com/realm/realm-dart-samples/tree/main/dart_flexible_sync) - Dart console application with flexible sync
 
-A simple command-line application using [Realm Dart SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) and Flexible Sync with [Atlas App Services application](https://www.mongodb.com/docs/atlas/app-services/).
+A simple command-line application using the [Realm Dart Standalone SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) and Flexible Sync with [Atlas App Services application](https://www.mongodb.com/docs/atlas/app-services/).
 
-This sample demonstrates the usage of Flexible Sync with Realm Dart SDK.
+This sample demonstrates the usage of [Atlas Device Sync with Flexible Sync](https://www.mongodb.com/docs/realm/sdk/flutter/sync/) and the Realm Dart Standalone SDK.
 Writing to a local realm sends the data automatically to the Atlas Cloud Collection.
 Then the local realm is subscribed only for items matching specific query criterias.
 This causes the local realm to be populated only with specific items matching the filter.
@@ -78,8 +77,4 @@ A Flutter application that demonstrates how to bundle and load initially populat
 
 Follow the code guidline [bundled_realm\ReadMe.md](https://github.com/realm/realm-dart-samples/tree/main/bundled_realm#readme) to see how to load pre-initialized realm from Flutter assets.
 
-# Usage 
-Check the README.md files of the samples for instructions how to run them.
-
-
-##### The "Dart" name and logo and the "Flutter" name and logo are trademarks owned by Google.
+*The "Dart" name and logo and the "Flutter" name and logo are trademarks owned by Google.*
