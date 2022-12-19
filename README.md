@@ -46,7 +46,7 @@ This sample is using [Realm Dart SDK](https://www.mongodb.com/docs/realm/sdk/flu
 - `show` shows all existing entries;
 - `watch` monitors entries as they happen;
 
-The command `watch` is using RealmResult.changes to listen for changes when the contents of the collection changes.
+The command `watch` is using RealmResult.changes to listen for changes when the contents of the collection change.
 
 To run the app follow the instructions: [time_track\ReadMe.md](https://github.com/realm/realm-dart-samples/tree/main/time_track#readme)
 
