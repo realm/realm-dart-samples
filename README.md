@@ -24,7 +24,7 @@ This sample is using [Realm Dart SDK](https://www.mongodb.com/docs/realm/sdk/flu
 - query objects from realm
 - close realm
 
-To run the app follow the instructions: [realm_dart\ReadMe.md](https://github.com/realm/realm-dart-samples/tree/main/realm_dart#readme)
+To run the app follow the instructions in the README: [realm_dart\README.md](https://github.com/realm/realm-dart-samples/tree/main/realm_dart#readme)
 
 ## [`provider_shopper`](https://github.com/realm/realm-dart-samples/tree/main/provider_shopper) - Flutter application
 
