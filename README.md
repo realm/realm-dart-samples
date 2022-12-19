@@ -15,7 +15,7 @@ To learn more about using Realm with Atlas App Services, refer to the [Atlas Dev
 
 ## [`realm_dart`](https://github.com/realm/realm-dart-samples/tree/main/realm_dart) - Dart console application
 
-This sample is using [Realm Dart SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) to demonstrates the following simple operations with a local realm:
+This sample uses the [Realm Dart Standalone SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) to demonstrates the following simple operations with a local realm:
 
 - open/create local realm
 - add/edit objects to realm
