@@ -11,7 +11,7 @@ To build your own app with Realm, use the [realm](https://pub.dev/packages/realm
 The Realm Flutter and Realm Dart SDK repository is located at https://github.com/realm/realm-dart
 
 You may find the [Quick Start - Flutter SDK]( https://www.mongodb.com/docs/realm/sdk/flutter/quick-start/) helpful if you are using Realm for the first time.
-You can also read more about using the Realm with [Atlas Device Sync](https://www.mongodb.com/docs/realm/sdk/flutter/sync/) and connecting to [Atlas App Services](https://www.mongodb.com/docs/realm/sdk/flutter/app-services/).
+To learn more about using Realm with Atlas App Services, refer to the [Atlas Device Sync](https://www.mongodb.com/docs/realm/sdk/flutter/sync/) and [connecting to Atlas App Services](https://www.mongodb.com/docs/realm/sdk/flutter/app-services/) documentation.
 
 ## [`realm_dart`](https://github.com/realm/realm-dart-samples/tree/main/realm_dart) - Dart console application
 
