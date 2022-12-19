@@ -29,9 +29,6 @@ To run the app, follow the instructions in the README: [realm_dart\README.md](ht
 ## [`provider_shopper`](https://github.com/realm/realm-dart-samples/tree/main/provider_shopper) - Flutter application
 
 A Flutter sample app from [Flutter sample repo](https://github.com/flutter/samples/tree/master/provider_shopper) that shows a state management approach. This app is modified to be integrated with a local realm using [Realm Flutter SDK](https://www.mongodb.com/docs/realm/sdk/flutter/).
-The list with all the available items are initialized into `CatalogModel` class as realm objects added to a realm.
-
-If the users add any items to their shopping cart, these irems are added to a memory collection in `CartModel` class. Only initial list of items is stored to the realm.
 
 You can leave the credentials empty on the login screen.
 
