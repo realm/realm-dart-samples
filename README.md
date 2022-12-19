@@ -16,13 +16,13 @@ You can also read more about using the Realm with [Atlas Device Sync](https://ww
 # Samples
 ## [`realm_dart`](https://github.com/realm/realm-dart-samples/tree/main/realm_dart) - Dart console application
 
-This sample is using [Realm Dart SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) to demonstrates simple operations with a local realm:
+This sample is using [Realm Dart SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) to demonstrates the following simple operations with a local realm:
 
-- open/create local realm;
-- add/edit objects to realm;
-- read all object;
-- query objects from realm;
-- close realm.
+- open/create local realm
+- add/edit objects to realm
+- read all object
+- query objects from realm
+- close realm
 
 To run the app follow the instructions: [realm_dart\ReadMe.md](https://github.com/realm/realm-dart-samples/tree/main/realm_dart#readme)
 
