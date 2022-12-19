@@ -51,7 +51,7 @@ To run the app, follow the instructions in the README: [time_track\README.md](ht
 A simple command-line application using the [Realm Dart Standalone SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) and Flexible Sync with [Atlas App Services application](https://www.mongodb.com/docs/atlas/app-services/).
 
 This sample demonstrates the usage of [Atlas Device Sync with Flexible Sync](https://www.mongodb.com/docs/realm/sdk/flutter/sync/) and the Realm Dart Standalone SDK.
-Writing to a synced realm sends the data automatically to the a collection in MongoDB Atas. The synced realm is subscribed to a query only for items matching specific criteria.
+Writing to a synced realm sends the data automatically to the a linked collection in MongoDB Atas. The synced realm is subscribed to a query only for items matching specific criteria.
 This causes the synced realm to be populated only with specific items matching the query.
 Items in the MongoDB collection on Atlas that do not match the query do not sync to the client device.
 
