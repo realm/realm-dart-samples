@@ -24,9 +24,7 @@ The Realm Dart package is `realm_dart` and it is available on [pub.dev](https://
 * Create an account on [realm.mongodb.com](https://realm.mongodb.com) - follow the instructions: [Get Started with Atlas](https://www.mongodb.com/docs/atlas/getting-started)
 * Create a new app following the instructions here: [Create an App with Atlas App Services UI](https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-realm-ui).
     For the purpose of this sample you don't need to create an app from a template. You can just create an empty application.
-* Click the button in the blue line above - `Review draft & deploy`.
-* Go to the `Authentication Providers` menu in the left panel and make sure the option "Allow users to log in anonymously" is ON.
-    Read [this page](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other types of authentication.
+* Go to the `Authentication Providers` menu in the left panel and make sure the option "Allow users to log in anonymously" is ON. Save and then click the button in the blue line above - `Review draft & deploy`. Read [this page](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other types of authentication.
 * Go to the `Sync` menu and [Enable Flexible Sync](https://www.mongodb.com/docs/atlas/app-services/sync/configure/enable-sync/#enable-flexible-sync).
     * Don't create a schema. Skip by choosing "No thanks, continue to Sync".
     * Press the "Flexible Sync" button. Only Flexible Sync is supported in the Realm Dart SDK.
@@ -39,7 +37,7 @@ The Realm Dart package is `realm_dart` and it is available on [pub.dev](https://
     * Define permission - for the purpose of this sample please choose the option `Users can read and write all data`.
     * Click the button `Enable Sync` and confirm.
     * Click the button in the blue line above - `Review draft & deploy`, again.
-* Copy the App ID of your new application. Follow [Find an App ID](https://www.mongodb.com/docs/atlas/app-services/reference/find-your-project-or-app-id/)
+* Copy the App ID of your new application. Follow [Find an App ID](https://www.mongodb.com/docs/atlas/app-services/reference/find-your-project-or-app-id/#find-an-app-id)
 * Go to `tasktracker.dart` in this sample and set your App ID to the constant `appId` as follow: 
     ```dart
     String appId = "tasktracker-fleld";;

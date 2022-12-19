@@ -2,7 +2,7 @@ import 'package:tasktracker/model.dart';
 import 'package:realm_dart/realm.dart';
 
 void main(List<String> arguments) async {
-  String appId = "tasktracker-fleld";
+  String appId = "dart_flexible_sync-nxkdq";
   final appConfig = AppConfiguration(appId);
   final app = App(appConfig);
   final user = await app.logIn(Credentials.anonymous());
