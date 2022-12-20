@@ -31,28 +31,28 @@ class _TodoListState extends State<TodoList> {
       children: [
         Column(
           children: [
-            styledBox(
-              context,
-              isHeader: true,
-              child: Row(
-                children: [
-                  const Expanded(
-                    child: Text("Show All Tasks", textAlign: TextAlign.right),
-                  ),
-                  Switch(
-                    value: realmServices.showAll,
-                    onChanged: (value) async {
-                      if (realmServices.offlineModeOn) {
-                        infoMessageSnackBar(context,
-                                "Switching subscriptions does not affect Realm data when the sync is offline.")
-                            .show(context);
-                      }
-                      await realmServices.switchSubscription(value);
-                    },
-                  ),
-                ],
-              ),
-            ),
+            realmServices.currentUser?.isAdmin ?? false
+                ? styledBox(
+                    context,
+                    isHeader: true,
+                    child: Row(
+                      children: [
+                        const Expanded(
+                          child: Text("Show All Tasks", textAlign: TextAlign.right),
+                        ),
+                        Switch(
+                          value: realmServices.showAll,
+                          onChanged: (value) async {
+                            if (realmServices.offlineModeOn) {
+                              infoMessageSnackBar(context, "Switching subscriptions does not affect Realm data when the sync is offline.").show(context);
+                            }
+                            await realmServices.switchSubscription(value);
+                          },
+                        ),
+                      ],
+                    ),
+                  )
+                : Container(),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),

@@ -17,17 +17,16 @@ class TodoItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final realmServices = Provider.of<RealmServices>(context);
     bool isMine = (item.ownerId == realmServices.currentUser?.id);
+    bool isAdmin = realmServices.currentUser?.isAdmin ?? false;
     return item.isValid
         ? ListTile(
             leading: Checkbox(
               value: item.isComplete,
               onChanged: (bool? value) async {
-                if (isMine) {
-                  await realmServices.updateItem(item,
-                      isComplete: value ?? false);
+                if (isAdmin || isMine) {
+                  await realmServices.updateItem(item, isComplete: value ?? false);
                 } else {
-                  errorMessageSnackBar(context, "Change not allowed!",
-                          "You are not allowed to change the status of \n tasks that don't belog to you.")
+                  errorMessageSnackBar(context, "Change not allowed!", "You are not allowed to change the status of \n tasks that don't belog to you.")
                       .show(context);
                 }
               },
@@ -40,19 +39,15 @@ class TodoItem extends StatelessWidget {
             trailing: SizedBox(
               width: 25,
               child: PopupMenuButton<MenuOption>(
-                onSelected: (menuItem) =>
-                    handleMenuClick(context, menuItem, item, realmServices),
+                onSelected: (menuItem) => handleMenuClick(context, menuItem, item, realmServices),
                 itemBuilder: (context) => [
                   const PopupMenuItem<MenuOption>(
                     value: MenuOption.edit,
-                    child: ListTile(
-                        leading: Icon(Icons.edit), title: Text("Edit item")),
+                    child: ListTile(leading: Icon(Icons.edit), title: Text("Edit item")),
                   ),
                   const PopupMenuItem<MenuOption>(
                     value: MenuOption.delete,
-                    child: ListTile(
-                        leading: Icon(Icons.delete),
-                        title: Text("Delete item")),
+                    child: ListTile(leading: Icon(Icons.delete), title: Text("Delete item")),
                   ),
                 ],
               ),
@@ -62,30 +57,26 @@ class TodoItem extends StatelessWidget {
         : Container();
   }
 
-  void handleMenuClick(BuildContext context, MenuOption menuItem, Item item,
-      RealmServices realmServices) {
+  void handleMenuClick(BuildContext context, MenuOption menuItem, Item item, RealmServices realmServices) {
     bool isMine = (item.ownerId == realmServices.currentUser?.id);
+    bool isAdmin = realmServices.currentUser?.isAdmin ?? false;
     switch (menuItem) {
       case MenuOption.edit:
-        if (isMine) {
+        if (isAdmin || isMine) {
           showModalBottomSheet(
             context: context,
             isScrollControlled: true,
             builder: (_) => Wrap(children: [ModifyItemForm(item)]),
           );
         } else {
-          errorMessageSnackBar(context, "Edit not allowed!",
-                  "You are not allowed to edit tasks \nthat don't belog to you.")
-              .show(context);
+          errorMessageSnackBar(context, "Edit not allowed!", "You are not allowed to edit tasks \nthat don't belog to you.").show(context);
         }
         break;
       case MenuOption.delete:
-        if (isMine) {
+        if (isAdmin || isMine) {
           realmServices.deleteItem(item);
         } else {
-          errorMessageSnackBar(context, "Delete not allowed!",
-                  "You are not allowed to delete tasks \n that don't belog to you.")
-              .show(context);
+          errorMessageSnackBar(context, "Delete not allowed!", "You are not allowed to delete tasks \n that don't belog to you.").show(context);
         }
         break;
     }
