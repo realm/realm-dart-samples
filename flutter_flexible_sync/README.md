@@ -8,18 +8,18 @@ Writing to a synced realm named `db_allTasks.realm` sends the data automatically
 Then the data are downloaded back by the synchronization process to two separate realms,
 `db_importantTasks.realm` and  `db_normalTaks.realm`, filtered by specific subscription query.
 
-# Realm Flutter SDK 
+## Realm Flutter SDK 
 
 Realm Flutter package is published to [realm](https://pub.dev/packages/realm).
 
-# Environment
+## Environment
 
 * Realm Flutter supports the platforms iOS, Android, Windows, MacOS and Linux.
 
 * Flutter ^3.0.3 or newer
 * For Flutter Desktop environment setup, see [Desktop support for Flutter](https://docs.flutter.dev/desktop).
 
-# Atlas App Services Configuration Steps
+## Atlas App Services Configuration Steps
 
 This sample is using an already prepared Atlas App Service with AppID `flutter_flexible_sync-rmjux`.
 
@@ -49,7 +49,7 @@ If you want to create your own Atlas App Service and to have an access to the cl
 
 These steps are for the purpose of the sample. You can follow the instructions in [MongoDB Atlas](https://www.mongodb.com/docs/atlas) for more advanced and secured configurations.
 
-# Usage
+## Usage
 
 * Start an Android Emulator, an iPhone Simulator, attach an Android device or setup [Flutter Desktop environment](https://docs.flutter.dev/desktop)
 

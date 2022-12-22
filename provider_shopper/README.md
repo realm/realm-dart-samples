@@ -8,19 +8,24 @@ The Flutter sample and more details about how the application is structured can 
 
 The [`catalog.dart`](https://github.com/realm/realm-dart-samples/blob/main/provider_shopper/lib/models/catalog.dart) contains the Realm sample code.
 
-# Environment
+## Realm Flutter SDK 
 
-* Flutter Mobile on Android and iOS
-* Flutter Desktop on Windows and MacOS
-* For Flutter Desktop environment setup check the guide [here](https://docs.flutter.dev/desktop)
+Realm Flutter package is published to [realm](https://pub.dev/packages/realm).
 
-# Usage
+## Environment
 
-   * Start an Android Emulator, an iPhone Simulator or attach an Android device.
+* Realm Flutter supports the platforms iOS, Android, Windows, MacOS and Linux.
 
-   * Run `flutter pub get` to get all packages
+* Flutter ^3.0.3 or newer
+* For Flutter Desktop environment setup, see [Desktop support for Flutter](https://docs.flutter.dev/desktop).
 
-   * Run `flutter run` to run the application
+## Usage
+
+* Start an Android Emulator, an iPhone Simulator, attach an Android device or setup [Flutter Desktop environment](https://docs.flutter.dev/desktop)
+
+* Run `flutter pub get` to get all packages
+
+* Run `flutter run` to run the application
 
 
    ##### The "Dart" name and logo and the "Flutter" name and logo are trademarks owned by Google. 

@@ -4,14 +4,20 @@
 
 ## Time track
 
-A simple time tracking application using Realm Dart SDK for persistence. 
+A simple time tracking application using Realm Dart SDK for persistence.
 
-What follows is a short [asciinema](https://asciinema.org/) recording of building and using it. You can copy paste directly from the recording to your terminal. Note that I'm using [fish](https://fishshell.com/), so you may have to tweak a bit, if you are using another shell.
+## Realm Dart SDK
 
-[![asciicast](https://asciinema.org/a/rE6itBIrq0Ts4JNkzhaFUAPI1.svg)](https://asciinema.org/a/rE6itBIrq0Ts4JNkzhaFUAPI1)
+Realm Dart package is published to [realm_dart](https://pub.dev/packages/realm_dart).
 
+## Environment setup for Realm Dart
 
-## Build
+* Realm Dart supports the platforms Windows, Mac and Linux.
+
+* Dart SDK ^2.17.5 or newer
+
+## Usage
+
 * Get dependencies (realm_dart)
 ```
     dart pub get
@@ -28,8 +34,6 @@ What follows is a short [asciinema](https://asciinema.org/) recording of buildin
 ```
     dart compile exe bin/time_track.dart 
 ```
-
-## Usage
 * Run watch in separate shell
 ```
     // if not compiled
@@ -53,6 +57,10 @@ What follows is a short [asciinema](https://asciinema.org/) recording of buildin
     bin/time_track.exe now work
     bin/time_track.exe now sleep
 ```
+
+What follows is a short [asciinema](https://asciinema.org/) recording of building and using it. You can copy paste directly from the recording to your terminal. Note that I'm using [fish](https://fishshell.com/), so you may have to tweak a bit, if you are using another shell.
+
+[![asciicast](https://asciinema.org/a/rE6itBIrq0Ts4JNkzhaFUAPI1.svg)](https://asciinema.org/a/rE6itBIrq0Ts4JNkzhaFUAPI1)
 
 For further information see: https://github.com/realm/realm-dart.
 
