@@ -40,8 +40,8 @@ If you want to create your own Atlas App Service and to have an access to the cl
     * Define permission - for the purpose of this sample please choose the option `Users can read and write all data`.
     * Click the button `Enable Sync` and confirm.
     * Click the button in the blue line above - `Review draft & deploy`, again.
-* [Find and Copy the App ID](https://www.mongodb.com/docs/atlas/app-services/reference/find-your-project-or-app-id/) of your new application.
-* Go to `main.dart` in this sample and set your App ID to the constant `appId` as follow:
+1. [Find and Copy the App ID](https://www.mongodb.com/docs/atlas/app-services/reference/find-your-project-or-app-id/) of your new application.
+1. Go to `main.dart` in this sample and set your App ID to the constant `appId` as follow:
 
     ```dart
     const String appId = "flutter_flx_sync-plfhm";
