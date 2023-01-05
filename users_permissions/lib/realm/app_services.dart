@@ -4,10 +4,9 @@ import 'package:realm/realm.dart';
 
 class AppServices with ChangeNotifier {
   String id;
-  Uri baseUrl;
   App app;
   User? currentUser;
-  AppServices(this.id, this.baseUrl) : app = App(AppConfiguration(id, baseUrl: baseUrl));
+  AppServices(this.id) : app = App(AppConfiguration(id));
 
   Future<User> logInUserEmailPassword(String email, String password) async {
     User loggedInUser = await app.logIn(Credentials.emailPassword(email, password));
@@ -16,21 +15,27 @@ class AppServices with ChangeNotifier {
     return loggedInUser;
   }
 
-  Future<User> registerUserEmailPassword(String email, String password, bool isAdmin) async {
+  Future<User> registerUserEmailPassword(String email, String password) async {
     EmailPasswordAuthProvider authProvider = EmailPasswordAuthProvider(app);
     await authProvider.registerUser(email, password);
     User loggedInUser = await app.logIn(Credentials.emailPassword(email, password));
-    await setRole(loggedInUser, isAdmin);
-    loggedInUser.logOut();
+    await setRole(loggedInUser);
+    await loggedInUser.refreshCustomData();
+    currentUser = loggedInUser;
+    notifyListeners();
     return loggedInUser;
   }
 
-  Future<void> setRole(User loggedInUser, bool isAdmin) async {
+  Future<void> setRole(User loggedInUser) async {
     final realm = Realm(Configuration.flexibleSync(loggedInUser, [Role.schema, Item.schema]));
-    realm.subscriptions.update((mutableSubscriptions) => mutableSubscriptions.add(realm.all<Role>()));
+    String subscriptionName = "rolesSubscription";
+    realm.subscriptions.update((mutableSubscriptions) => mutableSubscriptions.add(realm.all<Role>(), name: subscriptionName));
     await realm.subscriptions.waitForSynchronization();
-    realm.write(() => realm.add(Role(ObjectId(), loggedInUser.id, isAdmin: isAdmin)));
+    realm.write(() => realm.add(Role(ObjectId(), loggedInUser.id, isAdmin: false)));
     await realm.syncSession.waitForUpload();
+    realm.subscriptions.update((mutableSubscriptions) => mutableSubscriptions.removeByName(subscriptionName));
+    await realm.subscriptions.waitForSynchronization();
+    await realm.syncSession.waitForDownload();
     realm.close();
   }
 

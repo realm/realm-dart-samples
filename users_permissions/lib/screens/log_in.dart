@@ -11,7 +11,6 @@ class LogIn extends StatefulWidget {
 
 class _LogInState extends State<LogIn> {
   bool _isLogin = true;
-  bool _isAdmin = true;
   String? _errorMessage;
 
   late TextEditingController _emailController;
@@ -44,24 +43,6 @@ class _LogInState extends State<LogIn> {
                 Text(_isLogin ? 'Log In' : 'Sign Up', style: const TextStyle(fontSize: 25)),
                 loginField(_emailController, labelText: "Email", hintText: "Enter valid email like abc@gmail.com"),
                 loginField(_passwordController, labelText: "Password", hintText: "Enter secure password", obscure: true),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15),
-                  child: _isLogin
-                      ? null
-                      : Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Text("Full permissions", textAlign: TextAlign.left),
-                            Switch(
-                              value: _isAdmin,
-                              onChanged: (value) => setState(() {
-                                _isAdmin = value;
-                              }),
-                            ),
-                            Spacer(),
-                          ],
-                        ),
-                ),
                 const Padding(
                   padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
                   child: Text(
@@ -107,13 +88,10 @@ class _LogInState extends State<LogIn> {
     try {
       if (_isLogin) {
         await appServices.logInUserEmailPassword(email, password);
-        Navigator.pushNamed(context, '/');
       } else {
-        await appServices.registerUserEmailPassword(email, password, _isAdmin);
-        setState(() {
-          _isLogin = !_isLogin;
-        });
+        await appServices.registerUserEmailPassword(email, password);
       }
+      Navigator.pushNamed(context, '/');
     } catch (err) {
       setState(() {
         _errorMessage = err.toString();

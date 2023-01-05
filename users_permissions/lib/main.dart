@@ -8,17 +8,14 @@ import 'package:flutter_todo/realm/app_services.dart';
 import 'package:flutter_todo/screens/homepage.dart';
 import 'package:flutter_todo/screens/log_in.dart';
 
-import 'components/widgets.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final realmConfig = json.decode(await rootBundle.loadString('assets/config/realm.json'));
-  String appId = realmConfig['appId'];
-  Uri baseUrl = Uri.parse(realmConfig['baseUrl']);
+  final realmConfig = json.decode(await rootBundle.loadString('assets/atlas_app/realm_config.json'));
+  String appId = realmConfig['app_id'];
 
 
   return runApp(MultiProvider(providers: [
-    ChangeNotifierProvider<AppServices>(create: (_) => AppServices(appId, baseUrl)),
+    ChangeNotifierProvider<AppServices>(create: (_) => AppServices(appId)),
     ChangeNotifierProxyProvider<AppServices, RealmServices?>(
         // RealmServices can only be initialized only if the user is logged in.
         create: (context) => null,

@@ -22,6 +22,32 @@ The Realm Flutter package is `realm` and it is available at [pub.dev](https://pu
 # Atlas App Services Configuration Steps
 
 1. Create an account on [realm.mongodb.com](https://realm.mongodb.com) - follow the instructions: [Get Started with Atlas](https://www.mongodb.com/docs/atlas/getting-started)
+
+## Using Realm CLI
+1. Create an App using [realm-cli](https://www.mongodb.com/docs/atlas/app-services/cli/#mongodb-binary-bin.realm-cli).
+1. Open command line terminal and go to the root folder of this Flutter app.
+1. Install `realm-cli` following the [instructions](https://www.mongodb.com/docs/atlas/app-services/cli/#mongodb-binary-bin.realm-cli).
+
+    `npm install -g mongodb-realm-cli`
+
+1. Login to the realm-cli:
+
+    `realm-cli login --api-key="<my api key>" --private-api-key="<my private api key>"`
+
+1. Go into folder '\assets\atlas_app':
+
+    `cd assets/atlas_app`
+
+1. Deploy the app to Atlas App Services:
+
+    `realm-cli push --yes`
+
+1. Create an administrator user that to have permissions editing all the tasks:
+
+    `flutter pub run lib/cli/run create-admin --username <admin user name> --password <admin password>`
+
+## Using App Services UI
+
 1. Create a new app following the instructions here: [Create an App with Atlas App Services UI](https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-realm-ui).
     For the purpose of this sample you don't need to create an app from a template. You can just create an empty application.
 1. Click the button in the blue line above - `Review draft & deploy`.
@@ -54,9 +80,7 @@ The Realm Flutter package is `realm` and it is available at [pub.dev](https://pu
             "applyWhen": {
               "%%user.custom_data.isAdmin": false
             },
-            "read": {
-              "owner_id": "%%user.id"
-            },
+            "read": true,
             "write": {
               "owner_id": "%%user.id"
             }
@@ -81,11 +105,11 @@ The Realm Flutter package is `realm` and it is available at [pub.dev](https://pu
     1. Click the button `Enable Sync` and confirm.
     1. Click the button in the blue line above - `Review draft & deploy`, again.
 1. [Find and Copy the App ID](https://www.mongodb.com/docs/atlas/app-services/reference/find-your-project-or-app-id/) of your new application.
-1. Go to `assets/config/realm.json` in this sample and set your appId as follow:
+1. Go to `\assets\atlas_app\realm_config.json` in this sample and set your app_Id as follow:
     ```json{
-    {
-      "appId": "users_permissions-fxudl",
-      "baseUrl": "https://realm.mongodb.com"
+    { .....
+      "app_Id": "users_permissions-fxudl"
+      .....
     }
     ```
 

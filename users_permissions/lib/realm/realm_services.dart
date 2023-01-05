@@ -16,16 +16,17 @@ class RealmServices with ChangeNotifier {
   RealmServices(this.app) {
     if (app.currentUser != null || currentUser != app.currentUser) {
       currentUser ??= app.currentUser;
-      realm = Realm(Configuration.flexibleSync(currentUser!, [Role.schema, Item.schema]));
-      showAll = !currentUser!.isAdmin ? false : (realm.subscriptions.findByName(queryAllName) != null);
-      updateSubscriptions();
+      realm = Realm(Configuration.flexibleSync(currentUser!, [Item.schema]));
+      showAll = (realm.subscriptions.findByName(queryAllName) != null);
+      if (realm.subscriptions.isEmpty) {
+        updateSubscriptions();
+      }
     }
   }
 
   Future<void> updateSubscriptions() async {
     realm.subscriptions.update((mutableSubscriptions) {
-      mutableSubscriptions.removeByName(queryAllName);
-      mutableSubscriptions.removeByName(queryMyItemsName);
+      mutableSubscriptions.clear();
       if (showAll) {
         mutableSubscriptions.add(realm.all<Item>(), name: queryAllName);
       } else {

@@ -49,3 +49,4 @@ app.*.map.json
 realm-dart/
 binary/
 realm_packages/
+commands.txt

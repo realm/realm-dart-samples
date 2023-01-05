@@ -73,6 +73,10 @@ boldTextStyle() {
   return const TextStyle(color: Colors.black, fontWeight: FontWeight.bold);
 }
 
+importantTextStyle(BuildContext context) {
+  return TextStyle(color: forestGreenColor, fontWeight: FontWeight.bold, fontSize: 12);
+}
+
 MaterialColor forestGreenColor = MaterialColor(
   const Color.fromRGBO(0, 104, 74, 1).value,
   const <int, Color>{

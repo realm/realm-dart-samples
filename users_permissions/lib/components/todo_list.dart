@@ -5,6 +5,7 @@ import 'package:flutter_todo/realm/schemas.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_todo/realm/realm_services.dart';
 import 'package:realm/realm.dart';
+import 'package:flutter_todo/theme.dart';
 
 class TodoList extends StatefulWidget {
   const TodoList({Key? key}) : super(key: key);
@@ -31,12 +32,14 @@ class _TodoListState extends State<TodoList> {
       children: [
         Column(
           children: [
-            realmServices.currentUser?.isAdmin ?? false
-                ? styledBox(
-                    context,
-                    isHeader: true,
-                    child: Row(
+            styledBox(context,
+                isHeader: true,
+                child: Column(
+                  children: [
+                    Row(
                       children: [
+                        Text("Role: ${(realmServices.currentUser?.isAdmin ?? false) ? "Administrator" : " User"}",
+                            style: importantTextStyle(context), textAlign: TextAlign.left),
                         const Expanded(
                           child: Text("Show All Tasks", textAlign: TextAlign.right),
                         ),
@@ -51,8 +54,22 @@ class _TodoListState extends State<TodoList> {
                         ),
                       ],
                     ),
-                  )
-                : Container(),
+                    Row(children: [
+                      Text(
+                        (realmServices.currentUser?.isAdmin ?? false)
+                            ? realmServices.showAll
+                                ? "Full permissions to edit/delete all users`s tasks."
+                                : ""
+                            : realmServices.showAll
+                                ? "Editing other users` tasks is not allowed."
+                                : "",
+                        textAlign: TextAlign.left,
+                        style: importantTextStyle(context),
+                      ),
+                    ]),
+                  ],
+                )
+            ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),

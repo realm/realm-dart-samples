@@ -103,7 +103,7 @@ Widget styledBox(BuildContext context, {bool isHeader = false, Widget? child}) {
     width: double.infinity,
     decoration: headerFooterBoxDecoration(context, isHeader),
     child: Padding(
-      padding: const EdgeInsets.all(15),
+      padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
       child: child,
     ),
   );
