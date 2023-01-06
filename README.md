@@ -4,11 +4,11 @@
 
 # Realm Dart Samples
 
-This repo contains Flutter and Dart samples that demonstate the usage of [Realm Flutter and Dart Standalone SDKs](https://www.mongodb.com/docs/realm/sdk/flutter/).
+This repo contains Flutter and Dart samples that demonstate the usage of [Realm Flutter and Realm Dart SDKs](https://www.mongodb.com/docs/realm/sdk/flutter/).
 
 To build your own app with Realm, use the [realm](https://pub.dev/packages/realm) package for Flutter and the [realm_dart](https://pub.dev/packages/realm_dart) package for Dart applications.
 
-The Realm Flutter and Realm Dart SDK repository is located at https://github.com/realm/realm-dart
+The Realm Flutter and Dart SDK repository is located at https://github.com/realm/realm-dart
 
 You may find the [Quick Start - Flutter SDK]( https://www.mongodb.com/docs/realm/sdk/flutter/quick-start/) helpful if you are using Realm for the first time.
 To learn more about using Realm with Atlas App Services, refer to the [Atlas Device Sync](https://www.mongodb.com/docs/realm/sdk/flutter/sync/) and [connecting to Atlas App Services](https://www.mongodb.com/docs/realm/sdk/flutter/app-services/) documentation.
@@ -28,15 +28,15 @@ To run the app, follow the instructions in the README: [realm_dart\README.md](ht
 
 ## [`provider_shopper`](https://github.com/realm/realm-dart-samples/tree/main/provider_shopper) - Flutter application
 
-A Flutter sample app from [Flutter sample repo](https://github.com/flutter/samples/tree/master/provider_shopper) that shows a state management approach. This app is modified to be integrated with a local realm using [Realm Flutter SDK](https://www.mongodb.com/docs/realm/sdk/flutter/).
+A Flutter sample app from [Flutter sample repo](https://github.com/flutter/samples/tree/master/provider_shopper) that shows a state management approach. This app is modified to be integrated with a local realm using [Realm Flutter](https://www.mongodb.com/docs/realm/sdk/flutter/).
 
 You can leave the credentials empty on the login screen.
 
 To run the app, follow the instructions in the README: [provider_shopper\README.md](https://github.com/realm/realm-dart-samples/tree/main/provider_shopper#readme)
 
-## [`time_track`](https://github.com/realm/realm-dart-samples/tree/main/time_track) - Dart console application listener
+## [`time_track`](https://github.com/realm/realm-dart-samples/tree/main/time_track) - Dart console application
 
-This sample is using [Realm Dart Standalone SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) and provides custom CLI with the following commands:
+This sample is using [Realm Dart](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) and provides custom CLI with the following commands:
 - `now` registers a time entry
 - `clear` deletes all existing entries
 - `show` shows all existing entries
