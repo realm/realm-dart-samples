@@ -2,5 +2,9 @@
     {
         "name": "resetFunc",
         "private": true
+    },
+    {
+        "name": "setUserRole",
+        "private": true
     }
 ]

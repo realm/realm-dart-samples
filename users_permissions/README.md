@@ -21,9 +21,23 @@ The Realm Flutter package is `realm` and it is available at [pub.dev](https://pu
 
 # Atlas App Services Configuration Steps
 
-1. Create an account on [realm.mongodb.com](https://realm.mongodb.com) - follow the instructions: [Get Started with Atlas](https://www.mongodb.com/docs/atlas/getting-started)
+## Using existing demo App Service
+This sample is using an already prepared Atlas App Service with AppID `users_permissions-nbidj`.
+The app_id is configured in "\assets\atlas_app\realm_config.json"
+1. Create an administrator with full permissions for editing all the tasks in the Flutter app:
 
-## Using Realm CLI
+    `flutter pub run realm install`
+
+    `flutter pub run lib/cli/run create-admin --username <admin user name> --password <admin password>`
+
+## Creating a new App Service
+
+If you want to create your own Atlas App Service and to have an access to the cloud App, follow the instruction below.
+
+1. Create an account on [realm.mongodb.com](https://realm.mongodb.com) - follow the instructions: [Get Started with Atlas](https://www.mongodb.com/docs/atlas/getting-started)
+1. You can create your Atlas App using Realm CLI or using App Service Web UI.
+
+### Using Realm CLI
 1. Create an App using [realm-cli](https://www.mongodb.com/docs/atlas/app-services/cli/#mongodb-binary-bin.realm-cli).
 1. Open command line terminal and go to the root folder of this Flutter app.
 1. Install `realm-cli` following the [instructions](https://www.mongodb.com/docs/atlas/app-services/cli/#mongodb-binary-bin.realm-cli).
@@ -39,14 +53,25 @@ The Realm Flutter package is `realm` and it is available at [pub.dev](https://pu
     `cd assets/atlas_app`
 
 1. Deploy the app to Atlas App Services:
+* IMPORTANT: Before to push the app make sure the cluster name is the same like the cluster in your account. Go to "\assets\atlas_app\data_sources\mongodb-atlas\config.json" and set the json field `clusterName`.
+Then run this command:
 
     `realm-cli push --yes`
 
-1. Create an administrator user that to have permissions editing all the tasks:
+1. Create a new user for administrator.
 
-    `flutter pub run lib/cli/run create-admin --username <admin user name> --password <admin password>`
+    `realm-cli users create  --app users_permissions --type email --email <username or email> --password <password>`
 
-## Using App Services UI
+1. Get the useId from this list and copy it.
+
+    `realm-cli users list --provider="local-userpass" --app users_permissions`
+
+1. Set user role as an Administrator by passing `--args true` to the following function.
+
+    `realm-cli function run --name setUserRole --args true --user <copied useId> --app users_permissions `
+
+
+### Using App Services UI
 
 1. Create a new app following the instructions here: [Create an App with Atlas App Services UI](https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-realm-ui).
     For the purpose of this sample you don't need to create an app from a template. You can just create an empty application.
@@ -108,10 +133,16 @@ The Realm Flutter package is `realm` and it is available at [pub.dev](https://pu
 1. Go to `\assets\atlas_app\realm_config.json` in this sample and set your app_Id as follow:
     ```json{
     { .....
-      "app_Id": "users_permissions-fxudl"
+      "app_Id": "users_permissions-nbidj"
       .....
     }
     ```
+
+1. Create an administrator with full permissions for editing all the tasks in the Flutter app:
+
+  	`flutter pub run realm install`
+
+    `flutter pub run lib/cli/run create-admin --username <admin user name> --password <admin password>`
 
 These steps are for the purpose of the sample. You can follow the instructions.
 in [MongoDB Atlas](https://www.mongodb.com/docs/atlas) for more advanced and secured configurations.

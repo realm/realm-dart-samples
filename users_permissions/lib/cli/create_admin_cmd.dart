@@ -21,27 +21,37 @@ class CreateAdminUserCommand extends Command<void> {
 
   @override
   FutureOr<void>? run() async {
-    print("run CreateAdminUserCommand");
     parameters = parseCreateAdminUserParamsResult(argResults!);
-    print("username: ${parameters.username}, password: ${parameters.password}");
     await registerAdmin(parameters.username, parameters.password);
+    print("A user with username ${parameters.username} is created.");
   }
 
   Future<void> registerAdmin(String email, String password) async {
-    final realmConfig = json.decode(await File('assets/atlas_app/realm_config.json').readAsString());
-    String appId = realmConfig['app_id'];
-    final app = App(AppConfiguration(appId));
-    EmailPasswordAuthProvider authProvider = EmailPasswordAuthProvider(app);
-    await authProvider.registerUser(email, password);
-    User loggedInUser = await app.logIn(Credentials.emailPassword(email, password));
-
-    final realm = Realm(Configuration.flexibleSync(loggedInUser, [Role.schema, Item.schema]));
-    realm.subscriptions.update((mutableSubscriptions) => mutableSubscriptions.add(realm.all<Role>()));
-    await realm.subscriptions.waitForSynchronization();
-    realm.write(() => realm.add(Role(ObjectId(), loggedInUser.id, isAdmin: true)));
-    await realm.syncSession.waitForUpload();
-    await loggedInUser.logOut();
-    realm.close();
+    try {
+      final realmConfig = json.decode(await File('assets/atlas_app/realm_config.json').readAsString());
+      String appId = realmConfig['app_id'];
+      final app = App(AppConfiguration(appId));
+      EmailPasswordAuthProvider authProvider = EmailPasswordAuthProvider(app);
+      await authProvider.registerUser(email, password);
+      User loggedInUser = await app.logIn(Credentials.emailPassword(email, password));
+      final config = Configuration.flexibleSync(loggedInUser, [Role.schema, Item.schema]);
+      try {
+        final realm = Realm(config);
+        realm.subscriptions.update((mutableSubscriptions) => mutableSubscriptions.add(realm.all<Role>()));
+        await realm.subscriptions.waitForSynchronization();
+        realm.write(() => realm.add(Role(ObjectId(), loggedInUser.id, isAdmin: true)));
+        await realm.syncSession.waitForUpload();
+        realm.subscriptions.update((mutableSubscriptions) => mutableSubscriptions.clear());
+        await realm.subscriptions.waitForSynchronization();
+        await loggedInUser.logOut();
+        realm.close();
+        Realm.deleteRealm(config.path);
+      } finally {
+        Realm.deleteRealm(config.path);
+      }
+    } finally {
+      await Directory("mongodb-realm").delete(recursive: true);
+    }
   }
 
   void abort(String error) {
