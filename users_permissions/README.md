@@ -2,12 +2,18 @@
 
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
 
-## A simple application using the [Realm Flutter SDK](https://www.mongodb.com/docs/realm/sdk/flutter/) Flexible Sync with an [Atlas App Services application](https://www.mongodb.com/docs/atlas/app-services/).
+# Users permissions
+A simple application using the [Realm Flutter SDK](https://www.mongodb.com/docs/realm/sdk/flutter/) Flexible Sync with an [Atlas App Services application](https://www.mongodb.com/docs/atlas/app-services/).
 This sample demonstrates the usage of Flexible Sync based on different user permissions. 
 Each user has separate realm file on the device and the data for each user is synced to the Atlas collection based on the permissions that the user has.
-A user can Sign Up through the application and to choose whether to sign up as an administrator with full permissions or as a regular user.
-Users with full permissions can see other users items and can change them.
-The regular users can see, edit and delete only their own items.
+
+A user can Sign Up through the application as a regular user.
+
+The administrators can be created using a cli commnad `create-admin` that could be found below.
+
+Users with full permissions (the administrators) can see other users` items and can edit/delete them.
+
+The regular users can see other users` items but is not allowed to edit/delete them. They can edit/delete only their own items.
 
 # Realm Flutter SDK 
 
