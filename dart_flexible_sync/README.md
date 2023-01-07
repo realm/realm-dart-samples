@@ -2,8 +2,10 @@
 
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
 
-## A simple command-line application using [Realm Dart SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) Flexible Sync with [Atlas App Services application](https://www.mongodb.com/docs/atlas/app-services/).
-This sample demonstrates the usage of [Atlas Device Sync with Flexible Sync](https://www.mongodb.com/docs/realm/sdk/flutter/sync/) and the Realm Dart Standalone SDK.
+# Dart Flexible Sync sample
+A command-line application using [Realm Dart SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) Flexible Sync with [Atlas App Services application](https://www.mongodb.com/docs/atlas/app-services/).
+
+This sample demonstrates the usage of [Atlas Device Sync with Flexible Sync](https://www.mongodb.com/docs/realm/sdk/flutter/sync/) and the Realm Dart SDK.
 Writing to a synced realm sends the data automatically to a linked collection in MongoDB Atas. The synced realm is subscribed to a query only for items matching specific criteria.
 This causes the synced realm to be populated only with specific items matching the query.
 Items in the MongoDB collection on Atlas that do not match the query do not sync to the client device.

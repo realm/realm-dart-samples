@@ -2,9 +2,16 @@
 
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
 
-## Time track
-
+# Time track
 A simple time tracking application using Realm Dart SDK for persistence.
+
+This sample is using [Realm Dart](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) and provides custom CLI with the following commands:
+- `now` registers a time entry
+- `clear` deletes all existing entries
+- `show` shows all existing entries
+- `watch` monitors entries as they happen
+
+The command `watch` is using RealmResult.changes to listen for changes when the contents of the collection change.
 
 ## Realm Dart SDK
 

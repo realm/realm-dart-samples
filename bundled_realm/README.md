@@ -1,6 +1,7 @@
-# bundled_realm
+# Bundled realm sample
+A Flutter application with pre-initialized realm file.
 
-A new Flutter project that demonstrates how to bundle and load initially populated realm in the app.
+This application demonstrates how to bundle a realm file with data, and load the bundled realm into the Flutter app.
 
 ## Realm Dart SDK
 

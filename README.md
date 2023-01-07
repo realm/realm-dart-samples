@@ -13,65 +13,17 @@ The Realm Flutter and Dart SDK repository is located at https://github.com/realm
 You may find the [Quick Start - Flutter SDK]( https://www.mongodb.com/docs/realm/sdk/flutter/quick-start/) helpful if you are using Realm for the first time.
 To learn more about using Realm with Atlas App Services, refer to the [Atlas Device Sync](https://www.mongodb.com/docs/realm/sdk/flutter/sync/) and [connecting to Atlas App Services](https://www.mongodb.com/docs/realm/sdk/flutter/app-services/) documentation.
 
-## [`realm_dart`](https://github.com/realm/realm-dart-samples/tree/main/realm_dart) - Dart console application
+# Samples list
+* [`Realm Dart sample`](https://github.com/realm/realm-dart-samples/tree/main/realm_dart) - Dart console app that demonstrates how to use a local Realm.
+* [`Provider Shopper`](https://github.com/realm/realm-dart-samples/tree/main/provider_shopper) - A Flutter sample app from [Flutter sample repo](https://github.com/flutter/samples/tree/master/provider_shopper) that shows a state management approach with a local Realm.
 
-This sample uses the [Realm Dart Standalone SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) to demonstrates the following simple operations with a local realm:
+* [`Time Track`](https://github.com/realm/realm-dart-samples/tree/main/time_track) - Dart console application that listen for changes in a collection.
 
-- Create and open local realm
-- Add objects to realm
-- Edit object in realm
-- Read all objects of a type
-- Query subset of objects in realm
-- Close realm
+* [`Dart Flexible Sync sample`](https://github.com/realm/realm-dart-samples/tree/main/dart_flexible_sync) - This sample demonstrates the usage of Realm Dart with [Atlas Device Sync with Flexible Sync](https://www.mongodb.com/docs/realm/sdk/flutter/sync/) sync data to [Atlas App Services](https://www.mongodb.com/docs/atlas/app-services/).
 
-To run the app, follow the instructions in the README: [realm_dart\README.md](https://github.com/realm/realm-dart-samples/tree/main/realm_dart#readme)
+* [`Flutter Flexible Sync sample`](https://github.com/realm/realm-dart-samples/tree/main/flutter_flexible_sync) - A Flutter application using the [Realm Flutter SDK](https://www.mongodb.com/docs/realm/sdk/flutter/), Atlas Device Sync with Flexible Sync, and [Atlas App Services](https://www.mongodb.com/docs/atlas/app-services/).
 
-## [`provider_shopper`](https://github.com/realm/realm-dart-samples/tree/main/provider_shopper) - Flutter application
+* [`Bundled realm sample`](https://github.com/realm/realm-dart-samples/tree/main/bundled_realm) - A Flutter application with pre-initialized realm file that is shipped with the application.
 
-A Flutter sample app from [Flutter sample repo](https://github.com/flutter/samples/tree/master/provider_shopper) that shows a state management approach. This app is modified to be integrated with a local realm using [Realm Flutter](https://www.mongodb.com/docs/realm/sdk/flutter/).
-
-You can leave the credentials empty on the login screen.
-
-To run the app, follow the instructions in the README: [provider_shopper\README.md](https://github.com/realm/realm-dart-samples/tree/main/provider_shopper#readme)
-
-## [`time_track`](https://github.com/realm/realm-dart-samples/tree/main/time_track) - Dart console application
-
-This sample is using [Realm Dart](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) and provides custom CLI with the following commands:
-- `now` registers a time entry
-- `clear` deletes all existing entries
-- `show` shows all existing entries
-- `watch` monitors entries as they happen
-
-The command `watch` is using RealmResult.changes to listen for changes when the contents of the collection change.
-
-To run the app, follow the instructions in the README: [time_track\README.md](https://github.com/realm/realm-dart-samples/tree/main/time_track#readme)
-
-## [`dart_flexible_sync`](https://github.com/realm/realm-dart-samples/tree/main/dart_flexible_sync) - Dart console application with flexible sync
-
-A simple command-line application using the [Realm Dart Standalone SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) and Flexible Sync with [Atlas App Services application](https://www.mongodb.com/docs/atlas/app-services/).
-
-This sample demonstrates the usage of [Atlas Device Sync with Flexible Sync](https://www.mongodb.com/docs/realm/sdk/flutter/sync/) and the Realm Dart Standalone SDK.
-Writing to a synced realm sends the data automatically to a linked collection in MongoDB Atas. The synced realm is subscribed to a query only for items matching specific criteria.
-This causes the synced realm to be populated only with specific items matching the query.
-Items in the MongoDB collection on Atlas that do not match the query do not sync to the client device.
-
-To run the app, follow the instructions in the README: [dart_flexible_sync/README.md](https://github.com/realm/realm-dart-samples/tree/main/dart_flexible_sync#readme)
-
-## [`flutter_flexible_sync`](https://github.com/realm/realm-dart-samples/tree/main/flutter_flexible_sync) - Flutter application with flexible sync
-
-A Flutter application using the [Realm Flutter SDK](https://www.mongodb.com/docs/realm/sdk/flutter/), Atlas Device Sync with Flexible Sync, and [Atlas App Services](https://www.mongodb.com/docs/atlas/app-services/).
-
-This sample demonstrates the usage of Flexible Sync. 
-Writing to a synced realm named `db_allTasks.realm` sends the data automatically to a linked MongoDB collection on Atlas.
-Then the data are downloaded back by the synchronization process to two separate realms,
-`db_importantTasks.realm` and  `db_normalTaks.realm`, filtered by specific subscription query.
-
-To run the app, follow the instructions in the README: [flutter_flexible_sync/README.md](https://github.com/realm/realm-dart-samples/tree/main/flutter_flexible_sync#readme)
-
-## [`bundled_realm`](https://github.com/realm/realm-dart-samples/tree/main/bundled_realm) - Flutter application with pre-initialized realm file
-
-A Flutter application that demonstrates how to bundle a realm file with data, and load the bundled realm into the app.
-
-To see how to load pre-initialized realm from Flutter assets, follow the instructions in the README: [bundled_realm/README.md](https://github.com/realm/realm-dart-samples/tree/main/bundled_realm#readme)
 
 *The "Dart" name and logo and the "Flutter" name and logo are trademarks owned by Google.*

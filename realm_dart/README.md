@@ -2,7 +2,17 @@
 
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
 
-## A simple command-line application using Realm Dart SDK
+## Realm Dart sample
+A command-line application using Realm Dart SDK.
+
+This sample uses the [Realm Dart SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) to demonstrates the following simple operations with a local realm:
+
+- Create and open local realm
+- Add objects to realm
+- Edit object in realm
+- Read all objects of a type
+- Query subset of objects in realm
+- Close realm
 
 ## Realm Dart SDK
 

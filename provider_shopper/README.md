@@ -1,12 +1,16 @@
 ![Realm](https://github.com/realm/realm-dart/raw/main/logo.png)
 
-# provider_shopper
+# Provider Shopper
 
-## A modified Flutter sample application that uses Realm instead of in-memory collection.
+A modified Flutter sample application that uses Realm instead of in-memory collection.
+
+This is a Flutter sample app from [Flutter sample repo](https://github.com/flutter/samples/tree/master/provider_shopper) that shows a state management approach. This app is modified to be integrated with a local realm using [Realm Flutter](https://www.mongodb.com/docs/realm/sdk/flutter/).
 
 The Flutter sample and more details about how the application is structured can be found here https://github.com/flutter/samples/tree/master/provider_shopper.
 
 The [`catalog.dart`](https://github.com/realm/realm-dart-samples/blob/main/provider_shopper/lib/models/catalog.dart) contains the Realm sample code.
+
+When run the demo you can login with empty credentials.
 
 ## Realm Flutter SDK 
 
