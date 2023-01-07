@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
 
-# Users permissions
+# Users permissions sample
 A simple application using the [Realm Flutter SDK](https://www.mongodb.com/docs/realm/sdk/flutter/) Flexible Sync with an [Atlas App Services application](https://www.mongodb.com/docs/atlas/app-services/).
 This sample demonstrates the usage of Flexible Sync based on different user permissions. 
 Each user has separate realm file on the device and the data for each user is synced to the Atlas collection based on the permissions that the user has.
