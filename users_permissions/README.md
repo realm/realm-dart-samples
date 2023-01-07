@@ -15,19 +15,20 @@ Users with full permissions (the administrators) can see other users` items and 
 
 The regular users can see other users` items but is not allowed to edit/delete them. They can edit/delete only their own items.
 
-# Realm Flutter SDK 
+## Realm Flutter SDK 
 
-The Realm Flutter package is `realm` and it is available at [pub.dev](https://pub.dev/packages/realm)
+Realm Flutter package is published to [realm](https://pub.dev/packages/realm).
 
-# Environment
+## Environment
 
-* Flutter ^3.0.3 
-* Flutter Mobile on Android and iOS
-* Flutter Desktop on Windows, Linux and MacOS
+* Realm Flutter supports the platforms iOS, Android, Windows, MacOS and Linux.
 
-# Atlas App Services Configuration Steps
+* Flutter ^3.0.3 or newer
+* For Flutter Desktop environment setup, see [Desktop support for Flutter](https://docs.flutter.dev/desktop).
 
-## Using existing demo App Service
+## Atlas App Services Configuration Steps
+
+### Using existing demo App Service
 This sample is using an already prepared Atlas App Service with AppID `users_permissions-nbidj`.
 The app_id is configured in "\assets\atlas_app\realm_config.json"
 1. Create an administrator with full permissions for editing all the tasks in the Flutter app:
@@ -36,14 +37,14 @@ The app_id is configured in "\assets\atlas_app\realm_config.json"
 
     `flutter pub run lib/cli/run create-admin --username <admin user name> --password <admin password>`
 
-## Creating a new App Service
+### Creating a new App Service
 
 If you want to create your own Atlas App Service and to have an access to the cloud App, follow the instruction below.
 
 1. Create an account on [realm.mongodb.com](https://realm.mongodb.com) - follow the instructions: [Get Started with Atlas](https://www.mongodb.com/docs/atlas/getting-started)
 1. You can create your Atlas App using Realm CLI or using App Service Web UI.
 
-### Using Realm CLI
+#### Using Realm CLI
 1. Create an App using [realm-cli](https://www.mongodb.com/docs/atlas/app-services/cli/#mongodb-binary-bin.realm-cli).
 1. Open command line terminal and go to the root folder of this Flutter app.
 1. Install `realm-cli` following the [instructions](https://www.mongodb.com/docs/atlas/app-services/cli/#mongodb-binary-bin.realm-cli).
@@ -77,7 +78,7 @@ Then run this command:
     `realm-cli function run --name setUserRole --args true --user <copied useId> --app users_permissions `
 
 
-### Using App Services UI
+#### Using App Services UI
 
 1. Create a new app following the instructions here: [Create an App with Atlas App Services UI](https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-realm-ui).
     For the purpose of this sample you don't need to create an app from a template. You can just create an empty application.
@@ -153,7 +154,7 @@ Then run this command:
 These steps are for the purpose of the sample. You can follow the instructions.
 in [MongoDB Atlas](https://www.mongodb.com/docs/atlas) for more advanced and secured configurations.
 
-# Usage
+## Usage
 
 1. Start an Android Emulator, an iPhone Simulator, attach an Android device or setup [Flutter Desktop environment](https://docs.flutter.dev/desktop)
 
