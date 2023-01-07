@@ -9,11 +9,11 @@ Each user has separate realm file on the device and the data for each user is sy
 
 A user can Sign Up through the application as a regular user.
 
-The administrators can be created using a cli commnad `create-admin` that could be found below.
+The administrators can be created using a cli command `create-admin` that could be found below.
 
 Users with full permissions (the administrators) can see other users` items and can edit/delete them.
 
-The regular users can see other users` items but is not allowed to edit/delete them. They can edit/delete only their own items.
+The regular users can see other users` items but are not allowed to edit/delete them. They can edit/delete only their own items.
 
 ## Realm Flutter SDK 
 
@@ -42,7 +42,7 @@ The app_id is configured in "\assets\atlas_app\realm_config.json"
 If you want to create your own Atlas App Service and to have an access to the cloud App, follow the instruction below.
 
 1. Create an account on [realm.mongodb.com](https://realm.mongodb.com) - follow the instructions: [Get Started with Atlas](https://www.mongodb.com/docs/atlas/getting-started)
-1. You can create your Atlas App using Realm CLI or using App Service Web UI.
+1. You can create your Atlas App using `Realm CLI` or using `App Service UI`.
 
 #### Using Realm CLI
 1. Create an App using [realm-cli](https://www.mongodb.com/docs/atlas/app-services/cli/#mongodb-binary-bin.realm-cli).
