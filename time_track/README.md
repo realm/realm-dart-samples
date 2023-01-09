@@ -26,19 +26,19 @@ Realm Dart package is published to [realm_dart](https://pub.dev/packages/realm_d
 
 ## Usage
 
-* Get dependencies (realm_dart)
+* Get packages to the Dart application.
 ```
     dart pub get
 ```
-* Install native realm library (supported platforms are Windows, MacOS, and Linux).
+* Install the `realm_dart` package into the application. This downloads and copies the required native binaries to the app directory. Supported platforms are Windows, MacOS, and Linux.
 ```
     dart run realm_dart install
 ```
-* Generate Dart binding for Realm Database
+* Generate Dart binding for Realm Database.
 ```
     dart run realm_dart generate
 ```
-* [Optional] Compile to native for speed
+* [Optional] Compile to native for speed.
 ```
     dart compile exe bin/time_track.dart 
 ```
