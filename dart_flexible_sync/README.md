@@ -54,7 +54,7 @@ These steps are for the purpose of the sample. You can follow the instructions i
 
 ## Usage
 
-* Get packages to the Dart application.
+* Get dart packages for the application.
 
     ```
     dart pub get
@@ -63,6 +63,7 @@ These steps are for the purpose of the sample. You can follow the instructions i
 * Install the `realm_dart` package into the application. This downloads and copies the required native binaries to the app directory.
 
     ```
+    dart pub get
     dart run realm_dart install
     ```
 
