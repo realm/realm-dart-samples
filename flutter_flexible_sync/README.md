@@ -35,7 +35,7 @@ If you want to create an Atlas App Service and have an access to the cloud App, 
     * Switch ON the ["Development mode"](https://www.mongodb.com/docs/atlas/app-services/sync/data-model/development-mode/) option.
     * Create a new database collection and choose a name for it.
     * Create a new queryable field used for filtering data between both realms in this application. For this sample the field is `isImportant`.
-        Since it is not available in the selection list, just start writing inside the selection box and then choose `Create isImportant`.
+        Type the field name `isImportant` in the selection box and then choose `Create isImportant`.
         It will be created.
     * Define permission - for the purpose of this sample please choose the option `Users can read and write all data`.
     * Click the button `Enable Sync` and confirm.
