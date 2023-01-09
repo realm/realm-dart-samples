@@ -4,8 +4,6 @@
 
 A modified Flutter sample application that uses Realm instead of in-memory collection.
 
-This is a Flutter sample app from [Flutter sample repo](https://github.com/flutter/samples/tree/master/provider_shopper) that shows a state management approach. This app is modified to be integrated with a local realm using [Realm Flutter](https://www.mongodb.com/docs/realm/sdk/flutter/).
-
 The Flutter sample and more details about how the application is structured can be found here https://github.com/flutter/samples/tree/master/provider_shopper.
 
 The [`catalog.dart`](https://github.com/realm/realm-dart-samples/blob/main/provider_shopper/lib/models/catalog.dart) contains the Realm sample code.
@@ -18,7 +16,7 @@ Realm Flutter package is published to [realm](https://pub.dev/packages/realm).
 
 ## Environment
 
-* Realm Flutter supports the platforms iOS, Android, Windows, MacOS and Linux.
+* Realm Flutter supports iOS, Android, Windows, MacOS and Linux platforms.
 
 * Flutter ^3.0.3 or newer
 * For Flutter Desktop environment setup, see [Desktop support for Flutter](https://docs.flutter.dev/desktop).

@@ -16,7 +16,7 @@ Realm Dart package is published to [realm_dart](https://pub.dev/packages/realm_d
 
 ## Environment setup for Realm Dart
 
-* Realm Dart supports the platforms Windows, Mac and Linux.
+* Realm Dart supports Windows, Mac and Linux platforms.
 
 * Dart SDK ^2.17.5 or newer
 
