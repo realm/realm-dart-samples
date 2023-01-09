@@ -2,13 +2,13 @@
 
 # Provider Shopper
 
-A modified Flutter sample application that uses Realm instead of in-memory collection.
+A modified Flutter sample application that uses a local Realm instead of in-memory collection.
 
 The Flutter sample and more details about how the application is structured can be found here https://github.com/flutter/samples/tree/master/provider_shopper.
 
 The [`catalog.dart`](https://github.com/realm/realm-dart-samples/blob/main/provider_shopper/lib/models/catalog.dart) contains the Realm sample code.
 
-When run the demo you can login with empty credentials.
+This sample does not require credentials. Click `Login` on the `Login` page to skip it.
 
 ## Realm Flutter SDK 
 
