@@ -25,7 +25,7 @@ void main(List<String> arguments) async {
   await realm.subscriptions.waitForSynchronization();
   var resultsAfterSubscriptionChanged = realm.all<Task>();
   print(
-      "Filtered records that matche the query. ${resultsAfterSubscriptionChanged.length}");
+      "Filtered records that match the query. ${resultsAfterSubscriptionChanged.length}");
 
   realm.close();
   Realm.shutdown();

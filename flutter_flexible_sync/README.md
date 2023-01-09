@@ -3,9 +3,8 @@
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
 # Flutter Flexible Sync sample
 A simple application using the [Realm Flutter SDK](https://www.mongodb.com/docs/realm/sdk/flutter/) Flexible Sync with an [Atlas App Services application](https://www.mongodb.com/docs/atlas/app-services/).
-This sample demonstrates the usage of Flexible Sync. 
 Writing to a synced realm named `db_allTasks.realm` sends the data automatically to a linked MongoDB collection on Atlas.
-Then the data are downloaded back by the synchronization process to two separate realms,
+Then the data is downloaded back by the synchronization process to two separate realms,
 `db_importantTasks.realm` and  `db_normalTaks.realm`, filtered by specific subscription query.
 
 ## Realm Flutter SDK 
@@ -14,16 +13,16 @@ Realm Flutter package is published to [realm](https://pub.dev/packages/realm).
 
 ## Environment
 
-* Realm Flutter supports the platforms iOS, Android, Windows, MacOS and Linux.
+* Realm Flutter supports iOS, Android, Windows, MacOS and Linux platforms.
 
 * Flutter ^3.0.3 or newer
 * For Flutter Desktop environment setup, see [Desktop support for Flutter](https://docs.flutter.dev/desktop).
 
 ## Atlas App Services Configuration Steps
 
-This sample is using an already prepared Atlas App Service with AppID `flutter_flexible_sync-rmjux`.
+This sample is using an existing Atlas App Service with AppID `flutter_flexible_sync-rmjux`.
 
-If you want to create your own Atlas App Service and to have an access to the cloud App, follow the instruction below.
+If you want to create an Atlas App Service and have an access to the cloud App, follow the instruction below.
 
 1. Create an account on [cloud.mongodb.com](https://cloud.mongodb.com). Follow the instructions: [Register a new Atlas Account](https://www.mongodb.com/docs/atlas/tutorial/create-atlas-account/#register-a-new-service-account).
 1. Create a new app following the instructions here: [Create an App with Atlas App Services UI](https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-realm-ui).
@@ -34,7 +33,7 @@ If you want to create your own Atlas App Service and to have an access to the cl
     * Press the "Flexible Sync" button. Only Flexible Sync is supported in the Realm Flutter SDK.
     * Switch ON the ["Development mode"](https://www.mongodb.com/docs/atlas/app-services/sync/data-model/development-mode/) option.
     * Create a new database collection and choose a name for it.
-    * Create a new queryable field used for filtering data between both realms in this application. For our sample the field is `isImportant`.
+    * Create a new queryable field used for filtering data between both realms in this application. For this sample the field is `isImportant`.
         Since it is not available in the selection list, just start writing inside the selection box and then choose `Create isImportant`.
         It will be created.
     * Define permission - for the purpose of this sample please choose the option `Users can read and write all data`.

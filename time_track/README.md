@@ -65,7 +65,7 @@ Realm Dart package is published to [realm_dart](https://pub.dev/packages/realm_d
     bin/time_track.exe now sleep
 ```
 
-What follows is a short [asciinema](https://asciinema.org/) recording of building and using it. You can copy paste directly from the recording to your terminal. Note that I'm using [fish](https://fishshell.com/), so you may have to tweak a bit, if you are using another shell.
+What follows is a short [asciinema](https://asciinema.org/) recording of building and using it. You can copy paste directly from the recording to your terminal. Note that a custom shell [fish](https://fishshell.com/) is used for the recording, so you may have to tweak a bit, if you are using another shell.
 
 [![asciicast](https://asciinema.org/a/rE6itBIrq0Ts4JNkzhaFUAPI1.svg)](https://asciinema.org/a/rE6itBIrq0Ts4JNkzhaFUAPI1)
 
