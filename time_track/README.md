@@ -3,6 +3,7 @@
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
 
 # Time track
+
 A simple time tracking application using Realm Dart SDK for persistence.
 
 This sample is using [Realm Dart](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) and provides custom CLI with the following commands:

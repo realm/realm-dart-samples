@@ -3,6 +3,7 @@
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
 
 ## Realm Dart sample
+
 A command-line application using Realm Dart SDK.
 
 This sample uses the [Realm Dart SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) to demonstrates the following simple operations with a local realm:

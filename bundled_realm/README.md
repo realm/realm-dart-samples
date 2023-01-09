@@ -1,4 +1,5 @@
 # Bundled realm sample
+
 A Flutter application with pre-initialized realm file that is shipped with the application.
 
 This application demonstrates how to bundle a realm file with data, and load the bundled realm into the Flutter app.

@@ -3,6 +3,7 @@
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
 
 # Dart Flexible Sync sample
+
 A Dart console application using [Realm Dart SDK](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) Flexible Sync with [Atlas App Services application](https://www.mongodb.com/docs/atlas/app-services/).
 
 This sample demonstrates the usage of [Atlas Device Sync with Flexible Sync](https://www.mongodb.com/docs/realm/sdk/flutter/sync/) and the Realm Dart SDK.
