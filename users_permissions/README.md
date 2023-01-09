@@ -3,7 +3,9 @@
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
 
 # Users permissions sample
+
 A simple application using the [Realm Flutter SDK](https://www.mongodb.com/docs/realm/sdk/flutter/) Flexible Sync with an [Atlas App Services application](https://www.mongodb.com/docs/atlas/app-services/).
+
 This sample demonstrates the usage of Flexible Sync based on different user permissions. 
 Each user has separate realm file on the device and the data for each user is synced to the Atlas collection based on the permissions that the user has.
 
@@ -82,9 +84,9 @@ Then run this command:
 
 1. Create a new app following the instructions here: [Create an App with Atlas App Services UI](https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-realm-ui).
     For the purpose of this sample you don't need to create an app from a template. You can just create an empty application.
-1. Click the button in the blue line above - `Review draft & deploy`.
+1. Click the button `Review draft & deploy`.
 1. Go to the `Authentication` menu in the left panel and select :
-    1. `Authentication Providers`. Then make sure the option "Email/Password" is ON. At the end click the button in the blue line above - `Review draft & deploy`. Read [this page](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other types of authentication.
+    1. `Authentication Providers`. Then make sure the option "Email/Password" is ON. Save and then click the button `Review draft & deploy`. Read [this page](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other types of authentication.
     1. `Custom User Data`. Then make sure the option is enabled. Select cluster, database and collection where to store the custom data. Then select the field that to be used for mapping users with their custom data. For this sample the field name is `owner_id`. Read [this page](https://www.mongodb.com/docs/atlas/app-services/users/enable-custom-user-data/) for more information about enabling custom user data.
 1. Go to the `Sync` menu and [Enable Flexible Sync](https://www.mongodb.com/docs/atlas/app-services/sync/configure/enable-sync/#enable-flexible-sync).
     1. Don't create a schema. Skip by choosing "No thanks, continue to Sync".
@@ -92,7 +94,7 @@ Then run this command:
     1. Switch ON the ["Development mode"](https://www.mongodb.com/docs/atlas/app-services/sync/data-model/development-mode/) option.
     1. Create a new database collection and choose a name for it.
     1. Create a new queryable field used for filtering data between both realms in this application. For our sample the field is `owner_id`.
-        Since it is not available in the selection list, just start writing inside the selection box and then choose `Create owner_id`.
+        Type the field name `owner_id` in the selection box and then choose `Create owner_id`.
         It will be created.
     1. Define permission - for the purpose of this sample please choose the option `Custom` and write the following rules:
     ```json {
@@ -135,7 +137,7 @@ Then run this command:
    ```
     The rules defined above allows the administrators to read/write the Items of all the users. The non-admin users will be able to read/write only their own Items. For all the other collections (like Roles for example) it is valid that users can change only the role that belongs to them. For this sample, this happens when the users register themselves.
     1. Click the button `Enable Sync` and confirm.
-    1. Click the button in the blue line above - `Review draft & deploy`, again.
+    1. Click the button `Review draft & deploy`, again.
 1. [Find and Copy the App ID](https://www.mongodb.com/docs/atlas/app-services/reference/find-your-project-or-app-id/) of your new application.
 1. Go to `\assets\atlas_app\realm_config.json` in this sample and set your app_Id as follow:
     ```json{
