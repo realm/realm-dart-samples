@@ -27,7 +27,7 @@ If you want to create an Atlas App Service and have an access to the cloud App, 
 1. Create an account on [cloud.mongodb.com](https://cloud.mongodb.com). Follow the instructions: [Register a new Atlas Account](https://www.mongodb.com/docs/atlas/tutorial/create-atlas-account/#register-a-new-service-account).
 1. Create a new app following the instructions here: [Create an App with Atlas App Services UI](https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-realm-ui).
     For the purpose of this sample you don't need to create an app from a template. You can just create an empty application.
-1. Go to the **Authentication** menu in the left panel and make sure the option "Allow users to log in anonymously" under `Authentication providers` tab is ON. Save and then click the button in the blue line above - `Review draft & deploy`. Read [Authentication Providers](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other authentication types.
+1. Go to the **Authentication** menu in the left panel and make sure the option "Allow users to log in anonymously" under `Authentication providers` tab is ON. Save and then click the button `Review draft & deploy`. Read [Authentication Providers](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other authentication types.
 1. Go to the **Device Sync** menu and [Enable Flexible Sync](https://www.mongodb.com/docs/atlas/app-services/sync/configure/enable-sync/#enable-flexible-sync).
     * Don't create a schema. Skip it by choosing "No thanks, continue to Sync".
     * Press the "Flexible Sync" button. Only Flexible Sync is supported in the Realm Flutter SDK.
@@ -38,7 +38,7 @@ If you want to create an Atlas App Service and have an access to the cloud App, 
         It will be created.
     * Define permission - for the purpose of this sample please choose the option `Users can read and write all data`.
     * Click the button `Enable Sync` and confirm.
-    * Click the button in the blue line above - `Review draft & deploy`, again.
+    * Click the button `Review draft & deploy`, again.
 1. [Find and Copy the App ID](https://www.mongodb.com/docs/atlas/app-services/reference/find-your-project-or-app-id/) of your new application.
 1. Go to `main.dart` in this sample and set your App ID to the constant `appId` as follow:
 
