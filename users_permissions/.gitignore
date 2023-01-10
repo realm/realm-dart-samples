@@ -8,17 +8,16 @@
 .buildlog/
 .history
 .svn/
+migrate_working_dir/
+mongodb-realm/
+build/
+pubspec.lock
 
 # IntelliJ related
 *.iml
 *.ipr
 *.iws
 .idea/
-
-# The .vscode folder contains launch configuration and items you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
 
 # Flutter/Dart/Pub related
 **/doc/api/
@@ -30,6 +29,7 @@
 .pub-cache/
 .pub/
 /build/
+/binary/
 
 # Web related
 lib/generated_plugin_registrant.dart
@@ -44,9 +44,3 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-
-# local version of realm sdk & binary
-realm-dart/
-binary/
-realm_packages/
-commands.txt
