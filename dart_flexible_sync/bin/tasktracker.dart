@@ -2,7 +2,7 @@ import 'package:tasktracker/model.dart';
 import 'package:realm_dart/realm.dart';
 
 void main(List<String> arguments) async {
-  String appId = "tasktracker-fleld";
+  String appId = "dart_flexible_sync-nxkdq";
   final appConfig = AppConfiguration(appId);
   final app = App(appConfig);
   final user = await app.logIn(Credentials.anonymous());
@@ -23,8 +23,9 @@ void main(List<String> arguments) async {
   });
 
   await realm.subscriptions.waitForSynchronization();
-  var r = realm.query<Task>(r'status == $0 AND progressMinutes == $1', ["completed", 100]);
-  print("Filtered records that matche the query. ${r.length}");
+  var resultsAfterSubscriptionChanged = realm.all<Task>();
+  print(
+      "Filtered records that match the query. ${resultsAfterSubscriptionChanged.length}");
 
   realm.close();
   Realm.shutdown();
