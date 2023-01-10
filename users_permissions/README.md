@@ -11,7 +11,7 @@ Each user has separate realm file on the device and the data for each user is sy
 
 A user can Sign Up through the application as a regular user.
 
-The administrators can be created using a cli command `create-admin` that could be found below.
+The administrators can be created using a cli command `create-admin` that could be found in the `Usage` section - `Create administrator using Realm SDK`.
 
 Users with full permissions (the administrators) can see other users` items and can edit/delete them.
 
@@ -28,25 +28,15 @@ Realm Flutter package is published to [realm](https://pub.dev/packages/realm).
 * Flutter ^3.0.3 or newer
 * For Flutter Desktop environment setup, see [Desktop support for Flutter](https://docs.flutter.dev/desktop).
 
-## Atlas App Services Configuration Steps
+## Creating a new Atlas App Services.
 
-### Using existing demo App Service
-This sample is using an already prepared Atlas App Service with AppID `users_permissions-nbidj`.
-The app_id is configured in "\assets\atlas_app\realm_config.json"
-1. Create an administrator with full permissions for editing all the tasks in the Flutter app:
-
-    `flutter pub run realm install`
-
-    `flutter pub run lib/cli/run create-admin --username <admin user name> --password <admin password>`
-
-### Creating a new App Service
-
-If you want to create your own Atlas App Service and to have an access to the cloud App, follow the instruction below.
+For the purpose of this demo you have to create your own Atlas App Service. Follow the instructions below.
 
 1. Create an account on [realm.mongodb.com](https://realm.mongodb.com) - follow the instructions: [Get Started with Atlas](https://www.mongodb.com/docs/atlas/getting-started)
 1. You can create your Atlas App using `Realm CLI` or using `App Service UI`.
 
-#### Using Realm CLI
+### Using Realm CLI
+
 1. Create an App using [realm-cli](https://www.mongodb.com/docs/atlas/app-services/cli/#mongodb-binary-bin.realm-cli).
 1. Open command line terminal and go to the root folder of this Flutter app.
 1. Install `realm-cli` following the [instructions](https://www.mongodb.com/docs/atlas/app-services/cli/#mongodb-binary-bin.realm-cli).
@@ -80,7 +70,7 @@ Then run this command:
     `realm-cli function run --name setUserRole --args true --user <copied useId> --app users_permissions `
 
 
-#### Using App Services UI
+### Using App Services UI
 
 1. Create a new app following the instructions here: [Create an App with Atlas App Services UI](https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-realm-ui).
     For the purpose of this sample you don't need to create an app from a template. You can just create an empty application.
@@ -142,21 +132,21 @@ Then run this command:
 1. Go to `\assets\atlas_app\realm_config.json` in this sample and set your app_Id as follow:
     ```json{
     { .....
-      "app_Id": "users_permissions-nbidj"
+      "app_Id": "users_permissions-xxxxx"
       .....
     }
     ```
 
 1. Create an administrator with full permissions for editing all the tasks in the Flutter app:
 
-  	`flutter pub run realm install`
-
-    `flutter pub run lib/cli/run create-admin --username <admin user name> --password <admin password>`
+  	Follow the instructions in the next section `Create administrator using Realm SDK`
 
 These steps are for the purpose of the sample. You can follow the instructions.
 in [MongoDB Atlas](https://www.mongodb.com/docs/atlas) for more advanced and secured configurations.
 
 ## Usage
+
+### Run the Flutter App
 
 1. Start an Android Emulator, an iPhone Simulator, attach an Android device or setup [Flutter Desktop environment](https://docs.flutter.dev/desktop)
 
@@ -164,7 +154,17 @@ in [MongoDB Atlas](https://www.mongodb.com/docs/atlas) for more advanced and sec
 
 1. Run `flutter run` to run the application
 
-1. Check the data and schema in you Atlas collection.
+### Create administrator using Realm SDK
+
+* For creating an administrator with full permissions run these commands:
+
+    `flutter pub run realm install`
+
+    `flutter pub run lib/cli/run create-admin --username <admin user name> --password <admin password>`
+
+### Browse the collection in Atlas
+
+* Check the data and schema in you Atlas collection.
     1. Login in [cloud.mongodb.com](https://cloud.mongodb.com) with your account.
     1. Go to your application and open `Schema` menu. You can see the newly created JSON schema that represents your data model defined in `schemas.dart` file in this sample.
         For more details [see](https://www.mongodb.com/docs/atlas/app-services/schemas/?_ga=2.267468942.1225817147.1654079983-1571915642.1647002315&_gac=1.216786660.1654173423.CjwKCAjwv-GUBhAzEiwASUMm4jBtzETN-YJq0KELgeGLKk-4_6wVAfImtPoBbo-A35_eKjZ1p0Lh_BoCotcQAvD_BwE)
