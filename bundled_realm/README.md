@@ -1,8 +1,21 @@
-# bundled_realm
+# Bundled realm sample
 
-A new Flutter project that demonstrates how to bundle and load initially populated realm in the app.
+A Flutter application with pre-initialized realm file that is shipped with the application.
+
+This application demonstrates how to bundle a realm file with data, and load the bundled realm into the Flutter app.
+
+## Realm Dart SDK
+
+Realm Dart package is published to [realm_dart](https://pub.dev/packages/realm_dart).
+
+## Environment setup for Realm Dart
+
+* Realm Dart supports Windows, Mac and Linux platforms.
+
+* Dart SDK ^2.17.5 or newer
 
 ## Getting Started
+
 ### How to populate initial data
 ```dart
 final config = Configuration.local([Car.schema], path: "realm/initial.realm");

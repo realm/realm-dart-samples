@@ -2,34 +2,46 @@
 
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
 
-## Time track
+# Time track
 
-A simple time tracking application using Realm Dart SDK for persistence. 
+A simple time tracking application using Realm Dart SDK for persistence.
 
-What follows is a short [asciinema](https://asciinema.org/) recording of building and using it. You can copy paste directly from the recording to your terminal. Note that I'm using [fish](https://fishshell.com/), so you may have to tweak a bit, if you are using another shell.
+This sample is using [Realm Dart](https://www.mongodb.com/docs/realm/sdk/flutter/#dart-standalone-realm) and provides custom CLI with the following commands:
+- `now` registers a time entry
+- `clear` deletes all existing entries
+- `show` shows all existing entries
+- `watch` monitors entries as they happen
 
-[![asciicast](https://asciinema.org/a/rE6itBIrq0Ts4JNkzhaFUAPI1.svg)](https://asciinema.org/a/rE6itBIrq0Ts4JNkzhaFUAPI1)
+The command `watch` is using RealmResult.changes to listen for changes when the contents of the collection change.
 
+## Realm Dart SDK
 
-## Build
-* Get dependencies (realm_dart)
+Realm Dart package is published to [realm_dart](https://pub.dev/packages/realm_dart).
+
+## Environment setup for Realm Dart
+
+* Realm Dart supports Windows, Mac and Linux platforms.
+
+* Dart SDK ^2.17.5 or newer
+
+## Usage
+
+* Get packages to the Dart application.
 ```
     dart pub get
 ```
-* Install native realm library (supported platforms are Windows, MacOS, and Linux).
+* Install the `realm_dart` package into the application. This downloads and copies the required native binaries to the app directory. Supported platforms are Windows, MacOS, and Linux.
 ```
     dart run realm_dart install
 ```
-* Generate Dart binding for Realm Database
+* Generate Dart binding for Realm Database.
 ```
     dart run realm_dart generate
 ```
-* [Optional] Compile to native for speed
+* [Optional] Compile to native for speed.
 ```
     dart compile exe bin/time_track.dart 
 ```
-
-## Usage
 * Run watch in separate shell
 ```
     // if not compiled
@@ -53,6 +65,10 @@ What follows is a short [asciinema](https://asciinema.org/) recording of buildin
     bin/time_track.exe now work
     bin/time_track.exe now sleep
 ```
+
+What follows is a short [asciinema](https://asciinema.org/) recording of building and using it. You can copy paste directly from the recording to your terminal. Note that a custom shell [fish](https://fishshell.com/) is used for the recording, so you may have to tweak a bit, if you are using another shell.
+
+[![asciicast](https://asciinema.org/a/rE6itBIrq0Ts4JNkzhaFUAPI1.svg)](https://asciinema.org/a/rE6itBIrq0Ts4JNkzhaFUAPI1)
 
 For further information see: https://github.com/realm/realm-dart.
 
