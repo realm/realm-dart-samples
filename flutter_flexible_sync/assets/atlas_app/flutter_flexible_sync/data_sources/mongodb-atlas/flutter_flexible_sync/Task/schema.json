@@ -1,0 +1,24 @@
+{
+    "bsonType": "object",
+    "properties": {
+        "_id": {
+            "bsonType": "objectId"
+        },
+        "isCompleted": {
+            "bsonType": "bool"
+        },
+        "isImportant": {
+            "bsonType": "bool"
+        },
+        "title": {
+            "bsonType": "string"
+        }
+    },
+    "required": [
+        "_id",
+        "title",
+        "isCompleted",
+        "isImportant"
+    ],
+    "title": "Task"
+}

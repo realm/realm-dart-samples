@@ -21,11 +21,40 @@ Realm Flutter package is published to [realm](https://pub.dev/packages/realm).
 
 ## Atlas App Services Configuration Steps
 
-This sample is using an existing Atlas App Service with AppID `flutter_flexible_sync-rmjux`.
+### Using existing demo App Service
+
+This sample is using an already prepared Atlas App Service with AppID `flutter_flexible_sync-rmjux`.
+The app_id is configured in "\assets\atlas_app\realm_config.json"
+
+### Creating a new App Service
 
 If you want to create an Atlas App Service and have an access to the cloud App, follow the instruction below.
 
 1. Create an account on [cloud.mongodb.com](https://cloud.mongodb.com). Follow the instructions: [Register a new Atlas Account](https://www.mongodb.com/docs/atlas/tutorial/create-atlas-account/#register-a-new-service-account).
+
+#### Using Realm CLI
+1. Create an App using [realm-cli](https://www.mongodb.com/docs/atlas/app-services/cli/#mongodb-binary-bin.realm-cli).
+1. Open command line terminal and go to the root folder of this Flutter app.
+1. Install `realm-cli` following the [instructions](https://www.mongodb.com/docs/atlas/app-services/cli/#mongodb-binary-bin.realm-cli).
+
+    `npm install -g mongodb-realm-cli`
+
+1. Login to the realm-cli:
+
+    `realm-cli login --api-key="<my api key>" --private-api-key="<my private api key>"`
+
+1. Go into folder '\assets\atlas_app':
+
+    `cd assets/atlas_app`
+
+1. Deploy the app to Atlas App Services:
+* IMPORTANT: Before to push the app make sure the cluster name is the same like the cluster in your account. Go to "\assets\atlas_app\data_sources\mongodb-atlas\config.json" and set the json field `clusterName`.
+Then run this command:
+
+    `realm-cli push --yes`
+
+#### Using App Services UI
+
 1. Create a new app following the instructions here: [Create an App with Atlas App Services UI](https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-realm-ui).
     For the purpose of this sample you don't need to create an app from a template. You can just create an empty application.
 1. Go to the **Authentication** menu in the left panel and make sure the option "Allow users to log in anonymously" under `Authentication providers` tab is ON. Save and then click the button `Review draft & deploy`. Read [Authentication Providers](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other authentication types.
@@ -41,10 +70,12 @@ If you want to create an Atlas App Service and have an access to the cloud App, 
     * Click the button `Enable Sync` and confirm.
     * Click the button `Review draft & deploy`, again.
 1. [Find and Copy the App ID](https://www.mongodb.com/docs/atlas/app-services/reference/find-your-project-or-app-id/) of your new application.
-1. Go to `main.dart` in this sample and set your App ID to the constant `appId` as follow:
-
-    ```dart
-    const String appId = "flutter_flx_sync-plfhm";
+1. Go to `\assets\atlas_app\realm_config.json` in this sample and set your app_Id as follow:
+    ```json{
+    { .....
+      "app_Id": "flutter_flexible_sync-rmjux"
+      .....
+    }
     ```
 
 These steps are for the purpose of the sample. You can follow the instructions in [MongoDB Atlas](https://www.mongodb.com/docs/atlas) for more advanced and secured configurations.
