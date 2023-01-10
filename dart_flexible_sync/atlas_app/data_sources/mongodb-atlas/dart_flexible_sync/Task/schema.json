@@ -1,0 +1,24 @@
+{
+    "bsonType": "object",
+    "properties": {
+        "_id": {
+            "bsonType": "objectId"
+        },
+        "progressMinutes": {
+            "bsonType": "long"
+        },
+        "status": {
+            "bsonType": "string"
+        },
+        "title": {
+            "bsonType": "string"
+        }
+    },
+    "required": [
+        "_id",
+        "title",
+        "status",
+        "progressMinutes"
+    ],
+    "title": "Task"
+}
