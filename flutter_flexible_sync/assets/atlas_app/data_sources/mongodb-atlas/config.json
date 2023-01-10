@@ -2,7 +2,7 @@
     "name": "mongodb-atlas",
     "type": "mongodb-atlas",
     "config": {
-        "clusterName": "DartCluster",
+        "clusterName": "Cluster",
         "readPreference": "primary",
         "wireProtocolEnabled": false
     },

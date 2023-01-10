@@ -7,10 +7,9 @@ import 'package:realm/realm.dart';
 import 'model.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   final realmConfig = json.decode(await rootBundle.loadString('assets/atlas_app/realm_config.json'));
   String appId = realmConfig['app_id'];
-  WidgetsFlutterBinding.ensureInitialized();
-
   MyApp.allTasksRealm = await createRealm(appId, CollectionType.allTasks);
   MyApp.importantTasksRealm = await createRealm(appId, CollectionType.importantTasks);
   MyApp.normalTasksRealm = await createRealm(appId, CollectionType.normalTasks);

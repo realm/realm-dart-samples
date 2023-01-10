@@ -22,7 +22,6 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
-
- uses-material-design: true
- assets:
-   - assets/atlas_app/realm_config.json
+  uses-material-design: true
+  assets:
+    - assets/atlas_app/realm_config.json
