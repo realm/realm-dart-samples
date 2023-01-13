@@ -55,7 +55,7 @@ class Task extends _Task with RealmEntity, RealmObjectBase, RealmObject {
   static SchemaObject _initSchema() {
     RealmObjectBase.registerFactory(Task._);
     return const SchemaObject(ObjectType.realmObject, Task, 'Task', [
-      SchemaProperty('_id', RealmPropertyType.objectid,
+      SchemaProperty('id', RealmPropertyType.objectid,
           mapTo: '_id', primaryKey: true),
       SchemaProperty('title', RealmPropertyType.string),
       SchemaProperty('status', RealmPropertyType.string),
