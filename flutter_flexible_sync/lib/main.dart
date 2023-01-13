@@ -1,15 +1,15 @@
+import 'dart:convert';
 import 'dart:io';
-
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:realm/realm.dart';
 import 'model.dart';
 
 void main() async {
-  const String appId = "flutter_flexible_sync-rmjux";
-
   WidgetsFlutterBinding.ensureInitialized();
-
+  final realmConfig = json.decode(await rootBundle.loadString('assets/atlas_app/realm_config.json'));
+  String appId = realmConfig['app_id'];
   MyApp.allTasksRealm = await createRealm(appId, CollectionType.allTasks);
   MyApp.importantTasksRealm = await createRealm(appId, CollectionType.importantTasks);
   MyApp.normalTasksRealm = await createRealm(appId, CollectionType.normalTasks);
