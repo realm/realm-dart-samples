@@ -34,7 +34,7 @@ If you want to create an Atlas App Service and have an access to the cloud App, 
 
 #### Using Realm CLI
 1. Create an App using [realm-cli](https://www.mongodb.com/docs/atlas/app-services/cli/#mongodb-binary-bin.realm-cli).
-1. Open command line terminal and go to the root folder of this Flutter app.
+1. Open a terminal in the root folder of the sample.
 1. Install `realm-cli` following the [instructions](https://www.mongodb.com/docs/atlas/app-services/cli/#mongodb-binary-bin.realm-cli).
 
     `npm install -g mongodb-realm-cli`
@@ -48,7 +48,7 @@ If you want to create an Atlas App Service and have an access to the cloud App, 
     `cd assets/atlas_app`
 
 1. Deploy the app to Atlas App Services:
-* IMPORTANT: Before to push the app make sure the cluster name is the same like the cluster in your account. Go to "\assets\atlas_app\data_sources\mongodb-atlas\config.json" and set the json field `clusterName`.
+* IMPORTANT: Before pushing the app make sure the cluster name is the same like the cluster in your account. Go to "\assets\atlas_app\data_sources\mongodb-atlas\config.json" and set the json field `clusterName`.
 Then run this command:
 
     `realm-cli push --yes`

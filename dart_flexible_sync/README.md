@@ -52,7 +52,7 @@ If you want to create an Atlas App Service and have an access to the cloud App, 
     `cd atlas_app`
 
 1. Deploy the app to Atlas App Services:
-* IMPORTANT: Before to push the app make sure the cluster name is the same like the cluster in your account. Go to "\atlas_app\data_sources\mongodb-atlas\config.json" and set the json field `clusterName`.
+* IMPORTANT: Before pushing the app make sure the cluster name is the same like the cluster in your account. Go to "\atlas_app\data_sources\mongodb-atlas\config.json" and set the json field `clusterName`.
 Then run this command:
 
     `realm-cli push --yes`
