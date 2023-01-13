@@ -1,8 +1,12 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:tasktracker/model.dart';
 import 'package:realm_dart/realm.dart';
 
 void main(List<String> arguments) async {
-  String appId = "dart_flexible_sync-nxkdq";
+  final realmConfig = json.decode(await File('atlas_app/realm_config.json').readAsString());
+  String appId = realmConfig['app_id'];
   final appConfig = AppConfiguration(appId);
   final app = App(appConfig);
   final user = await app.logIn(Credentials.anonymous());

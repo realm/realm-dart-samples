@@ -1,0 +1,20 @@
+{
+    "bsonType": "object",
+    "properties": {
+        "_id": {
+            "bsonType": "objectId"
+        },
+        "isAdmin": {
+            "bsonType": "bool"
+        },
+        "owner_id": {
+            "bsonType": "string"
+        }
+    },
+    "required": [
+        "_id",
+        "isAdmin",
+        "owner_id"
+    ],
+    "title": "Role"
+}

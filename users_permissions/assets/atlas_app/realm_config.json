@@ -1,0 +1,7 @@
+{
+    "config_version": 20210101,
+    "app_id": "users_permissions-xxxxx",
+    "name": "users_permissions",
+    "location": "DE-FF",
+    "deployment_model": "LOCAL"
+}
