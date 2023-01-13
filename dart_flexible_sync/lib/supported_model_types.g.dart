@@ -181,7 +181,7 @@ class AllPrimitiveRequired extends _AllPrimitiveRequired
     RealmObjectBase.registerFactory(AllPrimitiveRequired._);
     return const SchemaObject(
         ObjectType.realmObject, AllPrimitiveRequired, 'AllPrimitiveRequired', [
-      SchemaProperty('_id', RealmPropertyType.objectid,
+      SchemaProperty('id', RealmPropertyType.objectid,
           mapTo: '_id', primaryKey: true),
       SchemaProperty('stringProp', RealmPropertyType.string),
       SchemaProperty('boolProp', RealmPropertyType.bool),
