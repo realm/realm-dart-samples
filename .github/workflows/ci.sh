@@ -62,6 +62,9 @@ runInstall() {
     then
         printf "\ndart run realm_dart install\n"
         dart run realm_dart install
+    else
+        printf "\nflutter pub run realm install\n"
+        flutter pub run realm install
     fi
 }
 
