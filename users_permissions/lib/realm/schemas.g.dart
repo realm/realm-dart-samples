@@ -60,11 +60,11 @@ class Item extends _Item with RealmEntity, RealmObjectBase, RealmObject {
   static SchemaObject _initSchema() {
     RealmObjectBase.registerFactory(Item._);
     return const SchemaObject(ObjectType.realmObject, Item, 'Item', [
-      SchemaProperty('_id', RealmPropertyType.objectid,
+      SchemaProperty('id', RealmPropertyType.objectid,
           mapTo: '_id', primaryKey: true),
       SchemaProperty('isComplete', RealmPropertyType.bool),
       SchemaProperty('summary', RealmPropertyType.string),
-      SchemaProperty('owner_id', RealmPropertyType.string, mapTo: 'owner_id'),
+      SchemaProperty('ownerId', RealmPropertyType.string, mapTo: 'owner_id'),
     ]);
   }
 }
@@ -116,10 +116,10 @@ class Role extends _Role with RealmEntity, RealmObjectBase, RealmObject {
   static SchemaObject _initSchema() {
     RealmObjectBase.registerFactory(Role._);
     return const SchemaObject(ObjectType.realmObject, Role, 'Role', [
-      SchemaProperty('_id', RealmPropertyType.objectid,
+      SchemaProperty('id', RealmPropertyType.objectid,
           mapTo: '_id', primaryKey: true),
       SchemaProperty('isAdmin', RealmPropertyType.bool),
-      SchemaProperty('owner_id', RealmPropertyType.string, mapTo: 'owner_id'),
+      SchemaProperty('ownerId', RealmPropertyType.string, mapTo: 'owner_id'),
     ]);
   }
 }
