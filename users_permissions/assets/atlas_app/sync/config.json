@@ -6,42 +6,6 @@
     "database_name": "users_permissions",
     "client_max_offline_days": 30,
     "is_recovery_mode_disabled": false,
-    "permissions": {
-        "rules": {
-            "Item": [
-                {
-                    "name": "admin",
-                    "applyWhen": {
-                        "%%user.custom_data.isAdmin": true
-                    },
-                    "read": true,
-                    "write": true
-                },
-                {
-                    "name": "user",
-                    "applyWhen": {
-                        "%%user.custom_data.isAdmin": false
-                    },
-                    "read": true,
-                    "write": {
-                        "owner_id": "%%user.id"
-                    }
-                }
-            ]
-        },
-        "defaultRoles": [
-            {
-                "name": "read-write",
-                "applyWhen": {},
-                "read": {
-                    "owner_id": "%%user.id"
-                },
-                "write": {
-                    "owner_id": "%%user.id"
-                }
-            }
-        ]
-    },
     "queryable_fields_names": [
         "owner_id"
     ]
