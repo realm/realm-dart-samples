@@ -74,13 +74,13 @@ Then run this command:
 
 1. Create a new app following the instructions here: [Create an App with Atlas App Services UI](https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-realm-ui).
     For the purpose of this sample you don't need to create an app from a template. You can just create an empty application.
-1. Click the button `Review draft & deploy`.
+1. Click the button **Review draft & deploy**.
 1. Go to the **Authentication** menu in the left panel and select :
-    1. `Authentication Providers`. Then make sure the option "Email/Password" is ON. Save and then click the button `Review draft & deploy`. Read [this page](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other types of authentication.
+    1. `Authentication Providers`. Then make sure the option "Email/Password" is ON. Save and then click the button **Review draft & deploy**. Read [this page](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other types of authentication.
     1. `Custom User Data`. Then make sure the option is enabled. Select cluster, database and collection where to store the custom data. Then select the field that to be used for mapping users with their custom data. For this sample the field name is `owner_id`. Read [this page](https://www.mongodb.com/docs/atlas/app-services/users/enable-custom-user-data/) for more information about enabling custom user data.
 1. Go to the **Rules** menu.
-    1. Select "Default roles and filters" under the service name. Choose from the list with `Other preset`: `readOwnWriteOwn (User can only read and write their own data)` and click the button `Add preset role`. If you switch to `Advanced view` the JSON should looks like the one in the file `/assets/atlas_app/data_sources/mongodb-atlas/default_rule.json`.
-    1. To set specific permissions to a collection, it must exist. Create a new collection with name "Item" if it doesn't exist. This could be done from the menu option `Create collection`, which is on the root level next to the service name. Then select the collection and set the rules. Choose from the list with `Other preset`: `Users can read and write their own data, admins can read and write all data)`.
+    1. Select "Default roles and filters" under the service name. Choose from the list with `Other preset`: `readOwnWriteOwn (User can only read and write their own data)` and click the button **Add preset role**. If you switch to `Advanced view` the JSON should looks like the one in the file `/assets/atlas_app/data_sources/mongodb-atlas/default_rule.json`.
+    1. To set specific permissions to a collection, it must exist. Create a new collection with name "Item" if it doesn't exist. This could be done from the menu option `Create collection`, which is on the root level next to the service name. Then select the collection and set the rules. Choose from the list with `Other preset`: `Users can read and write their own data, admins can read and write all data`.
     * Edit `admin` role: 
       * Set `applyWhen` as follows:
 
@@ -106,11 +106,11 @@ Then run this command:
 
     If you switch to Advanced view the json should looks like the one in this file: /assets/atlas_app/data_sources/mongodb-atlas/user_permissions/Item/rules.json.
     The rules defined above allows the administrators to read/write the Items of all the users. The non-admin users will be able to read/write only their own Items. For all the other collections (like Roles for example) it is valid that users can change only the role that belongs to them. For this sample, this happens when the users register themselves.
-    1. Click the button `Save dtaft` and confirm.
-    1. Click the button `Review draft & deploy`.
+    1. Click the button **Save dtaft** and confirm.
+    1. Click the button **Review draft & deploy**.
 1. Go to the **Sync** menu and [Enable Flexible Sync](https://www.mongodb.com/docs/atlas/app-services/sync/configure/enable-sync/#enable-flexible-sync).
     1. Don't create a schema. Skip by choosing "No thanks, continue to Sync".
-    1. Press the "Flexible Sync" button. Only Flexible Sync is supported in the Realm Flutter SDK.
+    1. Press the **Flexible Sync** button. Only Flexible Sync is supported in the Realm Flutter SDK.
     1. Switch ON the [Development mode](https://www.mongodb.com/docs/atlas/app-services/sync/data-model/development-mode/) option.
     1. Create a new database collection and choose a name for it.
     1. Create a new queryable field used for filtering data between both realms in this application. For our sample, the field is `owner_id`.
@@ -119,14 +119,14 @@ Then run this command:
 1. Go to `/assets/atlas_app/realm_config.json` in this sample and set your `app_id` as follows:
     ```json{
     { .....
-      "app_Id": "users_permissions-xxxxx"
+      "app_id": "users_permissions-xxxxx"
       .....
     }
     ```
 
 1. Create an administrator with full permissions for editing all the tasks in the Flutter app:
 
-  	Follow the instructions in the next section `Create administrator using Realm SDK`
+    Follow the instructions in the section [Create administrator using Realm SDK](#create-administrator-using-realm-sdk).
 
 These steps are for the purpose of the sample. You can follow the instructions.
 in [MongoDB Atlas](https://www.mongodb.com/docs/atlas) for more advanced and secured configurations.

@@ -57,8 +57,8 @@ Then run this command:
 
 1. Create a new app following the instructions here: [Create an App with Atlas App Services UI](https://www.mongodb.com/docs/atlas/app-services/manage-apps/create/create-with-realm-ui).
     For the purpose of this sample you don't need to create an app from a template. You can just create an empty application.
-1. Go to the **Authentication** menu in the left panel and make sure the option "Allow users to log in anonymously" under `Authentication providers` tab is ON. Save and then click the button `Review draft & deploy`. Read [Authentication Providers](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other authentication types.
-1. Go to the **Rules** menu and select "Default roles and filters" under the service name. Choose `readAndWriteAll` and click the button `Add preset role`. Click the button `Save dtaft` and confirm. Then click the button `Review draft & deploy`.
+1. Go to the **Authentication** menu in the left panel and make sure the option "Allow users to log in anonymously" under `Authentication providers` tab is ON. Save and then click the button **Review draft & deploy**. Read [Authentication Providers](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other authentication types.
+1. Go to the **Rules** menu and select "Default roles and filters" under the service name. Choose `readAndWriteAll` and click the button **Add preset role**. Click the button **Save draft** and confirm. Then click the button **Review draft & deploy**.
 1. Go to the **Device Sync** menu and [Enable Flexible Sync](https://www.mongodb.com/docs/atlas/app-services/sync/configure/enable-sync/#enable-flexible-sync).
     * Don't create a schema. Skip it by choosing "No thanks, continue to Sync".
     * Press the "Flexible Sync" button. Only Flexible Sync is supported in the Realm Flutter SDK.
@@ -67,13 +67,13 @@ Then run this command:
     * Create a new queryable field used for filtering data between both realms in this application. For this sample the field is `isImportant`.
         Type the field name `isImportant` in the selection box and then choose `Create isImportant`.
         It will be created.
-    * Click the button `Enable Sync` and confirm.
-    * Click the button `Review draft & deploy`, again.
+    * Click the button **Enable Sync** and confirm.
+    * Click the button **Review draft & deploy**, again.
 1. [Find and Copy the App ID](https://www.mongodb.com/docs/atlas/app-services/reference/find-your-project-or-app-id/) of your new application.
 1. Go to `\assets\atlas_app\realm_config.json` in this sample and set your app_Id as follow:
     ```json{
     { .....
-      "app_Id": "flutter_flexible_sync-rmjux"
+      "app_id": "flutter_flexible_sync-rmjux"
       .....
     }
     ```
