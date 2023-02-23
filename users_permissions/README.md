@@ -117,7 +117,7 @@ Then run this command:
         Type the field name `owner_id` in the selection box and then choose `Create owner_id` to create it.
 1. [Find and Copy the App ID](https://www.mongodb.com/docs/atlas/app-services/reference/find-your-project-or-app-id/) of your new application.
 1. Go to `/assets/atlas_app/realm_config.json` in this sample and set your `app_id` as follows:
-    ```json{
+    ```json
     { .....
       "app_id": "users_permissions-xxxxx"
       .....
