@@ -1,8 +1,7 @@
 {
-    "app_id": "flutter_flexible_sync-rmjux",
     "config_version": 20210101,
+    "app_id": "flutter_flexible_sync-jizkp",
     "name": "flutter_flexible_sync",
     "location": "DE-FF",
-    "provider_region": "aws-eu-central-1",
     "deployment_model": "LOCAL"
 }

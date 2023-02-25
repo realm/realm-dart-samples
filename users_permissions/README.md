@@ -50,13 +50,19 @@ For the purpose of this demo you have to create your own Atlas App Service. Foll
 1. Go into folder '\assets\atlas_app':
 
     `cd assets/atlas_app`
-
 1. Deploy the app to Atlas App Services:
 * IMPORTANT: Before to push the app make sure the cluster name is the same like the cluster in your account. Go to "\assets\atlas_app\data_sources\mongodb-atlas\config.json" and set the json field `clusterName`.
 Then run this command:
 
     `realm-cli push --yes`
-
+1. Then go to the UI and manually allow `Custom User Data` in **Authentication**. Select the following fields:
+    ```json
+    "mongo_service_name": "mongodb-atlas",
+    "database_name": "users_permissions",
+    "collection_name": "Role",
+    "user_id_field": "owner_id"
+    ```
+    Read [this page](https://www.mongodb.com/docs/atlas/app-services/users/enable-custom-user-data/) for more information about enabling custom user data.
 1. Create a new user for administrator.
 
     `realm-cli users create  --app users_permissions --type email --email <username or email> --password <password>`
@@ -67,7 +73,7 @@ Then run this command:
 
 1. Set user role as an Administrator by passing `--args true` to the following function.
 
-    `realm-cli function run --name setUserRole --args true --user <copied useId> --app users_permissions `
+    `realm-cli function run --name setUserRole --args true --user <copied useId> --app users_permissions`
 
 
 ### Using App Services UI
@@ -77,7 +83,7 @@ Then run this command:
 1. Click the button **Review draft & deploy**.
 1. Go to the **Authentication** menu in the left panel and select :
     1. `Authentication Providers`. Then make sure the option "Email/Password" is ON. Save and then click the button **Review draft & deploy**. Read [this page](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other types of authentication.
-    1. `Custom User Data`. Then make sure the option is enabled. Select cluster, database and collection where to store the custom data. Then select the field that to be used for mapping users with their custom data. For this sample the field name is `owner_id`. Read [this page](https://www.mongodb.com/docs/atlas/app-services/users/enable-custom-user-data/) for more information about enabling custom user data.
+    1. `Custom User Data`. Then make sure the option is enabled. Select cluster, database and collection where to store the custom data. Choose collection name `Role`. Then select the field that to be used for mapping users with their custom data. For this sample the field name is `owner_id`. Read [this page](https://www.mongodb.com/docs/atlas/app-services/users/enable-custom-user-data/) for more information about enabling custom user data.
 1. Go to the **Rules** menu.
     1. Select "Default roles and filters" under the service name. Choose from the list with `Other preset`: `readOwnWriteOwn (User can only read and write their own data)` and click the button **Add preset role**. If you switch to `Advanced view` the JSON should looks like the one in the file `/assets/atlas_app/data_sources/mongodb-atlas/default_rule.json`.
     1. To set specific permissions to a collection, it must exist. Create a new collection with name "Item" if it doesn't exist. This could be done from the menu option `Create collection`, which is on the root level next to the service name. Then select the collection and set the rules. Choose from the list with `Other preset`: `Users can read and write their own data, admins can read and write all data`.

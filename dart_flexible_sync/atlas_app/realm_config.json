@@ -1,8 +1,7 @@
 {
-    "app_id": "dart_flexible_sync-nxkdq",
     "config_version": 20210101,
+    "app_id": "dart_flexible_sync-ugirp",
     "name": "dart_flexible_sync",
     "location": "DE-FF",
-    "provider_region": "aws-eu-central-1",
     "deployment_model": "LOCAL"
 }
