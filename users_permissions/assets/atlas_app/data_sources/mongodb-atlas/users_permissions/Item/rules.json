@@ -1,0 +1,38 @@
+{
+  "collection": "Item",
+  "database": "users_permissions",
+  "roles": [
+    {
+      "name": "admin",
+      "apply_when": {
+        "%%user.custom_data.isAdmin": true
+      },
+      "document_filters": {
+        "write": true,
+        "read": true
+      },
+      "read": true,
+      "write": true,
+      "insert": true,
+      "delete": true,
+      "search": true
+    },
+    {
+      "name": "user",
+      "apply_when": {
+        "%%user.custom_data.isAdmin": false
+      },
+      "document_filters": {
+        "write": {
+          "owner_id": "%%user.id"
+        },
+        "read": true
+      },
+      "read": true,
+      "write": true,
+      "insert": true,
+      "delete": true,
+      "search": true
+    }
+  ]
+}

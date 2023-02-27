@@ -1,7 +1,3 @@
 {
-    "enabled": true,
-    "mongo_service_name": "mongodb-atlas",
-    "database_name": "users_permissions",
-    "collection_name": "Role",
-    "user_id_field": "owner_id"
+    "enabled": false
 }
