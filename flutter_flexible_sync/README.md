@@ -64,11 +64,6 @@ Then run this command:
     * Press the "Flexible Sync" button. Only Flexible Sync is supported in the Realm Flutter SDK.
     * Switch ON the ["Development mode"](https://www.mongodb.com/docs/atlas/app-services/sync/data-model/development-mode/) option.
     * Create a new database collection and choose a name for it.
-    * Create a new queryable field used for filtering data between both realms in this application. For this sample the field is `isImportant`.
-        Type the field name `isImportant` in the selection box and then choose `Create isImportant`.
-        It will be created.
-    * Click the button **Enable Sync** and confirm.
-    * Click the button **Review draft & deploy**, again.
 1. [Find and Copy the App ID](https://www.mongodb.com/docs/atlas/app-services/reference/find-your-project-or-app-id/) of your new application.
 1. Go to `\assets\atlas_app\realm_config.json` in this sample and set your app_Id as follow:
     ```json{
