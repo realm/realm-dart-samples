@@ -5,5 +5,8 @@
     "service_name": "mongodb-atlas",
     "database_name": "flutter_flexible_sync",
     "client_max_offline_days": 30,
-    "is_recovery_mode_disabled": false
+    "is_recovery_mode_disabled": false,
+    "queryable_fields_names": [
+        "isImportant"
+    ]
 }
