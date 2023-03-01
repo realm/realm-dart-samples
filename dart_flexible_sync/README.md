@@ -80,7 +80,7 @@ Then run this command:
 1. Go to `\atlas_app\realm_config.json` in this sample and set your app_Id as follow:
     ```json{
     { .....
-      "app_id": "dart_flexible_sync-nxkdq"
+      "app_id": "dart_flexible_sync-mdyyd"
       .....
     }
     ```

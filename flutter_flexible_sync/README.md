@@ -74,7 +74,7 @@ Then run this command:
 1. Go to `\assets\atlas_app\realm_config.json` in this sample and set your app_Id as follow:
     ```json{
     { .....
-      "app_id": "flutter_flexible_sync-rmjux"
+      "app_id": "flutter_flexible_sync-bnrih"
       .....
     }
     ```
