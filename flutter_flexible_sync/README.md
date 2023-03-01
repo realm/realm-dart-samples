@@ -64,7 +64,7 @@ Then run this command:
     * Press the "Flexible Sync" button. Only Flexible Sync is supported in the Realm Flutter SDK.
     * Switch ON the ["Development mode"](https://www.mongodb.com/docs/atlas/app-services/sync/data-model/development-mode/) option.
     * Create a new database collection and choose a name for it.
-    * The queryable fields used for filtering data between two realms in this application and they will be [automatically created in development mode](https://www.mongodb.com/docs/atlas/app-services/sync/configure/sync-settings/#queryable-fields), because they are used in the sync subscriptions.
+    * The queryable field used for filtering data between the two realms in this application will be [automatically created in development mode](https://www.mongodb.com/docs/atlas/app-services/sync/configure/sync-settings/#queryable-fields), because it is used in the sync subscriptions.
     * You can also create them manually from the UI. For this sample the field is `isImportant`.
         Type the field name `isImportant` in the selection box and then choose `Create isImportant`.
         It will be created.

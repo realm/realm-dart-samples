@@ -90,7 +90,7 @@ Then run this command:
         Type the field name `owner_id` in the selection box and then choose `Create owner_id` to create it.
         * Click the button **Enable Sync** and confirm.
         * Click the button **Review draft & deploy**, again.
-        * The queryable fields can be [automatically created in development mode](https://www.mongodb.com/docs/atlas/app-services/sync/configure/sync-settings/#queryable-fields) when they are part of the sync subscriptions, but for this sample we create them manually in order to use them for setting the permissions as it is described below.
+        * The queryable field can be [automatically created in development mode](https://www.mongodb.com/docs/atlas/app-services/sync/configure/sync-settings/#queryable-fields) when it is part of the sync subscriptions, but for this sample we create it manually in order to use it for setting the permissions as it is described below.
 1. Go to the **Authentication** menu in the left panel and select :
     1. `Authentication Providers`. Then make sure the option "Email/Password" is ON. Save and then click the button **Review draft & deploy**. Read [this page](https://www.mongodb.com/docs/atlas/app-services/authentication/providers/) for more information about the other types of authentication.
     1. `Custom User Data`. Then make sure the option is enabled. Select cluster, database and collection where to store the custom data. Choose collection name `Role`. Then select the field that to be used for mapping users with their custom data. For this sample the field name is `owner_id`. Read [this page](https://www.mongodb.com/docs/atlas/app-services/users/enable-custom-user-data/) for more information about enabling custom user data.
