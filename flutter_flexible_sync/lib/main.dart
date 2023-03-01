@@ -8,16 +8,19 @@ import 'model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initRealm();
+  runApp(const MyApp());
+}
+
+enum CollectionType { allTasks, importantTasks, normalTasks }
+
+Future<void> initRealm() async {
   final realmConfig = json.decode(await rootBundle.loadString('assets/atlas_app/realm_config.json'));
   String appId = realmConfig['app_id'];
   MyApp.allTasksRealm = await createRealm(appId, CollectionType.allTasks);
   MyApp.importantTasksRealm = await createRealm(appId, CollectionType.importantTasks);
   MyApp.normalTasksRealm = await createRealm(appId, CollectionType.normalTasks);
-
-  runApp(const MyApp());
 }
-
-enum CollectionType { allTasks, importantTasks, normalTasks }
 
 Future<Realm> createRealm(String appId, CollectionType collectionType) async {
   final appConfig = AppConfiguration(appId);
