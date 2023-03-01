@@ -23,7 +23,7 @@ Realm Flutter package is published to [realm](https://pub.dev/packages/realm).
 
 ### Using existing demo App Service
 
-This sample is using an already prepared Atlas App Service with AppID `flutter_flexible_sync-rmjux`.
+This sample is using an already prepared Atlas App Service with AppID `flutter_flexible_sync-bnrih`.
 The app_id is configured in "\assets\atlas_app\realm_config.json"
 
 ### Creating a new App Service

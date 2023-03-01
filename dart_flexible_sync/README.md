@@ -26,7 +26,7 @@ Realm Dart package is published to [realm_dart](https://pub.dev/packages/realm_d
 
 ### Using existing demo App Service
 
-This sample is using an already prepared Atlas App Service with AppID `dart_flexible_sync-nxkdq`.
+This sample is using an already prepared Atlas App Service with AppID `dart_flexible_sync-mdyyd`.
 The app_id is configured in "\atlas_app\realm_config.json"
 
 ### Creating a new App Service
