@@ -22,16 +22,19 @@ void main() {
 
   setUp(() {
     LiveTestWidgetsFlutterBinding.ensureInitialized();
-    print(Platform.environment['FLUTTER_TEST']);
+    print("Platform.environment['FLUTTER_TEST']: ${Platform.environment['FLUTTER_TEST']}");
+
     printPlatformInfo();
     final path = _path.join(Directory.systemTemp.createTempSync("realm_test_").path, "default_tests.realm");
     Configuration.defaultRealmPath = path;
+    print("Configuration.defaultRealmPath: ${Configuration.defaultRealmPath}");
+    tearDown(() => Realm.deleteRealm(path));
   });
 
   testWidgets('local Realm', (WidgetTester tester) async {
     final localConfig = Configuration.local([Task.schema]);
-    print(localConfig.path);
-    print(Directory.current.absolute.path);
+    print("localConfig.path: ${localConfig.path}");
+    print("Directory.current.absolute.path: ${Directory.current.absolute.path}");
     var realm = Realm(localConfig);
     await tester.pumpWidget(const MyApp());
 
@@ -52,19 +55,15 @@ void main() {
     Realm.logger.level = RealmLogLevel.all;
     final realmConfig = json.decode(await rootBundle.loadString('assets/atlas_app/realm_config.json'));
     String appId = realmConfig['app_id'];
-    print(Directory.current.absolute.path);
+    print("Directory.current.absolute.path: ${Directory.current.absolute.path}");
 
     final appConfig = AppConfiguration(appId);
-    print(appConfig.baseFilePath);
-    print(appConfig.baseUrl);
+    print("appConfig.baseFilePath: ${appConfig.baseFilePath}");
+    print("appConfig.baseUrl: ${appConfig.baseUrl}");
     final app = App(appConfig);
-    try {
-      await app.logIn(Credentials.anonymous(reuseCredentials: false));
-    } catch (err) {
-      print(err);
-    }
+    await app.logIn(Credentials.anonymous(reuseCredentials: false));
     final flxConfig = Configuration.flexibleSync(app.currentUser!, [Task.schema]);
-    print(flxConfig.path);
+    print("flxConfig.path: ${flxConfig.path}");
     var realm = Realm(flxConfig);
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
@@ -82,5 +81,3 @@ void main() {
     expect(find.text('1'), findsOneWidget);
   });
 }
-
-

@@ -12,8 +12,8 @@ import 'model.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   printPlatformInfo();
-  final path = _path.join(Directory.systemTemp.createTempSync("realm_test_").path, "default_tests.realm");
-  Configuration.defaultRealmPath = path;
+  //final path = _path.join(Directory.systemTemp.createTempSync("realm_test_").path, "default_tests.realm");
+  //Configuration.defaultRealmPath = path;
 
   print("Directory.current.absolute.path: ${Directory.current.absolute.path}");
 
