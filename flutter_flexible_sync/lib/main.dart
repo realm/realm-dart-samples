@@ -29,6 +29,7 @@ Future<Realm> createRealm(String appId, CollectionType collectionType) async {
   print("Created local realm db at: ${realm.config.path}");
 
   final RealmResults<Task> query;
+
   if (collectionType == CollectionType.allTasks) {
     query = realm.all<Task>();
   } else {
