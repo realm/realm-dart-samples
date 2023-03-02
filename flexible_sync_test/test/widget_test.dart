@@ -6,7 +6,6 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'dart:convert';
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flexible_sync_test/model.dart';
@@ -18,9 +17,13 @@ import 'package:flexible_sync_test/main.dart';
 import 'package:realm/realm.dart';
 
 void main() {
+  LiveTestWidgetsFlutterBinding();
+  HttpOverrides.global = null;
+
   setUp(() {
+    LiveTestWidgetsFlutterBinding.ensureInitialized();
     print(Platform.environment['FLUTTER_TEST']);
-    _printPlatformInfo();
+    printPlatformInfo();
     final path = _path.join(Directory.systemTemp.createTempSync("realm_test_").path, "default_tests.realm");
     Configuration.defaultRealmPath = path;
   });
@@ -55,8 +58,12 @@ void main() {
     print(appConfig.baseFilePath);
     print(appConfig.baseUrl);
     final app = App(appConfig);
-    final user = await app.logIn(Credentials.anonymous(reuseCredentials: false));
-    final flxConfig = Configuration.flexibleSync(user, [Task.schema]);
+    try {
+      await app.logIn(Credentials.anonymous(reuseCredentials: false));
+    } catch (err) {
+      print(err);
+    }
+    final flxConfig = Configuration.flexibleSync(app.currentUser!, [Task.schema]);
     print(flxConfig.path);
     var realm = Realm(flxConfig);
     // Build our app and trigger a frame.
@@ -76,19 +83,4 @@ void main() {
   });
 }
 
-Future<void> _printPlatformInfo() async {
-  final pointerSize = sizeOf<IntPtr>() * 8;
-  final os = Platform.operatingSystem;
-  String? cpu;
 
-  if (!isFlutterPlatform) {
-    if (Platform.isWindows) {
-      cpu = Platform.environment['PROCESSOR_ARCHITECTURE'];
-    } else {
-      final info = await Process.run('uname', ['-m']);
-      cpu = info.stdout.toString().replaceAll('\n', '');
-    }
-  }
-
-  print('Current PID $pid; OS $os, $pointerSize bit, CPU ${cpu ?? 'unknown'}');
-}

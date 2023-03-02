@@ -1,22 +1,39 @@
 import 'dart:convert';
+import 'dart:ffi';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:realm/realm.dart';
+import 'package:path/path.dart' as _path;
 
 import 'model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  printPlatformInfo();
+  final path = _path.join(Directory.systemTemp.createTempSync("realm_test_").path, "default_tests.realm");
+  Configuration.defaultRealmPath = path;
+
+  print("Directory.current.absolute.path: ${Directory.current.absolute.path}");
+
+  print("Configuration.defaultRealmPath: ${Configuration.defaultRealmPath}");
+
+  print("Platform.environment['FLUTTER_TEST']: ${Platform.environment['FLUTTER_TEST']}");
+
   Realm.logger.level = RealmLogLevel.all;
   final realmConfig = json.decode(await rootBundle.loadString('assets/atlas_app/realm_config.json'));
   String appId = realmConfig['app_id'];
 
   final appConfig = AppConfiguration(appId);
   final app = App(appConfig);
+
+  print("appConfig.baseUrl: ${appConfig.baseUrl}");
+  print("appConfig.baseFilePath: ${appConfig.baseFilePath}");
+ 
   final user = await app.logIn(Credentials.anonymous(reuseCredentials: false));
   final flxConfig = Configuration.flexibleSync(user, [Task.schema]);
-  print(flxConfig.path);
+  print("flxConfig.path: ${flxConfig.path}");
   var realm = Realm(flxConfig);
   runApp(const MyApp());
 }
@@ -82,4 +99,21 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+
+Future<void> printPlatformInfo() async {
+  final pointerSize = sizeOf<IntPtr>() * 8;
+  final os = Platform.operatingSystem;
+  String? cpu;
+
+  if (!isFlutterPlatform) {
+    if (Platform.isWindows) {
+      cpu = Platform.environment['PROCESSOR_ARCHITECTURE'];
+    } else {
+      final info = await Process.run('uname', ['-m']);
+      cpu = info.stdout.toString().replaceAll('\n', '');
+    }
+  }
+
+  print('Current PID $pid; OS $os, $pointerSize bit, CPU ${cpu ?? 'unknown'}');
 }
