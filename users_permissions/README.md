@@ -55,14 +55,7 @@ For the purpose of this demo you have to create your own Atlas App Service. Foll
 Then run this command:
 
     `realm-cli push --yes`
-1. Then go to the UI and manually allow `Custom User Data` in **Authentication**. Select the following fields:
-    ```json
-    "mongo_service_name": "mongodb-atlas",
-    "database_name": "users_permissions",
-    "collection_name": "Role",
-    "user_id_field": "owner_id"
-    ```
-    Read [this page](https://www.mongodb.com/docs/atlas/app-services/users/enable-custom-user-data/) for more information about enabling custom user data.
+
 1. Create a new user for administrator.
 
     `realm-cli users create  --app users_permissions --type email --email <username or email> --password <password>`
