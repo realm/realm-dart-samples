@@ -11,7 +11,7 @@ where:
     --get
         get all dependencies
     --install
-        install realm_dart package
+        install realm/realm_dart package
     --generate
         generate realm models
     --run
@@ -63,8 +63,8 @@ runInstall() {
         printf "\ndart run realm_dart install\n"
         dart run realm_dart install
     else
-        printf "\nflutter pub run realm install\n"
-        flutter pub run realm install
+        printf "\ndart run realm install\n"
+        dart run realm install
     fi
 }
 
@@ -75,8 +75,8 @@ runGenerate() {
         dart run realm_dart generate
     else if grep -q 'realm:' "pubspec.yaml";
         then
-            printf "\nflutter pub run realm generate\n"
-            flutter pub run realm generate
+            printf "\ndart run realm generate\n"
+            dart run realm generate
         fi
     fi
 }
