@@ -147,9 +147,9 @@ in [MongoDB Atlas](https://www.mongodb.com/docs/atlas) for more advanced and sec
 
 * For creating an administrator with full permissions run these commands:
 
-    `flutter pub run realm install`
+    `dart run realm install`
 
-    `flutter pub run lib/cli/run create-admin --username <admin user name> --password <admin password>`
+    `dart run lib/cli/run.dart create-admin --username <admin user name> --password <admin password>`
 
 ### Browse the collection in Atlas
 
@@ -160,4 +160,4 @@ in [MongoDB Atlas](https://www.mongodb.com/docs/atlas) for more advanced and sec
     1. See in this document how to [browse the collections in Atlas](https://www.mongodb.com/docs/atlas/atlas-ui/collections/#view-collections).
 
 
-##### The "Dart" name and logo and the "Flutter" name and logo are trademarks owned by Google. 
+##### The "Dart" name and logo and the "Flutter" name and logo are trademarks owned by Google.

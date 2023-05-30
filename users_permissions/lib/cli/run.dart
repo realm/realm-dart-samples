@@ -5,7 +5,7 @@ import 'package:flutter_todo/cli/create_admin_cmd.dart';
 void main(List<String> arguments) async {
   if (arguments.isNotEmpty) {
     print(arguments.join(","));
-    CommandRunner<void>("flutter pub run", 'Helper commands for running samples.')
+    CommandRunner<void>("dart run", 'Helper commands for running samples.')
       ..addCommand(CreateAdminUserCommand())
       ..run(arguments).then((value) => exit(0)).catchError((Object error) {
         if (error is UsageException) {
