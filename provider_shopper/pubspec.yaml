@@ -4,7 +4,7 @@ description: A shopping app sample that uses Provider for state management.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.0.2 <4.0.0"
+  sdk: ^3.0.2
 
 dependencies:
   flutter:

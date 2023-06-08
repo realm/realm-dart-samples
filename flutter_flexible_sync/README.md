@@ -16,7 +16,7 @@ Realm Flutter package is published to [realm](https://pub.dev/packages/realm).
 
 * Realm Flutter supports iOS, Android, Windows, MacOS and Linux platforms.
 
-* Flutter ^3.10.2 or newer
+* Flutter 3.10.2 or newer
 * For Flutter Desktop environment setup, see [Desktop support for Flutter](https://docs.flutter.dev/desktop).
 
 ## Atlas App Services Configuration Steps
