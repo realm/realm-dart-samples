@@ -41,7 +41,6 @@ Future<Realm> createRealm(String appId, CollectionType collectionType) async {
   });
 
   await realm.subscriptions.waitForSynchronization();
-  await realm.syncSession.waitForDownload();
   print("Syncronization completed for realm: ${realm.config.path}");
   return realm;
 }
