@@ -20,7 +20,7 @@ Realm Dart package is published to [realm_dart](https://pub.dev/packages/realm_d
 
 * Realm Dart supports Windows, Mac and Linux platforms.
 
-* Dart SDK ^2.17.5 or newer
+* Dart SDK 3.0.2 or newer
 
 ## Atlas App Services Configuration Steps
 

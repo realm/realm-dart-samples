@@ -4,15 +4,16 @@ A Flutter application with pre-initialized realm file that is shipped with the a
 
 This application demonstrates how to bundle a realm file with data, and load the bundled realm into the Flutter app.
 
-## Realm Dart SDK
+## Realm Flutter SDK
 
-Realm Dart package is published to [realm_dart](https://pub.dev/packages/realm_dart).
+Realm Flutter package is published to [realm](https://pub.dev/packages/realm).
 
-## Environment setup for Realm Dart
+## Environment
 
-* Realm Dart supports Windows, Mac and Linux platforms.
+* Realm Flutter supports iOS, Android, Windows, Mac and Linux platforms.
 
-* Dart SDK ^2.17.5 or newer
+* Flutter 3.10.2 or newer
+* For Flutter Desktop environment setup, see [Desktop support for Flutter](https://docs.flutter.dev/desktop).
 
 ## Getting Started
 
