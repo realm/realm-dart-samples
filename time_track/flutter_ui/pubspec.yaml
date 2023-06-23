@@ -11,8 +11,8 @@ dependencies:
   flutter:
     sdk: flutter  
   flutter_login: ^4.0.0 # be mindful when/if upgrading this, it handles credentials
-  realm: ^0.8.0+rc
-  realm_dart: ^0.8.0+rc
+  realm: ^1.0.0
+  realm_dart: ^1.0.0 # ugly hack
   domain:
     path: ../domain 
   riverpod: ^2.0.2
@@ -20,7 +20,7 @@ dependencies:
     path: ../cli
 
   cupertino_icons: ^1.0.2
-  mobile_scanner: ^2.0.0
+  mobile_scanner: ^3.2.0
 
 dev_dependencies:
   flutter_test:

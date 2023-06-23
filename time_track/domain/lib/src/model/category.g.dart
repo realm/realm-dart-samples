@@ -47,9 +47,14 @@ class Category extends $Category
       RealmObjectBase.set(this, 'parent', value);
 
   @override
-  RealmResults<Category> get subCategories =>
-      RealmObjectBase.get<Category>(this, 'subCategories')
-          as RealmResults<Category>;
+  RealmResults<Category> get subCategories {
+    if (!isManaged) {
+      throw RealmError('Using backlinks is only possible for managed objects.');
+    }
+    return RealmObjectBase.get<Category>(this, 'subCategories')
+        as RealmResults<Category>;
+  }
+
   @override
   set subCategories(covariant RealmResults<Category> value) =>
       throw RealmUnsupportedSetError();
@@ -66,7 +71,7 @@ class Category extends $Category
   static SchemaObject _initSchema() {
     RealmObjectBase.registerFactory(Category._);
     return const SchemaObject(ObjectType.realmObject, Category, 'Category', [
-      SchemaProperty('_id', RealmPropertyType.objectid,
+      SchemaProperty('id', RealmPropertyType.objectid,
           mapTo: '_id', primaryKey: true),
       SchemaProperty('name', RealmPropertyType.string),
       SchemaProperty('styling', RealmPropertyType.object,

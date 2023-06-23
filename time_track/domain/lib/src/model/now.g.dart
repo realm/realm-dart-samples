@@ -50,9 +50,10 @@ class Now extends $Now with RealmEntity, RealmObjectBase, RealmObject {
   static SchemaObject _initSchema() {
     RealmObjectBase.registerFactory(Now._);
     return const SchemaObject(ObjectType.realmObject, Now, 'Now', [
-      SchemaProperty('_id', RealmPropertyType.objectid,
+      SchemaProperty('id', RealmPropertyType.objectid,
           mapTo: '_id', primaryKey: true),
-      SchemaProperty('time', RealmPropertyType.int, mapTo: 'time'),
+      SchemaProperty('microsecondsSinceEpoch', RealmPropertyType.int,
+          mapTo: 'time'),
       SchemaProperty('category', RealmPropertyType.object,
           optional: true, linkTarget: 'Category'),
     ]);
