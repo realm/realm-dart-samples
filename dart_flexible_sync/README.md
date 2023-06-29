@@ -1,4 +1,7 @@
-![Realm](https://github.com/realm/realm-dart/raw/main/logo.png)
+<picture>
+    <source srcset="./media/logo-dark.svg" media="(prefers-color-scheme: dark)" alt="realm by MongoDB">
+    <img src="./media/logo.svg" alt="realm by MongoDB">
+</picture>
 
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
 
