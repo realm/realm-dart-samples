@@ -1,6 +1,6 @@
 <picture>
     <source srcset="https://github.com/realm/realm-dart/raw/main/media/logo-dark.svg" media="(prefers-color-scheme: dark)" alt="realm by MongoDB">
-    <img src="https://github.com/realm/realm-dart/raw/main/main/media/logo.svg" alt="realm by MongoDB">
+    <img src="https://github.com/realm/realm-dart/raw/main/media/logo.svg" alt="realm by MongoDB">
 </picture>
 
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE)
