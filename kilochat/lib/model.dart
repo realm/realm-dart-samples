@@ -13,7 +13,7 @@ class _Channel {
 
   late _Channel? parent;
   late String name;
-  late int count;
+  late int count; // not used yet (await RealmInteger support)
 }
 
 @RealmModel()
@@ -104,7 +104,7 @@ class _UserProfile {
   int? age;
 
   @MapTo('gender')
-  int genderAsInt = 0; // Gender.unknown.index; <-- not a const expression
+  int genderAsInt = 0; // = Gender.unknown.index; // <-- not a const expression
   Gender get gender => Gender.values[genderAsInt];
   set gender(Gender value) => genderAsInt = value.index;
 
