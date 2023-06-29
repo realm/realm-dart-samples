@@ -10,7 +10,7 @@ Realm Flutter package is published to [realm](https://pub.dev/packages/realm).
 
 ## Environment
 
-* Realm Flutter supports iOS, Android, Windows, MacOS and Linux platforms.
+* Realm Flutter supports iOS, Android, Windows, Mac and Linux platforms.
 
 * Flutter 3.10.2 or newer
 * For Flutter Desktop environment setup, see [Desktop support for Flutter](https://docs.flutter.dev/desktop).
