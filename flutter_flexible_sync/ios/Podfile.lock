@@ -3,7 +3,7 @@ PODS:
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - realm (1.1.0):
+  - realm (1.0.2):
     - Flutter
 
 DEPENDENCIES:
@@ -21,8 +21,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  path_provider_foundation: c68054786f1b4f3343858c1e1d0caaded73f0be9
-  realm: d8d523f647802ae88f5a4194ba6deeadeccb4c86
+  path_provider_foundation: 37748e03f12783f9de2cb2c4eadfaa25fe6d4852
+  realm: e6661d2e99e55cf26b31d48c4e3da862175da196
 
 PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
 
