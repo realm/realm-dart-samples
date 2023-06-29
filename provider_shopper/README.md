@@ -1,6 +1,6 @@
 <picture>
-    <source srcset="./media/logo-dark.svg" media="(prefers-color-scheme: dark)" alt="realm by MongoDB">
-    <img src="./media/logo.svg" alt="realm by MongoDB">
+    <source srcset="https://raw.githubusercontent.com/realm/realm-dart/main/media/logo-dark.svg" media="(prefers-color-scheme: dark)" alt="realm by MongoDB">
+    <img src="https://raw.githubusercontent.com/realm/realm-dart/main/media/logo.svg" alt="realm by MongoDB">
 </picture>
 
 # Provider Shopper
