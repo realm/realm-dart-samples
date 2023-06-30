@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -5,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:realm/realm.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:cancellation_token/cancellation_token.dart';
 
 import 'model.dart';
 import 'repository.dart';
@@ -58,7 +60,7 @@ Future<Repository> repository(RepositoryRef ref) async {
 @riverpod
 Future<Realm> syncedRealm(SyncedRealmRef ref) async {
   final user = await ref.watch(userProvider.future);
-  final realm = await Realm.open(Configuration.flexibleSync(
+  var config = Configuration.flexibleSync(
     user,
     [
       Channel.schema,
@@ -66,16 +68,33 @@ Future<Realm> syncedRealm(SyncedRealmRef ref) async {
       Reaction.schema,
       UserProfile.schema,
     ],
-  ));
+  );
+  late Realm realm;
+  final ct = TimeoutCancellationToken(const Duration(seconds: 1));
+  try {
+    if (File(config.path).existsSync()) {
+      realm = Realm(config);
+    } else {
+      realm = await Realm.open(
+        config,
+        cancellationToken: ct,
+      );
+    }
+    //  await realm.subscriptions.waitForSynchronization(); // does not support cancellation yet
+  } catch (_) {
+    realm = Realm(config);
+  }
   realm.subscriptions.update((mutableSubscriptions) {
+    // TODO: way too simple
     mutableSubscriptions
       ..add(realm.all<Channel>())
       ..add(realm.all<Message>())
       ..add(realm.all<Reaction>())
       ..add(realm.all<UserProfile>());
   });
-  await realm.subscriptions.waitForSynchronization();
-  await realm.syncSession.waitForDownload();
+  try {
+    await realm.syncSession.waitForDownload(ct);
+  } catch (_) {} // ignore
   return realm;
 }
 

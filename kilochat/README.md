@@ -8,7 +8,8 @@ The app demonstrates how to:
 
 1. Re-use credentials on app restart to allow for _offline login_
 1. Use federated jwt-based authentication with Firebase Auth.
-1. React to connectivity changes, displaying current state.
+1. React to connectivity changes to quickly recover.
+1. Display sync connection state.
 1. Handle soft synchronization errors.
 1. Handle client resets (hard sync errors).
 1. Display a snackbar when interesting data is synced to device.

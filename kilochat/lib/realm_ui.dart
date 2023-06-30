@@ -84,9 +84,8 @@ class _RealmAnimatedListState<E> extends State<RealmAnimatedList<E>> {
   void _updateSubscription() {
     _subscription?.cancel();
     _subscription = widget.results.safeChanges
-        .skip(1) // skip initial results
         ._updateAnimatedList(_listKey, widget.removedItemBuilder)
-        .listen((_) {});
+        .listen((_) => setState(() {}));
   }
 
   @override
