@@ -57,41 +57,38 @@ class MessageTile extends ConsumerWidget {
       key: ValueKey(message.id),
       animation: animation,
       leading: MyAvatar(user: message.owner),
-      title: DebugWidget(
-          child: Text(message.owner?.name ?? 'N/A ${message.ownerId}')),
+      title: Text(message.owner?.name ?? 'N/A ${message.ownerId}'),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MyTransition(animation: animation, child: Text(message.text)),
           SizedBox(
             height: 50,
-            child: DebugWidget(
-              child: RealmAnimatedList(
-                results: message.reactions,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, reaction, animation) {
-                  final owner = reaction.owner?.id == user?.id;
-                  return MyTransition(
-                    key: ValueKey(reaction.id),
-                    axis: Axis.horizontal,
-                    animation: animation,
-                    child: Chip(
-                      visualDensity: VisualDensity.compact,
-                      avatar: MyAvatar(user: reaction.owner),
-                      label: AnimatedEmoji(
-                        AnimatedEmojiData(
-                          'u${reaction.emojiUnicode.toRadixString(16)}',
-                        ),
-                        repeat: false,
-                        size: 20,
-                        errorWidget: Text(reaction.emoji),
+            child: RealmAnimatedList(
+              results: message.reactions,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, reaction, animation) {
+                final owner = reaction.owner?.id == user?.id;
+                return MyTransition(
+                  key: ValueKey(reaction.id),
+                  axis: Axis.horizontal,
+                  animation: animation,
+                  child: Chip(
+                    visualDensity: VisualDensity.compact,
+                    avatar: MyAvatar(user: reaction.owner),
+                    label: AnimatedEmoji(
+                      AnimatedEmojiData(
+                        'u${reaction.emojiUnicode.toRadixString(16)}',
                       ),
-                      onDeleted:
-                          owner ? () => repo?.deleteReaction(reaction) : null,
+                      repeat: false,
+                      size: 20,
+                      errorWidget: Text(reaction.emoji),
                     ),
-                  );
-                },
-              ),
+                    onDeleted:
+                        owner ? () => repo?.deleteReaction(reaction) : null,
+                  ),
+                );
+              },
             ),
           )
         ],

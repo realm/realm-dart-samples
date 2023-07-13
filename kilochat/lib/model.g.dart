@@ -266,6 +266,7 @@ class UserProfile extends _UserProfile
     int? statusEmojiUnicode,
     bool typing = false,
     Set<Channel> channels = const {},
+    Set<UserProfile> bodies = const {},
   }) {
     if (!_defaultsSet) {
       _defaultsSet = RealmObjectBase.setDefaults<UserProfile>({
@@ -285,6 +286,8 @@ class UserProfile extends _UserProfile
     RealmObjectBase.set(this, 'typing', typing);
     RealmObjectBase.set<RealmSet<Channel>>(
         this, 'channels', RealmSet<Channel>(channels));
+    RealmObjectBase.set<RealmSet<UserProfile>>(
+        this, 'bodies', RealmSet<UserProfile>(bodies));
   }
 
   UserProfile._();
@@ -346,6 +349,13 @@ class UserProfile extends _UserProfile
       throw RealmUnsupportedSetError();
 
   @override
+  RealmSet<UserProfile> get bodies =>
+      RealmObjectBase.get<UserProfile>(this, 'bodies') as RealmSet<UserProfile>;
+  @override
+  set bodies(covariant RealmSet<UserProfile> value) =>
+      throw RealmUnsupportedSetError();
+
+  @override
   Stream<RealmObjectChanges<UserProfile>> get changes =>
       RealmObjectBase.getChanges<UserProfile>(this);
 
@@ -371,6 +381,8 @@ class UserProfile extends _UserProfile
       SchemaProperty('typing', RealmPropertyType.bool),
       SchemaProperty('channels', RealmPropertyType.object,
           linkTarget: 'Channel', collectionType: RealmCollectionType.set),
+      SchemaProperty('bodies', RealmPropertyType.object,
+          linkTarget: 'UserProfile', collectionType: RealmCollectionType.set),
     ]);
   }
 }

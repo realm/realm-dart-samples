@@ -8,6 +8,7 @@ import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kilochat/debug_widget.dart';
 import 'package:kilochat/widget_builders.dart';
 import 'package:statsfl/statsfl.dart';
@@ -27,8 +28,36 @@ enum Routes {
   logIn,
   chat;
 
-  String get id => toString();
+  String get path => '/$this';
 }
+
+extension RoutesX on Routes {
+  go(BuildContext context) => context.go(path);
+}
+
+final _router = GoRouter(
+  initialLocation: Routes.logIn.path,
+  routes: [
+    GoRoute(
+      path: Routes.chat.path,
+      builder: (context, state) => const MyApp(),
+    ),
+    GoRoute(
+      path: Routes.logIn.path,
+      builder: (context, state) {
+        return SignInScreen(actions: [
+          AuthStateChangeAction<SignedIn>((context, state) async {
+            final ref = ProviderScope.containerOf(context);
+            final firebaseUserController =
+                ref.read(firebaseUserProvider.notifier);
+            firebaseUserController.state = state.user;
+            Routes.chat.go(context);
+          }),
+        ]);
+      },
+    ),
+  ],
+);
 
 Future<void> main() async {
   Animate.restartOnHotReload = true;
@@ -48,9 +77,8 @@ Future<void> main() async {
         child: Builder(
           builder: (context) {
             final ref = ProviderScope.containerOf(context);
-            final firebaseUserController =
-                ref.read(firebaseUserProvider.notifier);
-            return MaterialApp(
+            return MaterialApp.router(
+              routerConfig: _router,
               debugShowCheckedModeBanner: false,
               theme: ThemeData(
                 colorScheme: ColorScheme.fromSeed(
@@ -58,22 +86,6 @@ Future<void> main() async {
                   inversePrimary: energizingYellow,
                 ),
               ),
-              initialRoute: firebaseUserController.state == null
-                  ? Routes.logIn.id
-                  : Routes.chat.id,
-              routes: {
-                Routes.logIn.id: (context) {
-                  return SignInScreen(actions: [
-                    AuthStateChangeAction<SignedIn>((context, state) async {
-                      firebaseUserController.state = state.user;
-                      Navigator.pushReplacementNamed(context, Routes.chat.id);
-                    }),
-                  ]);
-                },
-                Routes.chat.id: (context) {
-                  return const Material(child: MyApp());
-                },
-              },
             );
           },
         ),
@@ -226,8 +238,7 @@ class MessagesView extends ConsumerWidget {
       data: (messages) => RealmAnimatedList(
         results: messages,
         itemBuilder: (context, item, animation) {
-          return DebugWidget(
-              child: MessageTile(message: item, animation: animation));
+          return MessageTile(message: item, animation: animation);
         },
         reverse: true,
         controller: scrollController,

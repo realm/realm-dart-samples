@@ -1,12 +1,49 @@
+import 'dart:async';
+
 import 'package:realm/realm.dart';
 
 import 'model.dart';
 
+extension on MutableSubscriptionSet {
+  void subscribe(Channel channel) => add(
+        name: '${channel.id}',
+        channel.realm.query<Message>(r'channelId == $0', [channel.id]),
+      );
+  void unsubscribe(Channel channel) => removeByName('${channel.id}');
+}
+
+extension on Stream<RealmResultsChanges<Channel>> {
+  Stream<RealmResultsChanges<Channel>> updateSubscriptions() async* {
+    RealmResults<Channel>? previous;
+    await for (final change in this) {
+      final results = change.results;
+      results.realm.subscriptions.update((mutableSubscriptions) {
+        if (previous != null) {
+          for (final i in change.deleted.reversed) {
+            mutableSubscriptions.unsubscribe(previous!.elementAt(i));
+          }
+        }
+        for (final i in change.inserted) {
+          mutableSubscriptions.subscribe(results.elementAt(i));
+        }
+        previous = results.freeze();
+      });
+      yield change;
+    }
+  }
+}
+
 class Repository {
   final Realm _realm;
   final UserProfile user;
+  final StreamSubscription _subscription;
 
-  Repository(this._realm, this.user);
+  Repository(this._realm, this.user)
+      : _subscription = user.channels
+            .asResults()
+            .changes
+            .updateSubscriptions()
+            .listen((_) {});
 
   late RealmResults<Channel> allChannels =
       _realm.query<Channel>('TRUEPREDICATE SORT(name ASCENDING)');
@@ -40,6 +77,7 @@ class Repository {
       _realm.write(() => _realm.delete(message));
 
   RealmResults<Message> searchMessage(String text) {
+    if (text.isEmpty) return allMessages;
     return _realm.query<Message>(
       r'text TEXT $0 SORT(id DESCENDING)',
       [text],

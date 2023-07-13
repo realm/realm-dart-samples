@@ -12,25 +12,25 @@ class DebugWidget<T extends Widget> extends StatefulWidget {
 class _DebugWidgetState<T extends Widget> extends State<DebugWidget<T>> {
   @override
   void initState() {
-    print('$T@$hashCode initState');
+    debugPrint('$T@$hashCode initState');
     super.initState();
   }
 
   @override
   void didUpdateWidget(covariant DebugWidget<T> oldWidget) {
-    print('$T@$hashCode didUpdateWidget'); // TODO: remove
+    debugPrint('$T@$hashCode didUpdateWidget');
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
-    print('$T@$hashCode dispose'); // TODO: remove
+    debugPrint('$T@$hashCode dispose');
     super.dispose();
   }
 
   @override
   void didChangeDependencies() {
-    print('$T@$hashCode didChangeDependencies'); // TODO: remove
+    debugPrint('$T@$hashCode didChangeDependencies');
     super.didChangeDependencies();
   }
 

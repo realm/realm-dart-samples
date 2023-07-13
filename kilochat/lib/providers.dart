@@ -69,8 +69,9 @@ Future<Realm> syncedRealm(SyncedRealmRef ref) async {
       UserProfile.schema,
     ],
   );
+  Realm.logger.level = RealmLogLevel.debug;
   late Realm realm;
-  final ct = TimeoutCancellationToken(const Duration(seconds: 1));
+  final ct = TimeoutCancellationToken(const Duration(seconds: 3));
   try {
     if (File(config.path).existsSync()) {
       realm = Realm(config);
@@ -80,19 +81,19 @@ Future<Realm> syncedRealm(SyncedRealmRef ref) async {
         cancellationToken: ct,
       );
     }
-    //  await realm.subscriptions.waitForSynchronization(); // does not support cancellation yet
   } catch (_) {
     realm = Realm(config);
   }
-  realm.subscriptions.update((mutableSubscriptions) {
-    // TODO: way too simple
-    mutableSubscriptions
-      ..add(realm.all<Channel>())
-      ..add(realm.all<Message>())
-      ..add(realm.all<Reaction>())
-      ..add(realm.all<UserProfile>());
-  });
   try {
+    realm.subscriptions.update((mutableSubscriptions) {
+      // TODO: way too simple
+      mutableSubscriptions
+        ..add(realm.all<Channel>())
+        ..add(realm.query<Message>('channelId == null'))
+        ..add(realm.all<Reaction>())
+        ..add(realm.all<UserProfile>());
+      // await realm.subscriptions.waitForSynchronization(); // does not support cancellation yet
+    });
     await realm.syncSession.waitForDownload(ct);
   } catch (_) {} // ignore
   return realm;

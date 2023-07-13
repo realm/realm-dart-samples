@@ -24,8 +24,9 @@ dependencies:
   firebase_ui_oauth_google: ^1.0.23
   flutter_animate: ^4.0.0
   flutter_riverpod: ^2.3.0
+  go_router: ^9.0.0
   random_avatar: ^0.0.8
-  realm: ^1.0.3
+  realm: ^1.3.0
   riverpod_annotation: ^2.0.0
   riverpod: ^2.3.0
   statsfl: ^2.0.0
@@ -39,10 +40,6 @@ dev_dependencies:
   riverpod_lint: any
   riverpod_generator: ^2.0.0
 
-# dependency_overrides:
-#   flutter_svg: ^2.0.0 # to force resolve conflict between firebase_ui_auth and random_avatar :-/
-#   intl: 0.18.0
-
 flutter:
   uses-material-design: true
   fonts:
@@ -50,6 +47,7 @@ flutter:
       fonts:
         - asset: packages/firebase_ui_auth/fonts/SocialIcons.ttf
 
-# dependency_overrides:
-#   realm:
-#     path: ../../realm-dart/flutter/realm_flutter
+dependency_overrides:
+  cancellation_token: ^2.0.0
+  realm:
+    path: ../../../realm-dart/flutter/realm_flutter

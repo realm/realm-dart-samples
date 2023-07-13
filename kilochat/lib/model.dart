@@ -121,4 +121,6 @@ class _UserProfile {
   var typing = false;
 
   late Set<_Channel> channels;
+
+  late Set<_UserProfile> bodies;
 }

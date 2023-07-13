@@ -152,7 +152,7 @@ final repositoryProvider = AutoDisposeFutureProvider<Repository>.internal(
 );
 
 typedef RepositoryRef = AutoDisposeFutureProviderRef<Repository>;
-String _$syncedRealmHash() => r'9554cdc8a5829d0efa00aaade4fa4915c85f7f69';
+String _$syncedRealmHash() => r'117ac19cc8c9a184486823a858bfca8a396224f0';
 
 /// See also [syncedRealm].
 @ProviderFor(syncedRealm)
