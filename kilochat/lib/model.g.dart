@@ -76,6 +76,7 @@ class Channel extends _Channel with RealmEntity, RealmObjectBase, RealmObject {
 class Message extends _Message with RealmEntity, RealmObjectBase, RealmObject {
   Message(
     ObjectId id,
+    int index,
     String ownerId,
     ObjectId channelId,
     String text, {
@@ -83,6 +84,7 @@ class Message extends _Message with RealmEntity, RealmObjectBase, RealmObject {
     Channel? channel,
   }) {
     RealmObjectBase.set(this, '_id', id);
+    RealmObjectBase.set(this, 'index', index);
     RealmObjectBase.set(this, 'owner_id', ownerId);
     RealmObjectBase.set(this, 'owner', owner);
     RealmObjectBase.set(this, 'channel_id', channelId);
@@ -96,6 +98,11 @@ class Message extends _Message with RealmEntity, RealmObjectBase, RealmObject {
   ObjectId get id => RealmObjectBase.get<ObjectId>(this, '_id') as ObjectId;
   @override
   set id(ObjectId value) => RealmObjectBase.set(this, '_id', value);
+
+  @override
+  int get index => RealmObjectBase.get<int>(this, 'index') as int;
+  @override
+  set index(int value) => RealmObjectBase.set(this, 'index', value);
 
   @override
   String get ownerId => RealmObjectBase.get<String>(this, 'owner_id') as String;
@@ -155,6 +162,8 @@ class Message extends _Message with RealmEntity, RealmObjectBase, RealmObject {
     return const SchemaObject(ObjectType.realmObject, Message, 'Message', [
       SchemaProperty('id', RealmPropertyType.objectid,
           mapTo: '_id', primaryKey: true),
+      SchemaProperty('index', RealmPropertyType.int,
+          indexType: RealmIndexType.regular),
       SchemaProperty('ownerId', RealmPropertyType.string, mapTo: 'owner_id'),
       SchemaProperty('owner', RealmPropertyType.object,
           optional: true, linkTarget: 'UserProfile'),

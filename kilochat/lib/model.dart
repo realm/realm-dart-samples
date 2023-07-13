@@ -22,6 +22,10 @@ class _Message {
   @MapTo('_id')
   late ObjectId id;
 
+  // one larger than the previous seen message's index in the channel
+  @Indexed()
+  late int index;
+
   @MapTo('owner_id')
   late String ownerId; // matches owner.id
   _UserProfile? owner;

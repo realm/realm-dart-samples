@@ -51,23 +51,36 @@ class Repository {
   late RealmResults<Message> allMessages =
       _realm.query<Message>('TRUEPREDICATE SORT(id DESCENDING)');
 
-  RealmResults<Message> messages(Channel channel) =>
-      _realm.query<Message>(r'channel == $0 SORT(id DESCENDING)', [channel]);
+  RealmResults<Message> messages(Channel channel) => _realm
+      .query<Message>(r'channel == $0 SORT(index DESC, id ASC)', [channel]);
 
   void updateUserProfile(UserProfile newProfile) =>
       _realm.write(() => _realm.add(newProfile, update: true));
 
   void postNewMessage(Channel channel, String text) {
-    _realm.write(() {
-      _realm.add(Message(
-        ObjectId(),
-        user.id,
-        channel.id, // not a link
-        text,
-        channel: channel,
-        owner: user,
-      ));
-    });
+    // messages are sorted latest first
+    final lastMessage = messages(channel).firstOrNull;
+    if (lastMessage != null &&
+        lastMessage.owner == user &&
+        lastMessage.reactions.isEmpty) {
+      // if we own last message, and there are no reactions, then update in place
+      final newText = '${lastMessage.text}\n\n$text';
+      editMessage(lastMessage, newText);
+    } else {
+      _realm.write(() {
+        // create new message with highest local index
+        // NOTE: Index may be duplicated if multiple clients are posting at once
+        _realm.add(Message(
+          ObjectId(),
+          (lastMessage?.index ?? 0) + 1, // increment index
+          user.id,
+          channel.id, // not a link
+          text,
+          channel: channel,
+          owner: user,
+        ));
+      });
+    }
   }
 
   void editMessage(Message message, String text) =>
