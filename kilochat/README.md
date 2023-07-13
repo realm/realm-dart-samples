@@ -139,6 +139,46 @@ The ownership role goes for channels as well. Anyone can create a channel, but o
 delete it. The ability to create channels would usually be reserved for admin users, but alas this is after
 all just a toy system.
 
+# A bit about modelling
+
+One of the most fundamental thing for a chat system is to keep messages in order. This can cause some challenges in an offline capable system.
+
+Had this been an online system, we could simply use an auto-incrementing integer on the chat messages
+to maintain a global order, but we do not have that luxury. And yes, I know Firebase has auto-incrementing integers, but those won't work when offline. Don't get me started on why Firebase is 
+not an offline-first capable storage solution at all.
+
+Instead a simple approach is to stamp each message with the local clock of the originating system, and
+order by time. If you have done distributed programming before you are likely aware of the problem with this idea, that is clock-drift. Despite NNTP etc. clocks on different devices are not perfectly aligned. 
+Also the clock on a single device can be discontinuous, ie. someone might set the clock back in time. 
+
+A more subtle problem is 
+
+This can all cause a reordering of the messages which obscure the meaning of the conversation in subtle ways. 
+
+For a mostly online chat system you can argue that it might be acceptable to ignore this problem, but for 
+sake of argument lets us try to solve it.
+
+First lets do a small detour and briefly elaborate on the problem of interleaving, which is very pertinent in collaborative text editors, so let us that as an example.
+
+Say you have a sequence of characters "AB" and one peer inserts "xy" to get "AxyB" while another peer inserts "12" to get "A12B", we want the sequence to converge to either "Axy12B" or "A12xyB", but avoid interleaving the edits like fx "Ax1y2B". 
+
+You might say, can't I just use a realm list for this? Yes, and no. Realm lists are almost perfect for this. They will automatically resolve conflicts, and maintain an eventually consistent order, even do the right thing with regards to interleaving runs in all but the most unlikely of situations. They are basically build for this, so why not just add a realm list of messages on the channel object and use that?
+
+The problem is ownership. Who should be allowed to edit the list? If we allow everybody to write to the list, anybody could potentially remove other people's messages. We could prevent that in the client code, but as discussed earlier we cannot really trust code running on the clients. So what to do?
+
+Instead of maintaining a list of messages on the channel, we let each messages point to its channel. This
+way we can ensure that only the owner of the message can remove or add it. This ends our little detour and brings us right back to the original problem.
+
+So what to do?
+
+Well, while the fact that we are not allowed to edit other people's messages prevents us from using a realm list, the problem is really not to bad as for a full collaborative editor. We can track properties such as an index and owner for each message, which would be prohibitively expensive to do for each character in an editor.
+
+Also, we always add the new messages to the end. This means, that if we _believe_ we did the last message `m` in the channel, and we want to add a new one, we can instead just update `m` by appending. Only if we _know_ we didn't add the latest, we need to create a new one. This will keep our messages and that of our peers lumped together together in runs, if there for some reason is a lag in distributing the messages between peers.
+
+We still need to maintain the order somehow. To do this each new message will be given a new index that is one larger than max index of any seen message in the channel sofar. There may be duplicates if some peers have have not seen all existing messages when creating a new one. To handle this we define the order as the sort of the indexes, and secondarily the owner id to ensure a stable sort.
+
+Note that we may introduce holes in the sequence this way (or by later deletions), but that is alright. Realm will easily find the _n'th_ message in the channel given the sort, irregardless of the actual values of index, and owner id.
+
 # DISCLAIMER
 
 This is low priority work in progress. Eventually we hope to make this a well documented example of best practices, but that is _not_ the current state.
