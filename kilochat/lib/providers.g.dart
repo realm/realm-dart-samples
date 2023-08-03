@@ -166,7 +166,7 @@ final syncedRealmProvider = AutoDisposeFutureProvider<Realm>.internal(
 );
 
 typedef SyncedRealmRef = AutoDisposeFutureProviderRef<Realm>;
-String _$userHash() => r'3162f8129e247644d301b4259e2b47c828d85eb4';
+String _$userHash() => r'b1ca9042230ed76890f0226e50c4d47255094ce4';
 
 /// See also [user].
 @ProviderFor(user)
@@ -194,4 +194,5 @@ final userProfileProvider = AutoDisposeStreamProvider<dynamic>.internal(
 );
 
 typedef UserProfileRef = AutoDisposeStreamProviderRef<dynamic>;
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

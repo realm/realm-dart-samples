@@ -2,7 +2,6 @@ import 'package:animated_emoji/emoji.dart';
 import 'package:animated_emoji/emojis.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kilochat/debug_widget.dart';
 import 'package:kilochat/realm_ui.dart';
 
 import 'avatar.dart';

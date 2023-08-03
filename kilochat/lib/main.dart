@@ -9,9 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kilochat/debug_widget.dart';
 import 'package:kilochat/widget_builders.dart';
-import 'package:statsfl/statsfl.dart';
 
 import 'avatar.dart';
 import 'firebase_options.dart';
@@ -70,25 +68,20 @@ Future<void> main() async {
     GoogleProvider(clientId: ''),
   ]);
   runApp(
-    StatsFl(
-      maxFps: 60,
-      showText: false,
-      child: ProviderScope(
-        child: Builder(
-          builder: (context) {
-            final ref = ProviderScope.containerOf(context);
-            return MaterialApp.router(
-              routerConfig: _router,
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                colorScheme: ColorScheme.fromSeed(
-                  seedColor: freedomBlue,
-                  inversePrimary: energizingYellow,
-                ),
+    ProviderScope(
+      child: Builder(
+        builder: (context) {
+          return MaterialApp.router(
+            routerConfig: _router,
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: freedomBlue,
+                inversePrimary: energizingYellow,
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     ),
   );

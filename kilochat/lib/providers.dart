@@ -108,7 +108,7 @@ Stream<User> user(UserRef ref) async* {
   if (user == null) {
     if (firebaseUser != null) {
       final jwt = await firebaseUser.getIdToken();
-      user = await app.logIn(Credentials.jwt(jwt));
+      user = await app.logIn(Credentials.jwt(jwt!));
     }
   }
   if (user != null) yield user;

@@ -24,7 +24,7 @@ dependencies:
   firebase_ui_oauth_google: ^1.0.23
   flutter_animate: ^4.0.0
   flutter_riverpod: ^2.3.0
-  go_router: ^9.0.0
+  go_router: ^10.0.0
   random_avatar: ^0.0.8
   realm: ^1.3.0
   riverpod_annotation: ^2.0.0
@@ -47,7 +47,6 @@ flutter:
       fonts:
         - asset: packages/firebase_ui_auth/fonts/SocialIcons.ttf
 
-dependency_overrides:
-  cancellation_token: ^2.0.0
-  realm:
-    path: ../../../realm-dart/flutter/realm_flutter
+# dependency_overrides:
+#   realm:
+#     path: ../../../realm-dart/flutter/realm_flutter
