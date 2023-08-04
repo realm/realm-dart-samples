@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:kilochat/providers.dart';
 import 'package:realm/realm.dart';
 
 import 'model.dart';
@@ -22,9 +23,13 @@ extension on Stream<RealmResultsChanges<Channel>> {
           for (final i in change.deleted.reversed) {
             mutableSubscriptions.unsubscribe(previous!.elementAt(i));
           }
-        }
-        for (final i in change.inserted) {
-          mutableSubscriptions.subscribe(results.elementAt(i));
+          for (final i in change.inserted) {
+            mutableSubscriptions.subscribe(results.elementAt(i));
+          }
+        } else {
+          for (final channel in results) {
+            mutableSubscriptions.subscribe(channel);
+          }
         }
         previous = results.freeze();
       });
@@ -53,6 +58,11 @@ class Repository {
 
   RealmResults<Message> messages(Channel channel) => _realm
       .query<Message>(r'channel == $0 SORT(index DESC, id ASC)', [channel]);
+
+  late Stream<Message> x =
+      allMessages.changes.where((c) => c.inserted.isNotEmpty).map((c) {
+    return c.results.first;
+  });
 
   void updateUserProfile(UserProfile newProfile) =>
       _realm.write(() => _realm.add(newProfile, update: true));
