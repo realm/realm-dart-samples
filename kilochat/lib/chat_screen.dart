@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -56,12 +54,19 @@ class ChatScreen extends ConsumerWidget {
               .crossfade(builder: (context) {
             return DisplayToast(
               stream: repository.x,
-              builder: (message) => SnackBar(
-                content: MessageTile(
-                    message: message, animation: AnimationController()),
-                showCloseIcon: true,
-                closeIconColor: Colors.white,
-                behavior: SnackBarBehavior.floating,
+              builder: (message, animation) => //
+                  //Text(message.text),
+                  Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    color: Colors.yellow,
+                    padding: const EdgeInsets.all(8),
+                    width: double.infinity,
+                    child: Text('in channel "${message.channel!.name}"'),
+                  ),
+                  MessageTile(message: message, animation: animation),
+                ],
               ),
               child: const ChatWidget(),
             );
