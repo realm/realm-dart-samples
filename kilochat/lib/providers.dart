@@ -10,6 +10,7 @@ import 'package:cancellation_token/cancellation_token.dart';
 
 import 'model.dart';
 import 'repository.dart';
+import 'settings.dart';
 
 part 'providers.g.dart';
 
@@ -29,10 +30,14 @@ final focusedChannelProvider =
 
 @riverpod
 Stream<App> app(AppRef ref) async* {
-  final app = App(AppConfiguration('kilochat-app-ighux'));
-  yield app;
-  await for (final _ in Connectivity().onConnectivityChanged) {
-    app.reconnect();
+  StreamSubscription? subscription;
+  await for (final ws in workspaceChanges) {
+    subscription?.cancel();
+    if (ws == null) continue;
+    subscription = Connectivity().onConnectivityChanged.listen((_) {
+      ws.app.reconnect();
+    });
+    yield ws.app;
   }
 }
 

@@ -7,6 +7,7 @@ class _Workspace {
   @PrimaryKey()
   late String appId; // atlas app service id
   late String name; // for display
+  String? currentChannelId; // current channel
 
   @Ignored()
   late final App app = App(AppConfiguration(appId));

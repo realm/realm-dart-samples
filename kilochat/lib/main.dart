@@ -31,6 +31,7 @@ Future<void> main() async {
         routerConfig: router,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          //useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(
             seedColor: freedomBlue,
             inversePrimary: energizingYellow,

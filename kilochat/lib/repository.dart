@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:kilochat/providers.dart';
 import 'package:realm/realm.dart';
 
 import 'model.dart';
@@ -61,7 +60,7 @@ class Repository {
 
   late Stream<Message> x =
       allMessages.changes.where((c) => c.inserted.isNotEmpty).map((c) {
-    return c.results.first;
+    return c.results[c.inserted.last];
   });
 
   void updateUserProfile(UserProfile newProfile) =>
