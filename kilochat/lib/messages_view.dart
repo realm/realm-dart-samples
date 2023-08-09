@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'providers.dart';
-import 'realm_ui.dart';
+import 'realm_ui/realm_animated_list.dart';
 import 'tiles.dart';
 import 'widget_builders.dart';
 

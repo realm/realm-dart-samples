@@ -2,11 +2,11 @@ import 'package:animated_emoji/emoji.dart';
 import 'package:animated_emoji/emojis.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kilochat/realm_ui.dart';
 
 import 'avatar.dart';
 import 'model.dart';
 import 'providers.dart';
+import 'realm_ui/realm_animated_list.dart';
 
 class ChannelTile extends StatelessWidget {
   final Channel channel;

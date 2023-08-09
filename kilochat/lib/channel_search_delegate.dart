@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kilochat/providers.dart';
 
 import 'model.dart';
-import 'realm_ui.dart';
+import 'providers.dart';
+import 'realm_ui/realm_search_delegate.dart';
 
 class ChannelSearchDelegate extends RealmSearchDelegate<Channel> {
   bool _showSubscribed = true;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kilochat/realm_ui.dart';
-import 'package:kilochat/settings.dart';
 
+import 'realm_ui/realm_animated_list.dart';
 import 'router.dart';
+import 'settings.dart';
 
 class WorkspaceView extends ConsumerWidget {
   const WorkspaceView({super.key});

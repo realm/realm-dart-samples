@@ -1,5 +1,5 @@
-import 'package:realm/realm.dart';
 import 'package:path/path.dart' as path;
+import 'package:realm/realm.dart';
 
 part 'settings.g.dart';
 

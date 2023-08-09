@@ -12,12 +12,14 @@ The app demonstrates how to:
 1. Display sync connection state.
 1. Handle soft synchronization errors.
 1. Handle client resets (hard sync errors).
-1. Display a snackbar when interesting data is synced to device.
+1. Display a toast when interesting data is synced to device.
 1. Animate list views as changes happen in a realm that impacts a live query.
 1. Update flexible sync subscriptions to only sync a subset of data dynamically.
+1. Use rule-based permissions to ensure users can only manipulate their own data.
+
+TODO:
 1. Handle presence information in a scalable way, using a body-list.
 1. Maintain a leader-board collection using an Atlas function that trigger on changes.
-1. Use rule-based permissions to ensure users can only manipulate their own data.
 
 It also serves as an example of an app architecture that works well with Realm.
 Depending on how you choose to count, it does so in just 1-2K lines of code, hence the name.

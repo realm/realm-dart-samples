@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kilochat/realm_connectivity.dart';
 
 import 'avatar.dart';
 import 'channels_view.dart';
@@ -10,7 +9,8 @@ import 'display_toast.dart';
 import 'model.dart';
 import 'profile_form.dart';
 import 'providers.dart';
-import 'realm_ui.dart';
+import 'realm_ui/realm_connectivity_indicator.dart';
+import 'realm_ui/realm_search_delegate.dart';
 import 'repository.dart';
 import 'settings.dart';
 import 'split_view.dart';

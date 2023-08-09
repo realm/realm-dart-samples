@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kilochat/model.dart';
 import 'package:random_avatar/random_avatar.dart';
+
+import 'model.dart';
 
 class MyAvatar extends StatelessWidget {
   const MyAvatar({
