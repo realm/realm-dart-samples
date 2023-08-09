@@ -1,0 +1,14 @@
+{
+    "bodies": {
+        "ref": "#/relationship/{{service_name}}/{{db_name}}/UserProfile",
+        "source_key": "bodies",
+        "foreign_key": "_id",
+        "is_list": true
+    },
+    "channels": {
+        "ref": "#/relationship/{{service_name}}/{{db_name}}/Channel",
+        "source_key": "channels",
+        "foreign_key": "_id",
+        "is_list": true
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "properties": {
+        "_id": {
+            "bsonType": "objectId"
+        },
+        "count": {
+            "bsonType": "long"
+        },
+        "name": {
+            "bsonType": "string"
+        },
+        "owner_id": {
+            "bsonType": "string"
+        },
+        "parent": {
+            "bsonType": "objectId"
+        }
+    },
+    "required": [
+        "_id",
+        "count",
+        "name",
+        "owner_id"
+    ],
+    "title": "Channel",
+    "type": "object"
+}

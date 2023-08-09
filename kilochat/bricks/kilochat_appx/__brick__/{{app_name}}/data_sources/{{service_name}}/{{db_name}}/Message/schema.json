@@ -1,0 +1,34 @@
+{
+    "properties": {
+        "_id": {
+            "bsonType": "objectId"
+        },
+        "channel": {
+            "bsonType": "objectId"
+        },
+        "channel_id": {
+            "bsonType": "objectId"
+        },
+        "index": {
+            "bsonType": "long"
+        },
+        "owner": {
+            "bsonType": "string"
+        },
+        "owner_id": {
+            "bsonType": "string"
+        },
+        "text": {
+            "bsonType": "string"
+        }
+    },
+    "required": [
+        "_id",
+        "channel_id",
+        "index",
+        "owner_id",
+        "text"
+    ],
+    "title": "Message",
+    "type": "object"
+}
