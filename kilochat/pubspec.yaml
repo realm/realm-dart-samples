@@ -25,6 +25,7 @@ dependencies:
   flutter_animate: ^4.0.0
   flutter_riverpod: ^2.3.0
   go_router: ^10.0.0
+  path: ^1.0.0
   random_avatar: ^0.0.8
   realm: ^1.3.0
   riverpod_annotation: ^2.0.0

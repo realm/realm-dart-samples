@@ -23,21 +23,16 @@ extension RoutesX on Routes {
 }
 
 final router = GoRouter(
-  initialLocation: currentWorkspace == null
-      ? Routes.chooseWorkspace.path // no workspace, so choose one
-      : (currentWorkspace!.app.currentUser == null // no user, so log in
-          ? Routes.logIn.path
-          : Routes.chat.path), // otherwise, go directly to chat
+  initialLocation: Routes.chat.path, // redirect will fix if needed
   routes: [
     GoRoute(
       path: Routes.chat.path,
-      builder: (context, state) => const ChatScreen(),
+      builder: (_, __) => const ChatScreen(),
     ),
     GoRoute(
-        path: Routes.chooseWorkspace.path,
-        builder: (context, state) {
-          return const WorkspaceScreen();
-        }),
+      path: Routes.chooseWorkspace.path,
+      builder: (_, __) => const WorkspaceScreen(),
+    ),
     GoRoute(
       path: Routes.logIn.path,
       builder: (context, state) {
@@ -60,4 +55,15 @@ final router = GoRouter(
       },
     ),
   ],
+  redirect: (context, state) async {
+    // always okay to switch workspace
+    if (state.path == Routes.chat.path) return null;
+
+    // check if workspace or log in is needed
+    return currentWorkspace == null
+        ? Routes.chooseWorkspace.path // no workspace, so choose one
+        : (currentWorkspace!.app.currentUser == null // no user, so log in
+            ? Routes.logIn.path
+            : null); // otherwise, navigation okay
+  },
 );

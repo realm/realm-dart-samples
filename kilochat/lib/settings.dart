@@ -1,4 +1,5 @@
 import 'package:realm/realm.dart';
+import 'package:path/path.dart' as path;
 
 part 'settings.g.dart';
 
@@ -21,7 +22,7 @@ class _Settings {
 final _realm = Realm(
   Configuration.local(
     [Settings.schema, Workspace.schema],
-    path: 'settings.realm',
+    path: path.join(Configuration.defaultStoragePath, 'settings.realm'),
   ),
 );
 

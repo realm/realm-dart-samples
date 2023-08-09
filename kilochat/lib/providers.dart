@@ -91,7 +91,6 @@ Future<Realm> syncedRealm(SyncedRealmRef ref) async {
   }
   try {
     realm.subscriptions.update((mutableSubscriptions) {
-      // TODO: way too simple
       mutableSubscriptions
         ..add(realm.all<Channel>())
         ..add(realm.query<Message>('channelId == null'))
@@ -100,7 +99,7 @@ Future<Realm> syncedRealm(SyncedRealmRef ref) async {
       // await realm.subscriptions.waitForSynchronization(); // does not support cancellation yet
     });
     await realm.syncSession.waitForDownload(ct);
-  } catch (_) {} // ignore
+  } on TimeoutException catch (_) {} // ignore and proceed
   return realm;
 }
 
@@ -113,7 +112,9 @@ Stream<User> user(UserRef ref) async* {
   if (user == null) {
     if (firebaseUser != null) {
       final jwt = await firebaseUser.getIdToken();
-      user = await app.logIn(Credentials.jwt(jwt!));
+      if (jwt != null) {
+        user = await app.logIn(Credentials.jwt(jwt));
+      }
     }
   }
   if (user != null) yield user;
