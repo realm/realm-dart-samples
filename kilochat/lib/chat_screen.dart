@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kilochat/realm_connectivity.dart';
 
 import 'avatar.dart';
 import 'channels_view.dart';
@@ -23,6 +24,7 @@ class ChatScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final focusedChannel = ref.watch(focusedChannelProvider);
     final repository = ref.watch(repositoryProvider);
+    final app = ref.watch(appProvider).value;
     final twoPane = MediaQuery.of(context).size.width > 700;
     const menuWidth = 300.0;
     return repository.when(
@@ -35,6 +37,12 @@ class ChatScreen extends ConsumerWidget {
             title: Text(
                 '${currentWorkspace?.name} / ${focusedChannel?.name ?? ''}'),
             actions: [
+              IconButton(
+                onPressed: () => app?.reconnect(),
+                icon: RealmConnectivityIndicator(
+                  changes: repository.connectionStateChanges,
+                ),
+              ),
               IconButton(
                 onPressed: () => showSearch(
                     context: context,

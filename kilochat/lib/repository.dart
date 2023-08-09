@@ -63,6 +63,9 @@ class Repository {
     return c.results[c.inserted.last];
   });
 
+  late Stream<ConnectionStateChange> connectionStateChanges =
+      _realm.syncSession.connectionStateChanges;
+
   void updateUserProfile(UserProfile newProfile) =>
       _realm.write(() => _realm.add(newProfile, update: true));
 
