@@ -10,10 +10,12 @@ class Workspace extends _Workspace
     with RealmEntity, RealmObjectBase, RealmObject {
   Workspace(
     String appId,
-    String name,
-  ) {
+    String name, {
+    String? currentChannelId,
+  }) {
     RealmObjectBase.set(this, 'appId', appId);
     RealmObjectBase.set(this, 'name', name);
+    RealmObjectBase.set(this, 'currentChannelId', currentChannelId);
   }
 
   Workspace._();
@@ -29,6 +31,13 @@ class Workspace extends _Workspace
   set name(String value) => RealmObjectBase.set(this, 'name', value);
 
   @override
+  String? get currentChannelId =>
+      RealmObjectBase.get<String>(this, 'currentChannelId') as String?;
+  @override
+  set currentChannelId(String? value) =>
+      RealmObjectBase.set(this, 'currentChannelId', value);
+
+  @override
   Stream<RealmObjectChanges<Workspace>> get changes =>
       RealmObjectBase.getChanges<Workspace>(this);
 
@@ -42,6 +51,8 @@ class Workspace extends _Workspace
     return const SchemaObject(ObjectType.realmObject, Workspace, 'Workspace', [
       SchemaProperty('appId', RealmPropertyType.string, primaryKey: true),
       SchemaProperty('name', RealmPropertyType.string),
+      SchemaProperty('currentChannelId', RealmPropertyType.string,
+          optional: true),
     ]);
   }
 }

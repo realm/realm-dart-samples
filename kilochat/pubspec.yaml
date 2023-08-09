@@ -13,7 +13,8 @@ dependencies:
     sdk: flutter
 
   animated_emoji: ^2.0.0
-  cancellation_token: ^1.5.0
+  # cancellation_token: ^1.5.0
+  cancellation_token: ^2.0.0 # for realm vNext
   collection: ^1.17.0
   connectivity_plus: ^4.0.1
   firebase_auth: ^4.2.10
@@ -23,8 +24,10 @@ dependencies:
   firebase_ui_oauth_facebook: ^1.0.23
   firebase_ui_oauth_google: ^1.0.23
   flutter_animate: ^4.0.0
+  flutter_markdown: ^0.6.0
   flutter_riverpod: ^2.3.0
   go_router: ^10.0.0
+  markdown: ^7.0.0
   path: ^1.0.0
   random_avatar: ^0.0.8
   realm: ^1.3.0
@@ -47,6 +50,6 @@ flutter:
       fonts:
         - asset: packages/firebase_ui_auth/fonts/SocialIcons.ttf
 
-# dependency_overrides:
-#   realm:
-#     path: ../../../realm-dart/flutter/realm_flutter
+dependency_overrides:
+  realm:
+     path: ../../../realm-dart/flutter/realm_flutter

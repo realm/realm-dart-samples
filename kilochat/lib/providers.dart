@@ -1,22 +1,18 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:cancellation_token/cancellation_token.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:realm/realm.dart';
-import 'package:riverpod/riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:cancellation_token/cancellation_token.dart';
 
+import 'firebase_user_provider.dart';
 import 'model.dart';
 import 'repository.dart';
 import 'settings.dart';
 
 part 'providers.g.dart';
-
-final firebaseUserProvider = StateProvider<firebase.User?>(
-  (ref) => firebase.FirebaseAuth.instance.currentUser,
-);
 
 class FocusedChannel extends Notifier<Channel?> {
   @override
@@ -46,20 +42,12 @@ Future<Realm> localRealm(LocalRealmRef ref) async =>
     await Realm.open(Configuration.local([]));
 
 @riverpod
-Stream<RealmResults<Message>> messages(
-  MessagesRef ref,
-  Channel? channel,
-) async* {
-  final repository = await ref.watch(repositoryProvider.future);
-  if (channel == null) return;
-  yield repository.messages(channel);
-}
-
-@riverpod
 Future<Repository> repository(RepositoryRef ref) async {
   final realm = await ref.watch(syncedRealmProvider.future);
   final user = await ref.watch(userProfileProvider.future);
-  return Repository(realm, user);
+  final repo = Repository(realm, user);
+  ref.onDispose(repo.dispose);
+  return repo;
 }
 
 @riverpod
@@ -76,14 +64,19 @@ Future<Realm> syncedRealm(SyncedRealmRef ref) async {
   );
   Realm.logger.level = RealmLogLevel.debug;
   late Realm realm;
-  final ct = TimeoutCancellationToken(const Duration(seconds: 3));
+  final ct = TimeoutCancellationToken(const Duration(seconds: 30));
   try {
-    if (File(config.path).existsSync()) {
+    if (await File(config.path).exists()) {
       realm = Realm(config);
     } else {
       realm = await Realm.open(
         config,
         cancellationToken: ct,
+        onProgressCallback: (progress) {
+          final transferred = progress.transferredBytes;
+          final transferable = progress.transferableBytes;
+          print('Sync progress: $transferred / $transferable');
+        },
       );
     }
   } catch (_) {
@@ -96,8 +89,8 @@ Future<Realm> syncedRealm(SyncedRealmRef ref) async {
         ..add(realm.query<Message>('channelId == null'))
         ..add(realm.all<Reaction>())
         ..add(realm.all<UserProfile>());
-      // await realm.subscriptions.waitForSynchronization(); // does not support cancellation yet
     });
+    // await realm.subscriptions.waitForSynchronization(ct); // does not support cancellation yet
     await realm.syncSession.waitForDownload(ct);
   } on TimeoutException catch (_) {} // ignore and proceed
   return realm;
@@ -106,12 +99,12 @@ Future<Realm> syncedRealm(SyncedRealmRef ref) async {
 @riverpod
 Stream<User> user(UserRef ref) async* {
   final app = await ref.watch(appProvider.future);
-  final firebaseUser = ref.watch(firebaseUserProvider);
+  final firebaseUser = await ref.watch(firebaseUserProvider.future);
 
   var user = app.currentUser;
   if (user == null) {
     if (firebaseUser != null) {
-      final jwt = await firebaseUser.getIdToken();
+      final jwt = await firebaseUser.getIdToken(true); // force refresh
       if (jwt != null) {
         user = await app.logIn(Credentials.jwt(jwt));
       }

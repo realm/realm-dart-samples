@@ -8,6 +8,7 @@ extension on MutableSubscriptionSet {
   void subscribe(Channel channel) => add(
         name: '${channel.id}',
         channel.realm.query<Message>(r'channelId == $0', [channel.id]),
+        update: true,
       );
   void unsubscribe(Channel channel) => removeByName('${channel.id}');
 }
@@ -26,6 +27,7 @@ extension on Stream<RealmResultsChanges<Channel>> {
             mutableSubscriptions.subscribe(results.elementAt(i));
           }
         } else {
+          // first time
           for (final channel in results) {
             mutableSubscriptions.subscribe(channel);
           }
@@ -44,7 +46,7 @@ class Repository {
 
   Repository(this._realm, this.user)
       : _subscription = user.channels
-            .asResults()
+            .asResults() // indexes are off otherwise
             .changes
             .updateSubscriptions()
             .listen((_) {});
@@ -132,6 +134,12 @@ class Repository {
       r'name CONTAINS $0 SORT(name ASCENDING)',
       [name],
     );
+  }
+
+  Future<void> dispose() async {
+    await _subscription.cancel();
+    _realm.syncSession.pause();
+    // _realm.close(); // TODO: re-enable once focusedChannel is fixed
   }
 }
 

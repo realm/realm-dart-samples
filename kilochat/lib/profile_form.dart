@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'widget_builders.dart';
 import 'model.dart';
 import 'providers.dart';
+import 'widget_builders.dart';
 
 class ProfileForm extends ConsumerStatefulWidget {
   final UserProfile initialProfile;

@@ -1,10 +1,9 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:realm/realm.dart';
 
 import 'chat_screen.dart';
-import 'providers.dart';
 import 'settings.dart';
 import 'workspace_view.dart';
 
@@ -37,12 +36,19 @@ final router = GoRouter(
       path: Routes.logIn.path,
       builder: (context, state) {
         return SignInScreen(actions: [
+          AuthCancelledAction((context) {
+            Routes.chooseWorkspace.go(context);
+          }),
           AuthStateChangeAction<SignedIn>((context, state) async {
-            final ref = ProviderScope.containerOf(context);
-            final firebaseUserController =
-                ref.read(firebaseUserProvider.notifier);
-            firebaseUserController.state = state.user;
-            Routes.chat.go(context);
+            final app = currentWorkspace?.app;
+            final jwt = await state.user?.getIdToken();
+            if (app != null && jwt != null) {
+              await app.logIn(Credentials.jwt(jwt));
+            }
+
+            if (context.mounted) {
+              Routes.chat.go(context);
+            }
           }),
         ]);
       },
@@ -50,19 +56,20 @@ final router = GoRouter(
     GoRoute(
       path: Routes.profile.path,
       builder: (context, state) {
-        return const Placeholder();
-        // return ProfileForm();
+        //return const Placeholder();
+        return const ProfileScreen();
       },
     ),
   ],
   redirect: (context, state) async {
-    // always okay to switch workspace
-    if (state.path == Routes.chat.path) return null;
+    // always okay to switch workspace selection
+    if (state.fullPath == Routes.chooseWorkspace.path) return null;
 
     // check if workspace or log in is needed
-    return currentWorkspace == null
+    final ws = currentWorkspace;
+    return ws == null
         ? Routes.chooseWorkspace.path // no workspace, so choose one
-        : (currentWorkspace!.app.currentUser == null // no user, so log in
+        : (ws.app.currentUser == null // no user, so log in
             ? Routes.logIn.path
             : null); // otherwise, navigation okay
   },

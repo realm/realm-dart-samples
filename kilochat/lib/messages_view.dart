@@ -17,12 +17,12 @@ class MessagesView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final channel = ref.watch(focusedChannelProvider);
-    final messages = ref.watch(messagesProvider(channel));
-    return messages.when(
+    final repository = ref.watch(repositoryProvider);
+    return repository.when(
       error: buildErrorWidget,
       loading: buildLoadingWidget,
-      data: (messages) => RealmAnimatedList(
-        results: messages,
+      data: (repository) => RealmAnimatedList(
+        results: repository.messages(channel!),
         itemBuilder: (context, item, animation) {
           return MessageTile(message: item, animation: animation);
         },

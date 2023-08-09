@@ -6,7 +6,7 @@ part of 'providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appHash() => r'b3bc4e02df3b254bcad8a3e6db9f2030a06a0ce4';
+String _$appHash() => r'4b65979ca6a10371a96ba49c5ebf78105d4acc3c';
 
 /// See also [app].
 @ProviderFor(app)
@@ -34,111 +34,7 @@ final localRealmProvider = AutoDisposeFutureProvider<Realm>.internal(
 );
 
 typedef LocalRealmRef = AutoDisposeFutureProviderRef<Realm>;
-String _$messagesHash() => r'c191f05ca61d99c07b2cd9d267be737b75892d5c';
-
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-typedef MessagesRef = AutoDisposeStreamProviderRef<RealmResults<dynamic>>;
-
-/// See also [messages].
-@ProviderFor(messages)
-const messagesProvider = MessagesFamily();
-
-/// See also [messages].
-class MessagesFamily extends Family<AsyncValue<RealmResults<dynamic>>> {
-  /// See also [messages].
-  const MessagesFamily();
-
-  /// See also [messages].
-  MessagesProvider call(
-    dynamic channel,
-  ) {
-    return MessagesProvider(
-      channel,
-    );
-  }
-
-  @override
-  MessagesProvider getProviderOverride(
-    covariant MessagesProvider provider,
-  ) {
-    return call(
-      provider.channel,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'messagesProvider';
-}
-
-/// See also [messages].
-class MessagesProvider
-    extends AutoDisposeStreamProvider<RealmResults<dynamic>> {
-  /// See also [messages].
-  MessagesProvider(
-    this.channel,
-  ) : super.internal(
-          (ref) => messages(
-            ref,
-            channel,
-          ),
-          from: messagesProvider,
-          name: r'messagesProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$messagesHash,
-          dependencies: MessagesFamily._dependencies,
-          allTransitiveDependencies: MessagesFamily._allTransitiveDependencies,
-        );
-
-  final dynamic channel;
-
-  @override
-  bool operator ==(Object other) {
-    return other is MessagesProvider && other.channel == channel;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, channel.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
-
-String _$repositoryHash() => r'9735e5fd79954002433a9b2b517fa72087982b00';
+String _$repositoryHash() => r'd3cb0d95aa6bdb749677e8b60896da940e46ce7d';
 
 /// See also [repository].
 @ProviderFor(repository)
@@ -152,7 +48,7 @@ final repositoryProvider = AutoDisposeFutureProvider<Repository>.internal(
 );
 
 typedef RepositoryRef = AutoDisposeFutureProviderRef<Repository>;
-String _$syncedRealmHash() => r'894d981cdc1510e4d50afbf8f059998237daea7a';
+String _$syncedRealmHash() => r'3b57f34e34ceb50022896936a5c0936a1d0b0f05';
 
 /// See also [syncedRealm].
 @ProviderFor(syncedRealm)
@@ -166,7 +62,7 @@ final syncedRealmProvider = AutoDisposeFutureProvider<Realm>.internal(
 );
 
 typedef SyncedRealmRef = AutoDisposeFutureProviderRef<Realm>;
-String _$userHash() => r'b1ca9042230ed76890f0226e50c4d47255094ce4';
+String _$userHash() => r'9affc10569e9ce8c707643d7de439dcd8c2ea500';
 
 /// See also [user].
 @ProviderFor(user)

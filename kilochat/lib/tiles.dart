@@ -1,7 +1,9 @@
 import 'package:animated_emoji/emoji.dart';
 import 'package:animated_emoji/emojis.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:markdown/markdown.dart' as md;
 
 import 'avatar.dart';
 import 'model.dart';
@@ -60,7 +62,21 @@ class MessageTile extends ConsumerWidget {
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MyTransition(animation: animation, child: Text(message.text)),
+          MyTransition(
+            animation: animation,
+            child: Markdown(
+              padding: const EdgeInsets.only(bottom: 12),
+              data: message.text,
+              shrinkWrap: true,
+              extensionSet: md.ExtensionSet(
+                md.ExtensionSet.gitHubFlavored.blockSyntaxes,
+                [
+                  md.EmojiSyntax(),
+                  ...md.ExtensionSet.gitHubFlavored.inlineSyntaxes
+                ],
+              ),
+            ),
+          ),
           SizedBox(
             height: 50,
             child: RealmAnimatedList(
