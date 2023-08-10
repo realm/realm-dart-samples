@@ -38,10 +38,6 @@ Stream<App> app(AppRef ref) async* {
 }
 
 @riverpod
-Future<Realm> localRealm(LocalRealmRef ref) async =>
-    await Realm.open(Configuration.local([]));
-
-@riverpod
 Future<Repository> repository(RepositoryRef ref) async {
   final realm = await ref.watch(syncedRealmProvider.future);
   final user = await ref.watch(userProfileProvider.future);

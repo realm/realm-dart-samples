@@ -51,8 +51,8 @@ class MessageTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userProvider).value;
-    final repo = ref.watch(repositoryProvider).value;
+    final repo = ref.watch(repositoryProvider).requireValue;
+    final user = repo.user;
 
     return AnimatedDismissibleTile(
       key: ValueKey(message.id),

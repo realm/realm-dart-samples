@@ -24,7 +24,6 @@ class ChatScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final focusedChannel = ref.watch(focusedChannelProvider);
     final repository = ref.watch(repositoryProvider);
-    final app = ref.watch(appProvider).value;
     final twoPane = MediaQuery.of(context).size.width > 700;
     const menuWidth = 300.0;
     return repository.when(
@@ -37,11 +36,8 @@ class ChatScreen extends ConsumerWidget {
             title: Text(
                 '${currentWorkspace?.name} / ${focusedChannel?.name ?? ''}'),
             actions: [
-              IconButton(
-                onPressed: () => app?.reconnect(),
-                icon: RealmConnectivityIndicator(
-                  changes: repository.connectionStateChanges,
-                ),
+              RealmConnectivityIndicator(
+                changes: repository.connectionStateChanges,
               ),
               IconButton(
                 onPressed: () => showSearch(

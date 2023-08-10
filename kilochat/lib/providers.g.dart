@@ -20,20 +20,6 @@ final appProvider = AutoDisposeStreamProvider<App>.internal(
 );
 
 typedef AppRef = AutoDisposeStreamProviderRef<App>;
-String _$localRealmHash() => r'31ba36028bf0e66b3453c3e4a89113e0e6ed5e92';
-
-/// See also [localRealm].
-@ProviderFor(localRealm)
-final localRealmProvider = AutoDisposeFutureProvider<Realm>.internal(
-  localRealm,
-  name: r'localRealmProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$localRealmHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef LocalRealmRef = AutoDisposeFutureProviderRef<Realm>;
 String _$repositoryHash() => r'd3cb0d95aa6bdb749677e8b60896da940e46ce7d';
 
 /// See also [repository].
