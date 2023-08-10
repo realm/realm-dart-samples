@@ -90,7 +90,9 @@ class ChatScreen extends ConsumerWidget {
           ),
           drawer: twoPane
               ? null // no drawer on large screens
-              : Drawer(child: _buildChannelPane(ref, context)),
+              : Drawer(child: Builder(builder: (context) {
+                  return _buildChannelPane(ref, context);
+                })),
         );
       },
     );

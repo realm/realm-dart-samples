@@ -64,10 +64,10 @@ class MessageTile extends ConsumerWidget {
         children: [
           MyTransition(
             animation: animation,
-            child: Markdown(
-              padding: const EdgeInsets.only(bottom: 12),
+            child: MarkdownBody(
+              //padding: const EdgeInsets.only(bottom: 12),
               data: message.text,
-              shrinkWrap: true,
+              //shrinkWrap: true,
               extensionSet: md.ExtensionSet(
                 md.ExtensionSet.gitHubFlavored.blockSyntaxes,
                 [
@@ -77,8 +77,9 @@ class MessageTile extends ConsumerWidget {
               ),
             ),
           ),
+          const SizedBox(height: 8),
           SizedBox(
-            height: 50,
+            height: 30,
             child: RealmAnimatedList(
               results: message.reactions,
               scrollDirection: Axis.horizontal,
