@@ -23,7 +23,7 @@ class ChannelsView extends ConsumerWidget {
       error: buildErrorWidget,
       loading: buildLoadingWidget,
       data: (repository) {
-        final user = repository.user;
+        final user = repository.userProfile;
         final channels = user.channels.asResults();
         return ListTileTheme(
           data: ListTileThemeData(

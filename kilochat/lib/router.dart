@@ -1,5 +1,6 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:realm/realm.dart';
 
@@ -40,10 +41,15 @@ final router = GoRouter(
             Routes.chooseWorkspace.go(context);
           }),
           AuthStateChangeAction<SignedIn>((context, state) async {
-            final app = currentWorkspace?.app;
-            final jwt = await state.user?.getIdToken();
-            if (app != null && jwt != null) {
-              await app.logIn(Credentials.jwt(jwt));
+            // TODO: This sucks!!
+            try {
+              final app = currentWorkspace?.app;
+              final jwt = await state.user?.getIdToken();
+              if (app != null && jwt != null) {
+                await app.logIn(Credentials.jwt(jwt));
+              }
+            } catch (_) {
+              currentWorkspace = null;
             }
 
             if (context.mounted) {
@@ -62,7 +68,7 @@ final router = GoRouter(
     ),
   ],
   redirect: (context, state) async {
-    // always okay to switch workspace selection
+    // always okay to switch to workspace selection
     if (state.fullPath == Routes.chooseWorkspace.path) return null;
 
     // check if workspace or log in is needed

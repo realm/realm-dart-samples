@@ -6,7 +6,7 @@ part of 'providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appHash() => r'4b65979ca6a10371a96ba49c5ebf78105d4acc3c';
+String _$appHash() => r'f2013a10f035b47580fa754eb5b97b53d77ee6d2';
 
 /// See also [app].
 @ProviderFor(app)
@@ -20,35 +20,7 @@ final appProvider = AutoDisposeStreamProvider<App>.internal(
 );
 
 typedef AppRef = AutoDisposeStreamProviderRef<App>;
-String _$repositoryHash() => r'd3cb0d95aa6bdb749677e8b60896da940e46ce7d';
-
-/// See also [repository].
-@ProviderFor(repository)
-final repositoryProvider = AutoDisposeFutureProvider<Repository>.internal(
-  repository,
-  name: r'repositoryProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$repositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef RepositoryRef = AutoDisposeFutureProviderRef<Repository>;
-String _$syncedRealmHash() => r'3b57f34e34ceb50022896936a5c0936a1d0b0f05';
-
-/// See also [syncedRealm].
-@ProviderFor(syncedRealm)
-final syncedRealmProvider = AutoDisposeFutureProvider<Realm>.internal(
-  syncedRealm,
-  name: r'syncedRealmProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$syncedRealmHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef SyncedRealmRef = AutoDisposeFutureProviderRef<Realm>;
-String _$userHash() => r'9affc10569e9ce8c707643d7de439dcd8c2ea500';
+String _$userHash() => r'9500263a0a8bbe86ba3186a23b7ea55f651338f6';
 
 /// See also [user].
 @ProviderFor(user)
@@ -62,19 +34,19 @@ final userProvider = AutoDisposeStreamProvider<User>.internal(
 );
 
 typedef UserRef = AutoDisposeStreamProviderRef<User>;
-String _$userProfileHash() => r'33b2c3a07b2745665b33664efb14839edf046050';
+String _$repositoryHash() => r'ba79d3db0c045d0c101373e89a1ce4172155a75a';
 
-/// See also [userProfile].
-@ProviderFor(userProfile)
-final userProfileProvider = AutoDisposeStreamProvider<dynamic>.internal(
-  userProfile,
-  name: r'userProfileProvider',
+/// See also [repository].
+@ProviderFor(repository)
+final repositoryProvider = AutoDisposeFutureProvider<Repository>.internal(
+  repository,
+  name: r'repositoryProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$userProfileHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$repositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef UserProfileRef = AutoDisposeStreamProviderRef<dynamic>;
+typedef RepositoryRef = AutoDisposeFutureProviderRef<Repository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

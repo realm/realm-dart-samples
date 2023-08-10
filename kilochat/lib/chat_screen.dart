@@ -30,7 +30,7 @@ class ChatScreen extends ConsumerWidget {
       error: buildErrorWidget,
       loading: buildLoadingWidget,
       data: (repository) {
-        final user = repository.user;
+        final user = repository.userProfile;
         return Scaffold(
           appBar: AppBar(
             title: Text(

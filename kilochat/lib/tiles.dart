@@ -52,7 +52,7 @@ class MessageTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final repo = ref.watch(repositoryProvider).requireValue;
-    final user = repo.user;
+    final user = repo.userProfile;
 
     return AnimatedDismissibleTile(
       key: ValueKey(message.id),
@@ -84,7 +84,7 @@ class MessageTile extends ConsumerWidget {
               results: message.reactions,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, reaction, animation) {
-                final owner = reaction.owner?.id == user?.id;
+                final owner = reaction.owner?.id == user.id;
                 return MyTransition(
                   key: ValueKey(reaction.id),
                   axis: Axis.horizontal,
@@ -101,7 +101,7 @@ class MessageTile extends ConsumerWidget {
                       errorWidget: Text(reaction.emoji),
                     ),
                     onDeleted:
-                        owner ? () => repo?.deleteReaction(reaction) : null,
+                        owner ? () => repo.deleteReaction(reaction) : null,
                   ),
                 );
               },
@@ -117,7 +117,7 @@ class MessageTile extends ConsumerWidget {
           });
         },
       ),
-      onDismissed: message.ownerId != user?.id
+      onDismissed: message.ownerId != user.id
           ? null
           : (direction) async {
               (await ref.read(repositoryProvider.future))
