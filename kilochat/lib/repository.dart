@@ -70,15 +70,7 @@ class Repository extends Disposable {
       if (await File(config.path).exists()) {
         realm = Realm(config);
       } else {
-        realm = await Realm.open(
-          config,
-          cancellationToken: ct,
-          onProgressCallback: (progress) {
-            final transferred = progress.transferredBytes;
-            final transferable = progress.transferableBytes;
-            print('Sync progress: $transferred / $transferable');
-          },
-        );
+        realm = await Realm.open(config, cancellationToken: ct);
       }
     } catch (_) {
       realm = Realm(config);
@@ -97,8 +89,7 @@ class Repository extends Disposable {
     return realm;
   }
 
-  late Stream<ConnectionStateChange> connectionStateChanges =
-      _realm.syncSession.connectionStateChanges;
+  Session get session => _realm.syncSession;
 
   late RealmResults<Channel> allChannels =
       _realm.query<Channel>('TRUEPREDICATE SORT(name ASCENDING)');

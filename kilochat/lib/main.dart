@@ -8,6 +8,7 @@ import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:realm/realm.dart';
 
 import 'firebase_options.dart';
 import 'router.dart';
@@ -16,8 +17,10 @@ const freedomBlue = Color(0xff0057b7);
 const energizingYellow = Color(0xffffd700);
 
 Future<void> main() async {
+  Realm.logger.level = RealmLogLevel.debug;
   Animate.restartOnHotReload = true;
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseUIAuth.configureProviders([
     EmailAuthProvider(),
@@ -25,6 +28,7 @@ Future<void> main() async {
     FacebookProvider(clientId: ''),
     GoogleProvider(clientId: ''),
   ]);
+
   runApp(
     ProviderScope(
       child: MaterialApp.router(

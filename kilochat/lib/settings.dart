@@ -10,9 +10,11 @@ class _Workspace {
   late String name; // for display
   String? currentChannelId; // current channel
 
-  @Ignored()
-  late final App app = App(AppConfiguration(appId));
+  App get app =>
+      _appCache.putIfAbsent(appId, () => App(AppConfiguration(appId)));
 }
+
+final _appCache = <String, App>{};
 
 @RealmModel()
 class _Settings {

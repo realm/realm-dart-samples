@@ -9,7 +9,7 @@ import 'display_toast.dart';
 import 'model.dart';
 import 'profile_form.dart';
 import 'providers.dart';
-import 'realm_ui/realm_connectivity_indicator.dart';
+import 'realm_ui/realm_session_state_indicator.dart';
 import 'realm_ui/realm_search_delegate.dart';
 import 'repository.dart';
 import 'settings.dart';
@@ -36,9 +36,7 @@ class ChatScreen extends ConsumerWidget {
             title: Text(
                 '${currentWorkspace?.name} / ${focusedChannel?.name ?? ''}'),
             actions: [
-              RealmConnectivityIndicator(
-                changes: repository.connectionStateChanges,
-              ),
+              RealmSessionStateIndicator(session: repository.session),
               IconButton(
                 onPressed: () => showSearch(
                     context: context,

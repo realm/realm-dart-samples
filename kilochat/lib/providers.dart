@@ -23,21 +23,21 @@ Stream<User> user(UserRef ref) async* {
   final app = await ref.watch(appProvider.future);
 
   final firebaseUser = await ref.watch(firebaseUserProvider.future);
-  final jwt = await firebaseUser?.getIdToken(true); // force refresh
+  final jwt = await firebaseUser?.getIdToken();
 
   var user = app.currentUser;
   if (jwt != null) {
     user = await app.logIn(Credentials.jwt(jwt));
-    yield user;
   }
+  if (user != null) yield user;
 }
 
 @riverpod
 Future<Repository> repository(RepositoryRef ref) async {
   final user = await ref.watch(userProvider.future);
-  final repo = await Repository.init(user);
-  ref.onDispose(repo.dispose);
-  return repo;
+  final repository = await Repository.init(user);
+  ref.onDispose(repository.dispose);
+  return repository;
 }
 
 class FocusedChannel extends Notifier<Channel?> {
