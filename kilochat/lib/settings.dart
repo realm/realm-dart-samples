@@ -8,7 +8,7 @@ class _Workspace {
   @PrimaryKey()
   late String appId; // atlas app service id
   late String name; // for display
-  String? currentChannelId; // current channel
+  ObjectId? currentChannelId; // current channel
 
   App get app =>
       _appCache.putIfAbsent(appId, () => App(AppConfiguration(appId)));

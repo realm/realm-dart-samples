@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,12 +19,14 @@ import 'split_view.dart';
 import 'tiles.dart';
 import 'widget_builders.dart';
 
+final platformIsDesktop =
+    Platform.isMacOS || Platform.isWindows || Platform.isLinux;
+
 class ChatScreen extends ConsumerWidget {
   const ChatScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final focusedChannel = ref.watch(focusedChannelProvider);
     final repository = ref.watch(repositoryProvider);
     final twoPane = MediaQuery.of(context).size.width > 700;
     const menuWidth = 300.0;
@@ -30,8 +34,10 @@ class ChatScreen extends ConsumerWidget {
       error: buildErrorWidget,
       loading: buildLoadingWidget,
       data: (repository) {
+        final focusedChannel = repository.focusedChannel;
         final user = repository.userProfile;
         return Scaffold(
+          extendBodyBehindAppBar: platformIsDesktop,
           appBar: AppBar(
             title: Text(
                 '${currentWorkspace?.name} / ${focusedChannel?.name ?? ''}'),
@@ -78,34 +84,35 @@ class ChatScreen extends ConsumerWidget {
             child: SplitView(
               showLeft: twoPane,
               leftWidth: menuWidth,
-              rightPane: _buildChatPane(focusedChannel, repository),
-              leftPane: _buildChannelPane(ref, context),
+              rightPane: _buildChatPane(repository),
+              leftPane: _buildChannelPane(repository, context),
             ),
           ),
           drawer: twoPane
               ? null // no drawer on large screens
               : Drawer(child: Builder(builder: (context) {
-                  return _buildChannelPane(ref, context);
+                  return _buildChannelPane(repository, context);
                 })),
         );
       },
     );
   }
 
-  Widget _buildChannelPane(WidgetRef ref, BuildContext context) {
+  Widget _buildChannelPane(Repository repository, BuildContext context) {
     return SafeArea(
       child: ChannelsView(
         onTap: (channel) {
-          ref.read(focusedChannelProvider.notifier).focus(channel);
+          repository.focusedChannel = channel;
           Scaffold.of(context).closeDrawer();
         },
       ),
     );
   }
 
-  Widget _buildChatPane(Channel? focusedChannel, Repository repository) {
+  Widget _buildChatPane(Repository repository) {
+    final channel = repository.focusedChannel;
     return const Center(child: Text('Choose a channel'))
-        .animate(target: focusedChannel == null ? 0 : 1)
+        .animate(target: channel == null ? 0 : 1)
         .crossfade(builder: (context) => const ChatWidget());
   }
 }

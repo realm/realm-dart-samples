@@ -12,6 +12,8 @@ typedef SessionStatus = (
   bool uploading
 );
 
+const _noProgress = (transferableBytes: 0, transferredBytes: 0);
+
 class RealmSessionStateIndicator extends StatelessWidget {
   const RealmSessionStateIndicator({
     super.key,
@@ -46,14 +48,18 @@ class RealmSessionStateIndicator extends StatelessWidget {
         session.connectionStateChanges
             .map((c) => c.current)
             .startWith(session.connectionState),
-        session.getProgressStream(
-          ProgressDirection.download,
-          ProgressMode.reportIndefinitely,
-        ),
-        session.getProgressStream(
-          ProgressDirection.upload,
-          ProgressMode.reportIndefinitely,
-        ),
+        session
+            .getProgressStream(
+              ProgressDirection.download,
+              ProgressMode.reportIndefinitely,
+            )
+            .startWith(_noProgress),
+        session
+            .getProgressStream(
+              ProgressDirection.upload,
+              ProgressMode.reportIndefinitely,
+            )
+            .startWith(_noProgress),
         (connectivity, state, download, upload) => (
               connectivity != ConnectivityResult.none,
               state,

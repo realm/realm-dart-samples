@@ -57,9 +57,8 @@ class _ChatWidgetState extends ConsumerState<ChatWidget> {
 
   void _postNewMessage(String text) async {
     if (text.isNotEmpty) {
-      final channel = ref.read(focusedChannelProvider);
       final repository = ref.read(repositoryProvider).requireValue;
-      repository.postNewMessage(channel!, text);
+      repository.postNewMessage(repository.focusedChannel!, text);
       controller.clear();
       await scrollController.animateTo(
         0,

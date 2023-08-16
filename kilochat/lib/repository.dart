@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:cancellation_token/cancellation_token.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:kilochat/settings.dart';
 import 'package:realm/realm.dart';
 
 import 'model.dart';
@@ -26,7 +27,9 @@ class Repository extends Disposable {
   late final UserProfile userProfile =
       _realm.findOrAdd(_user.id, (id) => UserProfile(id, id));
 
-  Repository(this._realm, this._user) {
+  Repository._(this._realm, this._user, Workspace ws) {
+    focusedChannel = _realm.find<Channel>(ws.currentChannelId);
+
     // force logout, and drop local data, user deactivated
     userProfile.changes.asyncListen((change) async {
       if (change.isDeleted || change.object.deactivated) {
@@ -50,8 +53,8 @@ class Repository extends Disposable {
         .cancelOnDisposeOf(this);
   }
 
-  static Future<Repository> init(User user) async {
-    return Repository(await _initRealm(user), user);
+  static Future<Repository> init(User user, Workspace ws) async {
+    return Repository._(await _initRealm(user), user, ws);
   }
 
   static Future<Realm> _initRealm(User user) async {
@@ -90,6 +93,13 @@ class Repository extends Disposable {
   }
 
   Session get session => _realm.syncSession;
+
+  Channel? _focusedChannel;
+  Channel? get focusedChannel => _focusedChannel;
+  set focusedChannel(Channel? value) {
+    _focusedChannel = value;
+    currentWorkspace!.currentChannelId = _focusedChannel?.id;
+  }
 
   late RealmResults<Channel> allChannels =
       _realm.query<Channel>('TRUEPREDICATE SORT(name ASCENDING)');

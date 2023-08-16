@@ -16,10 +16,11 @@ class MessagesView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final channel = ref.watch(focusedChannelProvider);
+    final repository = ref.watch(repositoryProvider);
+
+    final channel = repository.value?.focusedChannel;
     if (channel == null) return const SizedBox.shrink();
 
-    final repository = ref.watch(repositoryProvider);
     return repository.when(
       error: buildErrorWidget,
       loading: buildLoadingWidget,
