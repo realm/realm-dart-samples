@@ -21,14 +21,15 @@ class Disposable {
 }
 
 class Repository extends Disposable {
+  final Workspace _workspace;
   final Realm _realm;
   final User _user;
 
   late final UserProfile userProfile =
       _realm.findOrAdd(_user.id, (id) => UserProfile(id, id));
 
-  Repository._(this._realm, this._user, Workspace ws) {
-    focusedChannel = _realm.find<Channel>(ws.currentChannelId);
+  Repository._(this._realm, this._user, this._workspace) {
+    focusedChannel = _realm.find<Channel>(_workspace.currentChannelId);
 
     // force logout, and drop local data, user deactivated
     userProfile.changes.asyncListen((change) async {
@@ -53,8 +54,9 @@ class Repository extends Disposable {
         .cancelOnDisposeOf(this);
   }
 
-  static Future<Repository> init(User user, Workspace ws) async {
-    return Repository._(await _initRealm(user), user, ws);
+  static Future<Repository> init(Workspace workspace) async {
+    final user = workspace.app.currentUser!;
+    return Repository._(await _initRealm(user), user, workspace);
   }
 
   static Future<Realm> _initRealm(User user) async {
@@ -94,12 +96,14 @@ class Repository extends Disposable {
 
   Session get session => _realm.syncSession;
 
-  Channel? _focusedChannel;
-  Channel? get focusedChannel => _focusedChannel;
+  Channel? _getChannel(ObjectId? id) => _realm.find<Channel>(id);
+  Channel? get focusedChannel => _getChannel(_workspace.currentChannelId);
   set focusedChannel(Channel? value) {
-    _focusedChannel = value;
-    currentWorkspace!.currentChannelId = _focusedChannel?.id;
+    _workspace.realm.write(() => _workspace.currentChannelId = value?.id);
   }
+
+  Stream<Channel?> get focusedChannelChanges =>
+      _workspace.changes.map((c) => _getChannel(c.object.currentChannelId));
 
   late RealmResults<Channel> allChannels =
       _realm.query<Channel>('TRUEPREDICATE SORT(name ASCENDING)');

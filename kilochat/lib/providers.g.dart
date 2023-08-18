@@ -34,7 +34,7 @@ final userProvider = AutoDisposeStreamProvider<User>.internal(
 );
 
 typedef UserRef = AutoDisposeStreamProviderRef<User>;
-String _$repositoryHash() => r'4e762fc48ddb22c027309c931fd347bf1068b817';
+String _$repositoryHash() => r'2275ebf66658e7b0d08ad325b5ea8aacacf4143a';
 
 /// See also [repository].
 @ProviderFor(repository)
@@ -48,11 +48,11 @@ final repositoryProvider = AutoDisposeFutureProvider<Repository>.internal(
 );
 
 typedef RepositoryRef = AutoDisposeFutureProviderRef<Repository>;
-String _$focusedChannelHash() => r'891b3f67768c015ba6ca658ce7a6bff9692ddfa9';
+String _$focusedChannelHash() => r'c467f8b8fbe8c481f8f49a542486227febaa2684';
 
 /// See also [focusedChannel].
 @ProviderFor(focusedChannel)
-final focusedChannelProvider = AutoDisposeFutureProvider<dynamic>.internal(
+final focusedChannelProvider = AutoDisposeStreamProvider<dynamic>.internal(
   focusedChannel,
   name: r'focusedChannelProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -62,6 +62,6 @@ final focusedChannelProvider = AutoDisposeFutureProvider<dynamic>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef FocusedChannelRef = AutoDisposeFutureProviderRef<dynamic>;
+typedef FocusedChannelRef = AutoDisposeStreamProviderRef<dynamic>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

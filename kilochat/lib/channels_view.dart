@@ -17,7 +17,7 @@ class ChannelsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final focusedChannel = ref.watch(focusedChannelProvider);
+    final focusedChannel = ref.watch(focusedChannelProvider).value;
     final repository = ref.watch(repositoryProvider);
     return repository.when(
       error: buildErrorWidget,

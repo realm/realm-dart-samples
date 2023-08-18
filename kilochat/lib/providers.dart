@@ -35,13 +35,15 @@ Stream<User> user(UserRef ref) async* {
 @riverpod
 Future<Repository> repository(RepositoryRef ref) async {
   final user = await ref.watch(userProvider.future);
-  final repository = await Repository.init(user, currentWorkspace!);
+  final repository = await Repository.init(currentWorkspace!);
   ref.onDispose(repository.dispose);
   return repository;
 }
 
 @riverpod
-Future<Channel?> focusedChannel(FocusedChannelRef ref) async {
+Stream<Channel?> focusedChannel(FocusedChannelRef ref) async* {
   final repository = await ref.watch(repositoryProvider.future);
-  return repository.focusedChannel;
+  await for (final channel in repository.focusedChannelChanges) {
+    yield channel;
+  }
 }

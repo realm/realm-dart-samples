@@ -8,7 +8,6 @@ import 'avatar.dart';
 import 'channels_view.dart';
 import 'chat_widget.dart';
 import 'display_toast.dart';
-import 'model.dart';
 import 'profile_form.dart';
 import 'providers.dart';
 import 'realm_ui/realm_session_state_indicator.dart';
@@ -28,13 +27,13 @@ class ChatScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final repository = ref.watch(repositoryProvider);
+    final focusedChannel = ref.watch(focusedChannelProvider).value;
     final twoPane = MediaQuery.of(context).size.width > 700;
     const menuWidth = 300.0;
     return repository.when(
       error: buildErrorWidget,
       loading: buildLoadingWidget,
       data: (repository) {
-        final focusedChannel = repository.focusedChannel;
         final user = repository.userProfile;
         return Scaffold(
           extendBodyBehindAppBar: platformIsDesktop,
@@ -100,12 +99,14 @@ class ChatScreen extends ConsumerWidget {
 
   Widget _buildChannelPane(Repository repository, BuildContext context) {
     return SafeArea(
-      child: ChannelsView(
-        onTap: (channel) {
-          repository.focusedChannel = channel;
-          Scaffold.of(context).closeDrawer();
-        },
-      ),
+      child: Builder(builder: (context) {
+        return ChannelsView(
+          onTap: (channel) {
+            repository.focusedChannel = channel;
+            Scaffold.of(context).closeDrawer();
+          },
+        );
+      }),
     );
   }
 

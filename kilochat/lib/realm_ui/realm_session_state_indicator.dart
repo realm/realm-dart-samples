@@ -12,7 +12,7 @@ typedef SessionStatus = (
   bool uploading
 );
 
-const _noProgress = (transferableBytes: 0, transferredBytes: 0);
+const _noProgress = SyncProgress(transferableBytes: 0, transferredBytes: 0);
 
 class RealmSessionStateIndicator extends StatelessWidget {
   const RealmSessionStateIndicator({

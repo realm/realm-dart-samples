@@ -51,6 +51,6 @@ flutter:
       fonts:
         - asset: packages/firebase_ui_auth/fonts/SocialIcons.ttf
 
-dependency_overrides:
-  realm:
-     path: ../../../realm-dart/flutter/realm_flutter
+#dependency_overrides:
+#  realm:
+#     path: ../../../realm-dart/flutter/realm_flutter
