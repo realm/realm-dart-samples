@@ -7,12 +7,12 @@ It aims to give a more thorough and realistic example of how to use Realm and At
 The app demonstrates how to:
 
 1. Re-use credentials on app restart to allow for _offline login_
-1. Use federated jwt-based authentication with Firebase Auth.
-1. React to connectivity changes to quickly recover.
+1. Use federated jwt-based authentication with FIDO 2 / WebAuthn passkeys.
+1. React to connectivity changes to quickly recover synchronization.
 1. Display sync connection state.
 1. Handle soft synchronization errors.
 1. Handle client resets (hard sync errors).
-1. Display a toast when interesting data is synced to device.
+1. Display a toast when data is synced to device.
 1. Animate list views as changes happen in a realm that impacts a live query.
 1. Update flexible sync subscriptions to only sync a subset of data dynamically.
 1. Use rule-based permissions to ensure users can only manipulate their own data.
@@ -26,50 +26,62 @@ Depending on how you choose to count, it does so in just 1-2K lines of code, hen
 
 ## Getting started
 
+The absolute easiest way to check this out is to install the kilochat app from either Apple's App Store or Google's Play Store.
+
+A shared backend is setup for a fictitious organization [Acme Corporation](https://en.wikipedia.org/wiki/Acme_Corporation) for your convenience.
+
+If you choose to use the pre-configured backend, then be aware that it is shared with the entire world, and there is no ongoing moderation. Please behave and follow our [code of conduct](https://www.mongodb.com/community-code-of-conduct) or we will have to disable it.
+
+You will be able to sign-up and login with an email address of yours, and if you device supports it, a biometric passkeys. Otherwise a magic-link will be sent to your address. No password is necessary.
+
+We hope, that once you have played with it for a while, that you will be tempted to learn how it was build. The rest of this lengthy README will try to explain just that.
+
 ### Prerequisites
 
-You need Flutter 3.10.2 or later.
+You need Flutter 3.13.0 or later.
 
-Create the platform projects you are interested in. Only the bare minimum modifications are added in the repo, so you need to create the platform projects on your end. You can choose any platforms except web.
+Create the platform projects you are interested in. Only the bare minimum modifications are added in the repo, so you need to create the platform projects on your end. You can choose Android and/or iOS.
 
 ```shell
-flutter create . --platforms=android,ios,macos,windows,linux # realm does not support web (yet)
+flutter create . --platforms=android,ios # realm does not support web (yet), and corbado only support android and ios.
 flutter pub get
 ```
 
-You will need to login with either a google account or email and password. For the latter we have setup 9 different test users (`test1@test.com`, ..., `test9@test.com`), with passwords matching pattern `test<x>!Atlas`. There is no ongoing moderation, so please behave or we will have to disable these shared accounts.
+You will need the following CLI tools installed to follow the instructions for setting up a backend:
+
+- `atlas`, and
+- `atlas-app-services-cli`.
+
+On macos You can get these with:
+
+```shell
+npm install -g atlas-app-services-cli # TODO: is this officially released yet? (or fo we need to use realm-cli?)
+brew install mongodb_atlas_cli # TODO: on macos
+```
+
 
 ## Setting up your own backend
 
-To make it easy to get started we have a shared backend setup already, but be aware that it is managed by us at MongoDB and shared with the entire world.
+> :warning: This repo contains an atlas application identifier (`app_id`) which is **not** a secret, but should not be shared widely if the app service has developer mode enabled. The reason for this being that developer mode allows clients to do automatic schema changes.
 
-> :warning: This also means that this repo contains a set of Firebase API keys, which while **not** really [secret](https://firebase.google.com/docs/projects/api-keys) as such, is not something we would recommend in general.
->
-> The repo also contains an atlas application identifier (`app_id`) which is **not** a secret, but should not be shared if the app service has developer mode enabled. The reason for this being that developer mode allows clients to do automatic schema changes
-
-To setup your own backend you need to setup both Firebase Auth with Google and Atlas Device Sync with MongoDB.
+These instruction only pertain to the setup Atlas Device Sync with MongoDB, and reuse the existing relay party. If you want to setup your own corbado project as well, please consult https://pub.dev/packages/corbado_auth.
 
 You will need the following CLI tools installed to follow these instructions:
 
-- `flutterfire`,
 - `atlas`, and
 - `atlas-app-services-cli`.
 
 You can get these with:
 
 ```shell
-dart pub global activate flutterfire
 npm install -g atlas-app-services-cli # TODO: is this officially released yet? (or fo we need to use realm-cli?)
 brew install mongodb_atlas_cli # TODO: on macos
 ```
 
-### Firebase Auth
-
-You can follow Google's [instructions](https://firebase.google.com/docs/auth/flutter/start) for setting up Firebase Authentication with Flutter.
-
 ### Atlas Device Sync
 
-First you need to setup a cluster.
+First, you need to create an organization.
+Secondly you need to create a project.
 Then you need to setup Atlas Device Sync.
 Then you need to push the schema. Normally during development you would just enable developer mode, and have the client inform the server of the schema implicitly, but this is not how you would go about it in production, so for this sample we will not enable developer mode.
 
@@ -89,7 +101,52 @@ This is similar to how your email client works on your phone.
 
 Realm will try to refresh the associated tokens whenever needed. Obviously that will require the device to be online, but as tokens only need to be valid when actually performing requests, this will require the device to be online anyway. For most practical purposes a user only needs to login on a given device once.
 
-In this sample we federate authentication to firebase. Firebase also persists the currently logged in user, so even if `app.currentUser == null` then we may still have a valid jwt token from firebase, so that the user avoid actually performing authentication.
+In this sample we federate authentication to corbado. Corbado also persists the currently logged in user, so even if `app.currentUser == null` we may still obtain a valid jwt token, so that the user avoid actually performing authentication.
+
+## Authentication
+
+I have a vague recollection that Bill Gates proclaimed the death of passwords back in the early 00's, however we may finally
+be on the brink of such a future, due to FIDO2 / WebAuthn passkeys, which are supported on most modern operating systems (Android 9, iOS 16, MacOS Ventura, Windows 10, and later), and with external hardware authenticators such as Yubikey.
+
+When it comes to Flutter, the support is still a bit limited, but the German startup [Corbado](https://app.corbado.com/) is working hard to change that. So far only Android and iOS is supported, and that is really the reason this project only works on those platforms. Realm itself works on all official platforms, except web.
+
+## Authorization 
+
+While passkeys allows our users to be securely authenticated, in an UX friendly manner, we need to authorize the users to use the system. For a Atlas App Services this is handled at two levels
+
+1. Upon user creation. 
+
+   When creating a user on Atlas App Services, you can choose to have a user creation callback invoked. This can be used to either deny the creation, or augment the users profile with extra data, or both.
+
+   For kilochat the default is evaluate the
+   validated user email against a set of regular expressions. This can be used to only allow email addresses from a given company, or maintain an explicit list of allowed users.
+
+2. Rules and roles
+
+   Once a user has been created, she is authorized to use the app service, but exactly what subset of data she is allowed to read, insert, write, delete, and search, is determined by rules and roles.
+
+### User creation
+
+
+### Rule-based permissions
+
+Kilochat is a mostly public system, yet we still wan't to prevent bad actors from impersonating others, and make changes to other peoples data, be it their messages, reactions, or user profile.
+
+While the app as implemented won't allow such edits, we cannot rely on the app to enforce this. A malicious actor could reverse engineer the app and implement a version without such restrictions.
+
+Instead it falls on the server to enforce the rules of the system. In our case it is very simple. A user cannot edit objects created by other users, and cannot impersonate others.
+
+This has some implications on our model classes. First, all model classes has an extra `ownerId` property that must be filled with `user.id` upon creation. The backend will check that `ownerId` on any edit match the user id of the session, or revoke the edit (/creation). If this happens, the perpetrator will receive a compensating write, and undo the invalid change, assuming it was due to a bug and not a malicious intent.
+
+A more subtle implication is that a message cannot contain a list of reactions, as only the message owner would be able to update this list. Instead a reaction refer to the message it pertains to and the reactions are accessible from the message via a named backlink property. Each reaction is owned by the user who added it.
+
+The ownership role goes for channels as well. Anyone can create a channel, but only the owner can update or
+delete it. The ability to create channels would usually be reserved for admin users, but alas this is after
+all just a toy system.
+
+
+
+
 
 ## Subscriptions
 
@@ -125,21 +182,6 @@ The presence system used here is still rather simple. We refer t [A Scalable Ser
 
 ## Leader-board
 
-## Rule-based permissions
-
-Kilochat is a mostly public system, yet we still wan't to prevent bad actors from impersonating others, and make changes to other peoples data, be it their messages, reactions, or user profile.
-
-While the app as implemented won't allow such edits, we cannot rely on the app to enforce this. A malicious actor could reverse engineer the app and implement a version without such restrictions.
-
-Instead it falls on the server to enforce the rules of the system. In our case it is very simple. A user cannot edit objects created by other users, and cannot impersonate others.
-
-This has some implications on our model classes. First, all model classes has an extra `ownerId` property that must be filled with `user.id` upon creation. The backend will check that `ownerId` on any edit match the user id of the session, or revoke the edit (/creation). If this happens, the perpetrator will receive a compensating write, and undo the invalid change, assuming it was due to a bug and not a malicious intent.
-
-A more subtle implication is that a message cannot contain a list of reactions, as only the message owner would be able to update this list. Instead a reaction refer to the message it pertains to and the reactions are accessible from the message via a named backlink property. Each reaction is owned by the user who added it.
-
-The ownership role goes for channels as well. Anyone can create a channel, but only the owner can update or
-delete it. The ability to create channels would usually be reserved for admin users, but alas this is after
-all just a toy system.
 
 # A bit about modelling
 
@@ -180,7 +222,3 @@ Also, we always add the new messages to the end. This means, that if we _believe
 We still need to maintain the order somehow. To do this each new message will be given a new index that is one larger than max index of any seen message in the channel sofar. There may be duplicates if some peers have have not seen all existing messages when creating a new one. To handle this we define the order as the sort of the indexes, and secondarily the owner id to ensure a stable sort.
 
 Note that we may introduce holes in the sequence this way (or by later deletions), but that is alright. Realm will easily find the _n'th_ message in the channel given the sort, irregardless of the actual values of index, and owner id.
-
-# DISCLAIMER
-
-This is low priority work in progress. Eventually we hope to make this a well documented example of best practices, but that is _not_ the current state.

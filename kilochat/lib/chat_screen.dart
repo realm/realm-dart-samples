@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'avatar.dart';
@@ -112,8 +111,11 @@ class ChatScreen extends ConsumerWidget {
 
   Widget _buildChatPane(Repository repository) {
     final channel = repository.focusedChannel;
-    return const Center(child: Text('Choose a channel'))
-        .animate(target: channel == null ? 0 : 1)
-        .crossfade(builder: (context) => const ChatWidget());
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
+      child: channel == null
+          ? const Center(child: Text('Choose a channel'))
+          : ChatWidget(key: ValueKey(channel.id)),
+    );
   }
 }

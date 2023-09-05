@@ -1,4 +1,3 @@
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -126,7 +125,7 @@ class _ProfileFormState extends ConsumerState<ProfileForm> {
                     label: const Text('Save Changes'),
                   ),
                   const Spacer(),
-                  const SignOutButton()
+                  const Placeholder()
                 ]),
               ]
                   .animate(interval: 100.ms)

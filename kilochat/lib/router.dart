@@ -1,4 +1,3 @@
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:realm/realm.dart';
@@ -35,34 +34,13 @@ final router = GoRouter(
     GoRoute(
       path: Routes.logIn.path,
       builder: (context, state) {
-        return SignInScreen(actions: [
-          AuthCancelledAction((context) {
-            Routes.chooseWorkspace.go(context);
-          }),
-          AuthStateChangeAction<SignedIn>((context, state) async {
-            // TODO: This sucks!!
-            try {
-              final app = currentWorkspace?.app;
-              final jwt = await state.user?.getIdToken();
-              if (app != null && jwt != null) {
-                await app.logIn(Credentials.jwt(jwt));
-              }
-            } catch (_) {
-              currentWorkspace = null;
-            }
-
-            if (context.mounted) {
-              Routes.chat.go(context);
-            }
-          }),
-        ]);
+        return const Placeholder();
       },
     ),
     GoRoute(
       path: Routes.profile.path,
       builder: (context, state) {
-        //return const Placeholder();
-        return const ProfileScreen();
+        return const Placeholder();
       },
     ),
   ],

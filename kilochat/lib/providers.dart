@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:realm/realm.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'firebase_user_provider.dart';
 import 'model.dart';
 import 'repository.dart';
 import 'settings.dart';
@@ -22,8 +21,7 @@ Stream<App> app(AppRef ref) async* {
 Stream<User> user(UserRef ref) async* {
   final app = await ref.watch(appProvider.future);
 
-  final firebaseUser = await ref.watch(firebaseUserProvider.future);
-  final jwt = await firebaseUser?.getIdToken();
+  final jwt = '' as String?; // todo
 
   var user = app.currentUser;
   if (jwt != null) {
