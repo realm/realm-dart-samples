@@ -32,7 +32,7 @@ A shared backend is setup for a fictitious organization [Acme Corporation](https
 
 If you choose to use the pre-configured backend, then be aware that it is shared with the entire world, and there is no ongoing moderation. Please behave and follow our [code of conduct](https://www.mongodb.com/community-code-of-conduct) or we will have to disable it.
 
-You will be able to sign-up and login with an email address of yours, and if you device supports it, a biometric passkeys. Otherwise a magic-link will be sent to your address. No password is necessary.
+You will be able to sign-up and login with any email address of yours, and if you device supports it, a biometric passkey. Otherwise a magic-link will be sent to your address. No password is necessary.
 
 We hope, that once you have played with it for a while, that you will be tempted to learn how it was build. The rest of this lengthy README will try to explain just that.
 

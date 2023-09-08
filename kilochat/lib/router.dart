@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:realm/realm.dart';
 
 import 'chat_screen.dart';
 import 'settings.dart';
@@ -34,7 +33,7 @@ final router = GoRouter(
     GoRoute(
       path: Routes.logIn.path,
       builder: (context, state) {
-        return const Placeholder();
+        return const LoginScreen();
       },
     ),
     GoRoute(

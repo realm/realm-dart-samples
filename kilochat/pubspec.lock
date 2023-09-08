@@ -225,14 +225,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
-  corbado_auth:
-    dependency: "direct main"
-    description:
-      name: corbado_auth
-      sha256: e8e4a8468da51556bd68fad9ebfc345b296767fe86de5ab2532507b6115cd10b
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1"
   corbado_frontend_api_client:
     dependency: transitive
     description:
@@ -334,14 +326,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.0+1"
-  flutter_keychain:
-    dependency: transitive
-    description:
-      name: flutter_keychain
-      sha256: f41a276e877453e70afcbf8e77e33203eab6f60a42f8296f9f3994e69fa6214c
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -488,14 +472,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.8.1"
-  jwt_decoder:
-    dependency: transitive
-    description:
-      name: jwt_decoder
-      sha256: "54774aebf83f2923b99e6416b4ea915d47af3bde56884eb622de85feabbc559f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
   lints:
     dependency: transitive
     description:
@@ -593,12 +569,11 @@ packages:
     source: hosted
     version: "2.1.0"
   passkeys:
-    dependency: transitive
+    dependency: "direct main"
     description:
-      name: passkeys
-      sha256: "71da8c518bd0d890345ab957abdf01613103725705001c8c9c9a5a189cce2025"
-      url: "https://pub.dev"
-    source: hosted
+      path: "../../../../3rd_party/corbado/flutter-passkeys/packages/passkeys/passkeys"
+      relative: true
+    source: path
     version: "1.0.2"
   passkeys_android:
     dependency: transitive

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'model.dart';
 import 'providers.dart';
+import 'router.dart';
 import 'widget_builders.dart';
 
 class ProfileForm extends ConsumerStatefulWidget {
@@ -125,7 +126,14 @@ class _ProfileFormState extends ConsumerState<ProfileForm> {
                     label: const Text('Save Changes'),
                   ),
                   const Spacer(),
-                  const Placeholder()
+                  TextButton.icon(
+                    onPressed: () {
+                      repository.logoutUser();
+                      Routes.chooseWorkspace.go(context);
+                    },
+                    icon: const Icon(Icons.logout),
+                    label: const Text('Logout'),
+                  ),
                 ]),
               ]
                   .animate(interval: 100.ms)

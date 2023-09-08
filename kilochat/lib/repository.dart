@@ -186,6 +186,8 @@ class Repository extends Disposable {
 
   void updateUserProfile(UserProfile newProfile) =>
       _realm.write(() => _realm.add(newProfile, update: true));
+
+  Future<void> logoutUser() => _user.logOut();
 }
 
 extension on MutableSubscriptionSet {

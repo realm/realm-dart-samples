@@ -6,39 +6,27 @@ part of 'providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appHash() => r'f2013a10f035b47580fa754eb5b97b53d77ee6d2';
+String _$authHash() => r'bb87fc7829de6f1802b23164ef15da1e22abde8d';
 
-/// See also [app].
-@ProviderFor(app)
-final appProvider = AutoDisposeStreamProvider<App>.internal(
-  app,
-  name: r'appProvider',
+/// See also [auth].
+@ProviderFor(auth)
+final authProvider =
+    AutoDisposeFutureProvider<PasskeyAuth<AuthRequest, AuthResponse>>.internal(
+  auth,
+  name: r'authProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$appHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$authHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef AppRef = AutoDisposeStreamProviderRef<App>;
-String _$userHash() => r'01d81be0d3b467561310f13c6d871e58fd8d8728';
-
-/// See also [user].
-@ProviderFor(user)
-final userProvider = AutoDisposeStreamProvider<User>.internal(
-  user,
-  name: r'userProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$userHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef UserRef = AutoDisposeStreamProviderRef<User>;
-String _$repositoryHash() => r'2275ebf66658e7b0d08ad325b5ea8aacacf4143a';
+typedef AuthRef
+    = AutoDisposeFutureProviderRef<PasskeyAuth<AuthRequest, AuthResponse>>;
+String _$repositoryHash() => r'6fed4ac6e5b8977a4ad0c215b8030845a217b1b3';
 
 /// See also [repository].
 @ProviderFor(repository)
-final repositoryProvider = AutoDisposeFutureProvider<Repository>.internal(
+final repositoryProvider = AutoDisposeStreamProvider<Repository>.internal(
   repository,
   name: r'repositoryProvider',
   debugGetCreateSourceHash:
@@ -47,7 +35,7 @@ final repositoryProvider = AutoDisposeFutureProvider<Repository>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef RepositoryRef = AutoDisposeFutureProviderRef<Repository>;
+typedef RepositoryRef = AutoDisposeStreamProviderRef<Repository>;
 String _$focusedChannelHash() => r'c467f8b8fbe8c481f8f49a542486227febaa2684';
 
 /// See also [focusedChannel].
