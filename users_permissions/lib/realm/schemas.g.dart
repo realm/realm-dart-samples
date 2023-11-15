@@ -6,6 +6,7 @@ part of 'schemas.dart';
 // RealmObjectGenerator
 // **************************************************************************
 
+// ignore_for_file: type=lint
 class Item extends _Item with RealmEntity, RealmObjectBase, RealmObject {
   static var _defaultsSet = false;
 
@@ -69,6 +70,7 @@ class Item extends _Item with RealmEntity, RealmObjectBase, RealmObject {
   }
 }
 
+// ignore_for_file: type=lint
 class Role extends _Role with RealmEntity, RealmObjectBase, RealmObject {
   static var _defaultsSet = false;
 

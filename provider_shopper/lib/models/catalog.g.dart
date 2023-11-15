@@ -6,6 +6,7 @@ part of 'catalog.dart';
 // RealmObjectGenerator
 // **************************************************************************
 
+// ignore_for_file: type=lint
 class Item extends _Item with RealmEntity, RealmObjectBase, RealmObject {
   static var _defaultsSet = false;
 
