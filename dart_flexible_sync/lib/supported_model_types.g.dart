@@ -6,6 +6,7 @@ part of 'supported_model_types.dart';
 // RealmObjectGenerator
 // **************************************************************************
 
+// ignore_for_file: type=lint
 class AllPrimitiveOptional extends _AllPrimitiveOptional
     with RealmEntity, RealmObjectBase, RealmObject {
   AllPrimitiveOptional({
@@ -96,6 +97,7 @@ class AllPrimitiveOptional extends _AllPrimitiveOptional
   }
 }
 
+// ignore_for_file: type=lint
 class AllPrimitiveRequired extends _AllPrimitiveRequired
     with RealmEntity, RealmObjectBase, RealmObject {
   AllPrimitiveRequired(
@@ -194,6 +196,7 @@ class AllPrimitiveRequired extends _AllPrimitiveRequired
   }
 }
 
+// ignore_for_file: type=lint
 class AllPrimitiveLists extends _AllPrimitiveLists
     with RealmEntity, RealmObjectBase, RealmObject {
   AllPrimitiveLists({

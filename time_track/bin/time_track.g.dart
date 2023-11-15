@@ -6,6 +6,7 @@ part of 'time_track.dart';
 // RealmObjectGenerator
 // **************************************************************************
 
+// ignore_for_file: type=lint
 class Category extends _Category
     with RealmEntity, RealmObjectBase, RealmObject {
   Category(
@@ -38,6 +39,7 @@ class Category extends _Category
   }
 }
 
+// ignore_for_file: type=lint
 class Now extends _Now with RealmEntity, RealmObjectBase, RealmObject {
   Now(
     int time, {

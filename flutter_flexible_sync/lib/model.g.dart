@@ -6,6 +6,7 @@ part of 'model.dart';
 // RealmObjectGenerator
 // **************************************************************************
 
+// ignore_for_file: type=lint
 class Task extends _Task with RealmEntity, RealmObjectBase, RealmObject {
   Task(
     ObjectId id,
