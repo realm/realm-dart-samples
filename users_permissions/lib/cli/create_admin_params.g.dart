@@ -29,3 +29,9 @@ CreateAdminUserParams parseCreateAdminUserParams(List<String> args) {
   final result = _$parserForCreateAdminUserParams.parse(args);
   return _$parseCreateAdminUserParamsResult(result);
 }
+
+// **************************************************************************
+// RealmObjectGenerator
+// **************************************************************************
+
+// ignore_for_file: type=lint
