@@ -70,7 +70,6 @@ class Item extends _Item with RealmEntity, RealmObjectBase, RealmObject {
   }
 }
 
-// ignore_for_file: type=lint
 class Role extends _Role with RealmEntity, RealmObjectBase, RealmObject {
   static var _defaultsSet = false;
 

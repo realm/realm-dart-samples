@@ -39,7 +39,6 @@ class Category extends _Category
   }
 }
 
-// ignore_for_file: type=lint
 class Now extends _Now with RealmEntity, RealmObjectBase, RealmObject {
   Now(
     int time, {
