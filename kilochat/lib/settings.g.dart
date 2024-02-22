@@ -6,6 +6,7 @@ part of 'settings.dart';
 // RealmObjectGenerator
 // **************************************************************************
 
+// ignore_for_file: type=lint
 class Workspace extends _Workspace
     with RealmEntity, RealmObjectBase, RealmObject {
   Workspace(

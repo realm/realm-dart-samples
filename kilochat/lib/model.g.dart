@@ -6,6 +6,7 @@ part of 'model.dart';
 // RealmObjectGenerator
 // **************************************************************************
 
+// ignore_for_file: type=lint
 class Channel extends _Channel with RealmEntity, RealmObjectBase, RealmObject {
   Channel(
     ObjectId id,

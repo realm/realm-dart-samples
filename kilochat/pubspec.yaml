@@ -12,19 +12,20 @@ dependencies:
   flutter:
     sdk: flutter
 
-  animated_emoji: ^2.0.0
+  animated_emoji: ^3.1.0
   cancellation_token: ^2.0.0
   collection: ^1.17.0
-  connectivity_plus: ^4.0.1
+  connectivity_plus: ^5.0.2
+  corbado_auth: ^2.0.0
   flutter_animate: ^4.0.0
   flutter_markdown: ^0.6.0
   flutter_riverpod: ^2.3.0
-  go_router: ^10.0.0
+  go_router: ^13.2.0
   markdown: ^7.0.0
-  passkeys: ^1.0.0
+  passkeys: ^2.0.4
   path: ^1.0.0
   random_avatar: ^0.0.8
-  realm: ^1.4.0
+  realm: ^1.9.0
   riverpod_annotation: ^2.0.0
   riverpod: ^2.3.0
   rxdart: ^0.27.0
@@ -33,16 +34,16 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^2.0.0
-  custom_lint: ^0.4.0
+  flutter_lints: ^3.0.1
+  custom_lint: ^0.6.2
   riverpod_lint: any
   riverpod_generator: ^2.0.0
 
 flutter:
   uses-material-design: true
 
-dependency_overrides:
-  passkeys:
-    path: ../../../../3rd_party/corbado/flutter-passkeys/packages/passkeys/passkeys
-#  realm:
+# dependency_overrides:
+#   passkeys:
+#     path: ../../../../3rd_party/corbado/flutter-passkeys/packages/passkeys/passkeys
+#   realm:
 #     path: ../../../realm-dart/flutter/realm_flutter

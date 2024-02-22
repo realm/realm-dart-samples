@@ -1,5 +1,4 @@
-import 'package:animated_emoji/emoji.dart';
-import 'package:animated_emoji/emojis.dart';
+import 'package:animated_emoji/animated_emoji.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -95,6 +94,7 @@ class MessageTile extends ConsumerWidget {
                     label: AnimatedEmoji(
                       AnimatedEmojiData(
                         'u${reaction.emojiUnicode.toRadixString(16)}',
+                        name: 'n/a',
                       ),
                       repeat: false,
                       size: 20,

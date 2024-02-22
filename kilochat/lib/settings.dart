@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:path/path.dart' as path;
 import 'package:realm/realm.dart';
 
@@ -10,8 +12,8 @@ class _Workspace {
   late String name; // for display
   ObjectId? currentChannelId; // current channel
 
-  App get app =>
-      _appCache.putIfAbsent(appId, () => App(AppConfiguration(appId)));
+  App get app => _appCache.putIfAbsent(
+      appId, () => App(AppConfiguration(appId, httpClient: HttpClient())));
 }
 
 final _appCache = <String, App>{};

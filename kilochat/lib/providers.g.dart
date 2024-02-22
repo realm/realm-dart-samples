@@ -6,12 +6,11 @@ part of 'providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authHash() => r'bb87fc7829de6f1802b23164ef15da1e22abde8d';
+String _$authHash() => r'e2d649ccf2244021dd2bb2cc2355b835a9957a3c';
 
 /// See also [auth].
 @ProviderFor(auth)
-final authProvider =
-    AutoDisposeFutureProvider<PasskeyAuth<AuthRequest, AuthResponse>>.internal(
+final authProvider = AutoDisposeFutureProvider<CorbadoAuth>.internal(
   auth,
   name: r'authProvider',
   debugGetCreateSourceHash:
@@ -20,8 +19,7 @@ final authProvider =
   allTransitiveDependencies: null,
 );
 
-typedef AuthRef
-    = AutoDisposeFutureProviderRef<PasskeyAuth<AuthRequest, AuthResponse>>;
+typedef AuthRef = AutoDisposeFutureProviderRef<CorbadoAuth>;
 String _$repositoryHash() => r'6fed4ac6e5b8977a4ad0c215b8030845a217b1b3';
 
 /// See also [repository].
@@ -40,7 +38,7 @@ String _$focusedChannelHash() => r'c467f8b8fbe8c481f8f49a542486227febaa2684';
 
 /// See also [focusedChannel].
 @ProviderFor(focusedChannel)
-final focusedChannelProvider = AutoDisposeStreamProvider<dynamic>.internal(
+final focusedChannelProvider = AutoDisposeStreamProvider<Channel?>.internal(
   focusedChannel,
   name: r'focusedChannelProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -50,6 +48,6 @@ final focusedChannelProvider = AutoDisposeStreamProvider<dynamic>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef FocusedChannelRef = AutoDisposeStreamProviderRef<dynamic>;
+typedef FocusedChannelRef = AutoDisposeStreamProviderRef<Channel?>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

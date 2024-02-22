@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kilochat/providers.dart';
-import 'package:passkeys/relying_party_server/corbado/types/shared.dart';
 import 'package:realm/realm.dart';
 
 import 'realm_ui/realm_animated_list.dart';
@@ -261,13 +260,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         app.currentUser?.logOut();
         mode = PageMode.login;
       } else {
-        AuthResponse? response;
         if (mode == PageMode.registration) {
-          response = await auth.registerWithEmail(AuthRequest(email));
+          await auth.signUpWithPasskey(email: email);
         } else if (mode == PageMode.login) {
-          response = await auth.authenticateWithEmail(AuthRequest(email));
+          await auth.loginWithPasskey(email: email);
         }
-        await currentWorkspace?.app.logIn(Credentials.jwt(response!.token));
+        final jwt = (await auth.currentUser)!.idToken;
+        await currentWorkspace?.app.logIn(Credentials.jwt(jwt));
         mode = PageMode.loggedIn;
 
         if (mounted) Routes.chat.go(context);

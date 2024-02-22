@@ -1,9 +1,7 @@
 import 'dart:async';
 
-import 'package:passkeys/relying_party_server/corbado/corbado_passkey_backend.dart';
-import 'package:passkeys/relying_party_server/corbado/types/shared.dart';
+import 'package:corbado_auth/corbado_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:passkeys/passkey_auth.dart';
 
 import 'model.dart';
 import 'repository.dart';
@@ -12,13 +10,11 @@ import 'settings.dart';
 part 'providers.g.dart';
 
 @riverpod
-Future<PasskeyAuth<AuthRequest, AuthResponse>> auth(AuthRef ref) async {
-  final server = CorbadoPasskeyBackend('pro-2636186146982821243');
-  final auth = PasskeyAuth(server);
-  if (await auth.isSupported()) {
-    return auth;
-  }
-  throw Exception('Passkeys are not supported on this device!'); // TODO
+Future<CorbadoAuth> auth(AuthRef ref) async {
+  const projectId = 'pro-2636186146982821243';
+  final auth = CorbadoAuth();
+  await auth.init(projectId);
+  return auth;
 }
 
 @riverpod
