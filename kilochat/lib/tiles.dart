@@ -78,7 +78,7 @@ class MessageTile extends ConsumerWidget {
           ),
           const SizedBox(height: 8),
           SizedBox(
-            height: 30,
+            height: 32,
             child: RealmAnimatedList(
               results: message.reactions,
               scrollDirection: Axis.horizontal,
@@ -92,12 +92,11 @@ class MessageTile extends ConsumerWidget {
                     visualDensity: VisualDensity.compact,
                     avatar: MyAvatar(user: reaction.owner),
                     label: AnimatedEmoji(
-                      AnimatedEmojiData(
-                        'u${reaction.emojiUnicode.toRadixString(16)}',
-                        name: 'n/a',
+                      AnimatedEmojis.fromId(
+                        reaction.emojiUnicode.toRadixString(16),
                       ),
                       repeat: false,
-                      size: 20,
+                      size: 16,
                       errorWidget: Text(reaction.emoji),
                     ),
                     onDeleted:
@@ -113,7 +112,7 @@ class MessageTile extends ConsumerWidget {
         icon: const Icon(Icons.add),
         onPressed: () {
           (ref.read(repositoryProvider.future)).then((repository) {
-            repository.addReaction(message, '\u{1f605}'); //'👍');
+            repository.addReaction(message, '👍');
           });
         },
       ),

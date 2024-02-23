@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:cancellation_token/cancellation_token.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:kilochat/settings.dart';
 import 'package:realm/realm.dart';
@@ -141,10 +140,14 @@ class Repository extends Disposable {
     );
   }
 
-  late Stream<Message> x =
-      allMessages.changes.where((c) => c.inserted.isNotEmpty).map((c) {
-    return c.results[c.inserted.last];
-  });
+  late Stream<Message> notifications = allMessages.changes.asyncExpand((c) async* {
+    final idx = c.inserted.lastOrNull ?? c.modified.lastOrNull ?? -1;
+    if (idx >= 0) { // not a delete
+      final message = c.results[idx];
+      if (message.owner != userProfile && message.channel != focusedChannel) {
+        yield message;
+      }
+  }});
 
   void postNewMessage(Channel channel, String text) {
     // messages are sorted latest first

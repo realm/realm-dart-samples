@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'chat_screen.dart';
 import 'settings.dart';
 import 'workspace_view.dart';
+import 'login_screen.dart';
 
 enum Routes {
   chat,

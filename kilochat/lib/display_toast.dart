@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 
 class DisplayToast<T> extends StatefulWidget {
   const DisplayToast({
-    Key? key,
+    super.key,
     required this.child,
     required this.stream,
     required this.builder,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final Stream<T> stream;
@@ -59,7 +59,7 @@ class _DisplayToastState<T> extends State<DisplayToast<T>>
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: Colors.black),
               boxShadow: kElevationToShadow[4],
-              color: Colors.white,
+              color: Colors.grey.withAlpha(100),
             ),
             child: widget.builder(event, _controller),
           ),

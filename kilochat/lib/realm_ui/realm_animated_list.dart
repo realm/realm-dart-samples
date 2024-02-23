@@ -105,6 +105,7 @@ class _RealmAnimatedListState<E> extends State<RealmAnimatedList<E>> {
   @override
   void dispose() {
     _subscription?.cancel();
+    _subscription = null;
     super.dispose();
   }
 

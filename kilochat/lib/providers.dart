@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:corbado_auth/corbado_auth.dart';
+import 'package:realm/realm.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'model.dart';
@@ -11,7 +12,8 @@ part 'providers.g.dart';
 
 @riverpod
 Future<CorbadoAuth> auth(AuthRef ref) async {
-  const projectId = 'pro-2636186146982821243';
+  //const projectId = 'pro-2636186146982821243';
+  const projectId = 'pro-9092673961474177526';
   final auth = CorbadoAuth();
   await auth.init(projectId);
   return auth;
@@ -35,6 +37,10 @@ Stream<Repository> repository(RepositoryRef ref) async* {
 Stream<Channel?> focusedChannel(FocusedChannelRef ref) async* {
   final repository = await ref.watch(repositoryProvider.future);
   await for (final channel in repository.focusedChannelChanges) {
-    yield channel;
+    yield channel?.nullIfInvalid;
   }
+}
+
+extension<T extends RealmObject> on T {
+  T? get nullIfInvalid => isValid ? this : null;
 }
