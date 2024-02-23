@@ -64,7 +64,7 @@ class ChatScreen extends ConsumerWidget {
             ],
           ),
           body: DisplayToast(
-            stream: repository.x,
+            stream: repository.notifications,
             builder: (message, animation) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +73,7 @@ class ChatScreen extends ConsumerWidget {
                     color: Colors.yellow,
                     padding: const EdgeInsets.all(8),
                     width: double.infinity,
-                    child: Text('in channel "${message.channel!.name}"'),
+                    child: Text('in channel "${message.channel?.name ?? 'unknown'}"'),
                   ),
                   MessageTile(message: message, animation: animation),
                 ],

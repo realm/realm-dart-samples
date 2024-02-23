@@ -35,7 +35,7 @@ class WorkspaceView extends ConsumerWidget {
 }
 
 class WorkspaceScreen extends StatelessWidget {
-  const WorkspaceScreen({Key? key}) : super(key: key);
+  const WorkspaceScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -79,11 +79,11 @@ class _WorkspaceFormState extends State<WorkspaceForm> {
 
   @override
   void initState() {
+    super.initState();
     workspace = Workspace(
       widget.initialWorkspace?.appId ?? '',
       widget.initialWorkspace?.name ?? '',
     );
-    super.initState();
   }
 
   @override
