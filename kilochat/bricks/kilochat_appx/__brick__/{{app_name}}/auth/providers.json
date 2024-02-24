@@ -16,7 +16,7 @@
             "audience": [
                 "{{audience}}"
             ],
-            "jwkURI": "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com",
+            "jwkURI": "https://{{corbado_project_id}}.frontendapi.corbado.io/.well-known/jwks",
             "requireAnyAudience": false,
             "signingAlgorithm": "",
             "useJWKURI": true

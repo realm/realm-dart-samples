@@ -51,5 +51,9 @@ vars:
   audience:
     type: string
     description: Firebase jwt provider audience
-    default: kilochat-realm
-    prompt: What is your Firebase jwt provider audience?
+    default: kilochat-audience
+    prompt: What is your jwt provider audience (aud claim)?
+  corbado_project_id:
+    type: string
+    description: Corbado project id
+    prompt: What is your Corbado project id?

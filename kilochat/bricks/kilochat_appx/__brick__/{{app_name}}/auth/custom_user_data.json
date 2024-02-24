@@ -1,3 +1,7 @@
 {
-    "enabled": false
+    "enabled": true,
+    "mongo_service_name": "{{service_name}}",
+    "database_name": "{{db_name}}",
+    "collection_name": "UserProfile",
+    "user_id_field": "ownerId"
 }
