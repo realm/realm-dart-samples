@@ -1,0 +1,54 @@
+{
+    "properties": {
+        "_id": {
+            "bsonType": "string"
+        },
+        "age": {
+            "bsonType": "long"
+        },
+        "bodies": {
+            "bsonType": "array",
+            "items": {
+                "bsonType": "string"
+            },
+            "uniqueItems": true
+        },
+        "channels": {
+            "bsonType": "array",
+            "items": {
+                "bsonType": "objectId"
+            },
+            "uniqueItems": true
+        },
+        "deactivated": {
+            "bsonType": "bool"
+        },
+        "email": {
+            "bsonType": "string"
+        },
+        "gender": {
+            "bsonType": "long"
+        },
+        "name": {
+            "bsonType": "string"
+        },
+        "owner_id": {
+            "bsonType": "string"
+        },
+        "status_emoji": {
+            "bsonType": "long"
+        },
+        "typing": {
+            "bsonType": "bool"
+        }
+    },
+    "required": [
+        "_id",
+        "deactivated",
+        "gender",
+        "owner_id",
+        "typing"
+    ],
+    "title": "UserProfile",
+    "type": "object"
+}

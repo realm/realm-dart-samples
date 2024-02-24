@@ -1,0 +1,21 @@
+{
+    "collection": "Reaction",
+    "database": "{{db_name}}",
+    "roles": [
+        {
+            "name": "readAllWriteOwn",
+            "apply_when": {},
+            "document_filters": {
+                "write": {
+                    "owner_id": "%%user.id"
+                },
+                "read": true
+            },
+            "read": true,
+            "write": true,
+            "insert": true,
+            "delete": true,
+            "search": true
+        }
+    ]
+}

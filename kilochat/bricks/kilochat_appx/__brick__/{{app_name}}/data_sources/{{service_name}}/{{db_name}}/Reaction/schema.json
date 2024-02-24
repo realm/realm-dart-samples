@@ -1,0 +1,26 @@
+{
+    "properties": {
+        "_id": {
+            "bsonType": "objectId"
+        },
+        "emojiUnicode": {
+            "bsonType": "long"
+        },
+        "message": {
+            "bsonType": "objectId"
+        },
+        "owner": {
+            "bsonType": "string"
+        },
+        "owner_id": {
+            "bsonType": "string"
+        }
+    },
+    "required": [
+        "_id",
+        "emojiUnicode",
+        "owner_id"
+    ],
+    "title": "Reaction",
+    "type": "object"
+}

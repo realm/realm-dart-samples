@@ -1,0 +1,8 @@
+{
+    "parent": {
+        "ref": "#/relationship/{{service_name}}/{{db_name}}/Channel",
+        "source_key": "parent",
+        "foreign_key": "_id",
+        "is_list": false
+    }
+}

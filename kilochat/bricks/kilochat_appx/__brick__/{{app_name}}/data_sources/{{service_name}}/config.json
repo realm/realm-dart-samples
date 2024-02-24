@@ -1,0 +1,10 @@
+{
+    "name": "{{service_name}}",
+    "type": "mongodb-atlas",
+    "config": {
+        "clusterName": "{{cluster_name}}",
+        "readPreference": "primary",
+        "wireProtocolEnabled": false
+    },
+    "version": 1
+}
