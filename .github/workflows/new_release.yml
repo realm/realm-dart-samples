@@ -45,4 +45,4 @@ jobs:
           draft: false
           body: An automated PR for released realm version.
           commit-message: Update samples with realm ${{ inputs.version }}
-          token: ${{ secrets.REALM_CI_PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
