@@ -34,7 +34,7 @@ final repositoryProvider = AutoDisposeStreamProvider<Repository>.internal(
 );
 
 typedef RepositoryRef = AutoDisposeStreamProviderRef<Repository>;
-String _$focusedChannelHash() => r'c467f8b8fbe8c481f8f49a542486227febaa2684';
+String _$focusedChannelHash() => r'4c82030fe34b65448b7f640cf1009d6518b34993';
 
 /// See also [focusedChannel].
 @ProviderFor(focusedChannel)

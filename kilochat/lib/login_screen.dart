@@ -124,6 +124,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         if (mode == PageMode.registration) {
           await auth.signUpWithPasskey(email: email);
         } else if (mode == PageMode.login) {
+          await auth.refreshToken();
           await auth.loginWithPasskey(email: email);
         }
         final jwt = (await auth.currentUser)!.idToken;

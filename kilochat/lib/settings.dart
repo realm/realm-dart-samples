@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:path/path.dart' as path;
 import 'package:realm/realm.dart';
 
-part 'settings.g.dart';
+part 'settings.realm.dart';
 
 @RealmModel()
 class _Workspace {

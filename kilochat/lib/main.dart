@@ -11,7 +11,9 @@ const freedomBlue = Color(0xff0057b7);
 const energizingYellow = Color(0xffffd700);
 
 Future<void> main() async {
-  Realm.logger.level = RealmLogLevel.debug;
+  Realm.logger.setLogLevel(LogLevel.info);
+  Realm.logger.onRecord.forEach(print);
+
   Animate.restartOnHotReload = true;
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -21,6 +23,7 @@ Future<void> main() async {
         routerConfig: router,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          useMaterial3: false,
           colorScheme: ColorScheme.fromSeed(
             seedColor: freedomBlue,
             inversePrimary: energizingYellow,

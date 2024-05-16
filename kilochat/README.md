@@ -24,28 +24,38 @@ TODO:
 It also serves as an example of an app architecture that works well with Realm.
 Depending on how you choose to count, it does so in just 1-2K lines of code, hence the name.
 
-## Getting started
+## Prerequisites
 
-The absolute easiest way to check this out is to install the kilochat app from either Apple's App Store or Google's Play Store.
+You will need Flutter 3.22.0 (Dart 3.4.0) or later.
 
-A shared backend is setup for a fictitious organization [Acme Corporation](https://en.wikipedia.org/wiki/Acme_Corporation) for your convenience.
+You will need a device/simulator with iOS 17.4+ or a device/emulator with Android XXX. If you are using a simulator/emulator make sure to set up support for biometric authentication, which is needed to use passkeys.
 
-If you choose to use the pre-configured backend, then be aware that it is shared with the entire world, and there is no ongoing moderation. Please behave and follow our [code of conduct](https://www.mongodb.com/community-code-of-conduct) or we will have to disable it.
-
-You will be able to sign-up and login with any email address of yours, and if you device supports it, a biometric passkey. Otherwise a magic-link will be sent to your address. No password is necessary.
-
-We hope, that once you have played with it for a while, that you will be tempted to learn how it was build. The rest of this lengthy README will try to explain just that.
-
-### Prerequisites
-
-You need Flutter 3.13.0 or later.
-
-Create the platform projects you are interested in. Only the bare minimum modifications are added in the repo, so you need to create the platform projects on your end. You can choose Android and/or iOS.
+Create the platform projects you are interested in. You can only choose Android and/or iOS, since we depend on [corbado_auth](https://pub.dev/packages/corbado_auth) for the passkey authentication. Realm itself supports all flutter platforms, except for web.
 
 ```shell
 flutter create . --platforms=android,ios # realm does not support web (yet), and corbado only support android and ios.
 flutter pub get
 ```
+
+## Passkey authentication
+
+We often use email/password authentication, or simply anonymous authentication when we create samples for Atlas Device Sync, since it is easy to set up, and doesn't require external services.
+
+However for this sample we will use federated jwt authentication via FIDO 2 / WebAuthn passkeys. 
+
+
+The downside is, that there is a bit more setup to do.
+
+
+
+Next you need to configure your native app for passkey use. Follow the instruction for [corbada_auth](https://pub.dev/packages/corbado_auth) on pub.dev.
+For iOS fx. you need to set minimum OS to 17.4, add the Associated Domains capability, and set an appropriate domain like:
+```
+webcredentials:{{project-id}}.frontendapi.corbado.io?mode=developer
+```
+replacing `{{project-id}}` with the project id of your personal corbado project.
+
+## Setting up your own backend
 
 You will need the following CLI tools installed to follow the instructions for setting up a backend:
 
@@ -55,30 +65,47 @@ You will need the following CLI tools installed to follow the instructions for s
 On macos You can get these with:
 
 ```shell
-npm install -g atlas-app-services-cli # TODO: is this officially released yet? (or fo we need to use realm-cli?)
-brew install mongodb_atlas_cli # TODO: on macos
+npm install -g atlas-app-services-cli
+brew install mongodb_atlas_cli
 ```
 
-
-## Setting up your own backend
-
-> :warning: This repo contains an atlas application identifier (`app_id`) which is **not** a secret, but should not be shared widely if the app service has developer mode enabled. The reason for this being that developer mode allows clients to do automatic schema changes.
-
-These instruction only pertain to the setup Atlas Device Sync with MongoDB, and reuse the existing relay party. If you want to setup your own corbado project as well, please consult https://pub.dev/packages/corbado_auth.
-
-You will need the following CLI tools installed to follow these instructions:
-
-- `atlas`, and
-- `atlas-app-services-cli`.
-
-You can get these with:
-
-```shell
-npm install -g atlas-app-services-cli # TODO: is this officially released yet? (or fo we need to use realm-cli?)
-brew install mongodb_atlas_cli # TODO: on macos
-```
 
 ### Atlas Device Sync
+
+```
+atlas auth login
+atlas cluster create kilochat-cluster --provider AWS --region EU_CENTRAL_1 --tier=M0
+```
+Be aware that you can only have one free (M0) cluster. If you already have one setup, just use that for the rest of the setup, when prompted for what cluster to use.
+
+To make it easy to setup the backend, this sample includes
+a mason brick that will provision it for you.
+
+You need to have your cluster name, chosen aud claim, and corbado project if ready, before proceeding.
+```shell
+dart pub global activate mason_cli # activate mason if you havnn't used it before
+mason add kilochat_appx --path bricks/kilochat_appx/ # add the custom brick
+```
+You need to have your cluster name, chosen aud claim, and corbado project if ready, before proceeding.
+```shell
+mason make kilochat_appx # will prompt for cluster, aud claim, and corbado project id
+```
+Now you can provision your backend using the `app_service_cli`:
+```shell
+cd kilochat_app
+app-services-cli login
+app-services-cli push
+```
+
+When running the sample you need to pass the corbada project id with `--dart-define` like:
+```shell
+flutter run --dart-define=CORBADO_PROJECT_ID=<project_id>
+```
+or simply replace
+```dart
+const projectId = String.fromEnvironment('CORBADO_PROJECT_ID');
+```
+with you _project id_ in `providers.dart`
 
 First, you need to create an organization.
 Secondly you need to create a project.
@@ -108,7 +135,7 @@ In this sample we federate authentication to corbado. Corbado also persists the 
 I have a vague recollection that Bill Gates proclaimed the death of passwords back in the early 00's, however we may finally
 be on the brink of such a future, due to FIDO2 / WebAuthn passkeys, which are supported on most modern operating systems (Android 9, iOS 16, MacOS Ventura, Windows 10, and later), and with external hardware authenticators such as Yubikey.
 
-When it comes to Flutter, the support is still a bit limited, but the German startup [Corbado](https://app.corbado.com/) is working hard to change that. So far only Android and iOS is supported, and that is really the reason this project only works on those platforms. Realm itself works on all official platforms, except web.
+When it comes to Flutter, the support is still a bit limited, but the German startup [Corbado](https://app.corbado.com/) is working to change that. So far only Android and iOS is supported, and that is really the reason this project only works on those platforms. Realm itself works on all official platforms, except web.
 
 ## Authorization 
 
@@ -178,7 +205,7 @@ not important for a user to know how many time a friend went online/offline whil
 Realm is build to deliver every update in a reliable manner, but by "resetting" the presence subscription
 on startup we can indicate it is okay to skip over un-synced data.
 
-The presence system used here is still rather simple. We refer t [A Scalable Server Architecture for Mobile Presence Service in Social Network Applications](https://www.researchgate.net/publication/232657317_A_Scalable_Server_Architecture_for_Mobile_Presence_Service_in_Social_Network_Applications) for the interested reader.
+The presence system used here is still rather simple. We refer to [A Scalable Server Architecture for Mobile Presence Service in Social Network Applications](https://www.researchgate.net/publication/232657317_A_Scalable_Server_Architecture_for_Mobile_Presence_Service_in_Social_Network_Applications) for the interested reader.
 
 ## Leader-board
 

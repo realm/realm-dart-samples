@@ -12,8 +12,7 @@ part 'providers.g.dart';
 
 @riverpod
 Future<CorbadoAuth> auth(AuthRef ref) async {
-  //const projectId = 'pro-2636186146982821243';
-  const projectId = 'pro-9092673961474177526';
+  const projectId = 'pro-2636186146982821243'; //String.fromEnvironment('CORBADO_PROJECT_ID');
   final auth = CorbadoAuth();
   await auth.init(projectId);
   return auth;

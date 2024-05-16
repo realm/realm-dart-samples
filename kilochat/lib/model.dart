@@ -1,6 +1,6 @@
 import 'package:realm/realm.dart';
 
-part 'model.g.dart';
+part 'model.realm.dart';
 
 @RealmModel()
 class _Channel {

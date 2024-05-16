@@ -56,13 +56,47 @@ class Channel extends _Channel with RealmEntity, RealmObjectBase, RealmObject {
       RealmObjectBase.getChanges<Channel>(this);
 
   @override
+  Stream<RealmObjectChanges<Channel>> changesFor([List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<Channel>(this, keyPaths);
+
+  @override
   Channel freeze() => RealmObjectBase.freezeObject<Channel>(this);
 
-  static SchemaObject get schema => _schema ??= _initSchema();
-  static SchemaObject? _schema;
-  static SchemaObject _initSchema() {
+  EJsonValue toEJson() {
+    return <String, dynamic>{
+      '_id': id.toEJson(),
+      'owner_id': ownerId.toEJson(),
+      'parent': parent.toEJson(),
+      'name': name.toEJson(),
+      'count': count.toEJson(),
+    };
+  }
+
+  static EJsonValue _toEJson(Channel value) => value.toEJson();
+  static Channel _fromEJson(EJsonValue ejson) {
+    return switch (ejson) {
+      {
+        '_id': EJsonValue id,
+        'owner_id': EJsonValue ownerId,
+        'parent': EJsonValue parent,
+        'name': EJsonValue name,
+        'count': EJsonValue count,
+      } =>
+        Channel(
+          fromEJson(id),
+          fromEJson(ownerId),
+          fromEJson(name),
+          fromEJson(count),
+          parent: fromEJson(parent),
+        ),
+      _ => raiseInvalidEJson(ejson),
+    };
+  }
+
+  static final schema = () {
     RealmObjectBase.registerFactory(Channel._);
-    return const SchemaObject(ObjectType.realmObject, Channel, 'Channel', [
+    register(_toEJson, _fromEJson);
+    return SchemaObject(ObjectType.realmObject, Channel, 'Channel', [
       SchemaProperty('id', RealmPropertyType.objectid,
           mapTo: '_id', primaryKey: true),
       SchemaProperty('ownerId', RealmPropertyType.string, mapTo: 'owner_id'),
@@ -71,7 +105,10 @@ class Channel extends _Channel with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('name', RealmPropertyType.string),
       SchemaProperty('count', RealmPropertyType.int),
     ]);
-  }
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
 }
 
 class Message extends _Message with RealmEntity, RealmObjectBase, RealmObject {
@@ -154,13 +191,53 @@ class Message extends _Message with RealmEntity, RealmObjectBase, RealmObject {
       RealmObjectBase.getChanges<Message>(this);
 
   @override
+  Stream<RealmObjectChanges<Message>> changesFor([List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<Message>(this, keyPaths);
+
+  @override
   Message freeze() => RealmObjectBase.freezeObject<Message>(this);
 
-  static SchemaObject get schema => _schema ??= _initSchema();
-  static SchemaObject? _schema;
-  static SchemaObject _initSchema() {
+  EJsonValue toEJson() {
+    return <String, dynamic>{
+      '_id': id.toEJson(),
+      'index': index.toEJson(),
+      'owner_id': ownerId.toEJson(),
+      'owner': owner.toEJson(),
+      'channel_id': channelId.toEJson(),
+      'channel': channel.toEJson(),
+      'text': text.toEJson(),
+    };
+  }
+
+  static EJsonValue _toEJson(Message value) => value.toEJson();
+  static Message _fromEJson(EJsonValue ejson) {
+    return switch (ejson) {
+      {
+        '_id': EJsonValue id,
+        'index': EJsonValue index,
+        'owner_id': EJsonValue ownerId,
+        'owner': EJsonValue owner,
+        'channel_id': EJsonValue channelId,
+        'channel': EJsonValue channel,
+        'text': EJsonValue text,
+      } =>
+        Message(
+          fromEJson(id),
+          fromEJson(index),
+          fromEJson(ownerId),
+          fromEJson(channelId),
+          fromEJson(text),
+          owner: fromEJson(owner),
+          channel: fromEJson(channel),
+        ),
+      _ => raiseInvalidEJson(ejson),
+    };
+  }
+
+  static final schema = () {
     RealmObjectBase.registerFactory(Message._);
-    return const SchemaObject(ObjectType.realmObject, Message, 'Message', [
+    register(_toEJson, _fromEJson);
+    return SchemaObject(ObjectType.realmObject, Message, 'Message', [
       SchemaProperty('id', RealmPropertyType.objectid,
           mapTo: '_id', primaryKey: true),
       SchemaProperty('index', RealmPropertyType.int,
@@ -179,7 +256,10 @@ class Message extends _Message with RealmEntity, RealmObjectBase, RealmObject {
           collectionType: RealmCollectionType.list,
           linkTarget: 'Reaction'),
     ]);
-  }
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
 }
 
 class Reaction extends _Reaction
@@ -242,13 +322,47 @@ class Reaction extends _Reaction
       RealmObjectBase.getChanges<Reaction>(this);
 
   @override
+  Stream<RealmObjectChanges<Reaction>> changesFor([List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<Reaction>(this, keyPaths);
+
+  @override
   Reaction freeze() => RealmObjectBase.freezeObject<Reaction>(this);
 
-  static SchemaObject get schema => _schema ??= _initSchema();
-  static SchemaObject? _schema;
-  static SchemaObject _initSchema() {
+  EJsonValue toEJson() {
+    return <String, dynamic>{
+      '_id': id.toEJson(),
+      'owner_id': ownerId.toEJson(),
+      'owner': owner.toEJson(),
+      'message': message.toEJson(),
+      'emojiUnicode': emojiUnicode.toEJson(),
+    };
+  }
+
+  static EJsonValue _toEJson(Reaction value) => value.toEJson();
+  static Reaction _fromEJson(EJsonValue ejson) {
+    return switch (ejson) {
+      {
+        '_id': EJsonValue id,
+        'owner_id': EJsonValue ownerId,
+        'owner': EJsonValue owner,
+        'message': EJsonValue message,
+        'emojiUnicode': EJsonValue emojiUnicode,
+      } =>
+        Reaction(
+          fromEJson(id),
+          fromEJson(ownerId),
+          owner: fromEJson(owner),
+          message: fromEJson(message),
+          emojiUnicode: fromEJson(emojiUnicode),
+        ),
+      _ => raiseInvalidEJson(ejson),
+    };
+  }
+
+  static final schema = () {
     RealmObjectBase.registerFactory(Reaction._);
-    return const SchemaObject(ObjectType.realmObject, Reaction, 'Reaction', [
+    register(_toEJson, _fromEJson);
+    return SchemaObject(ObjectType.realmObject, Reaction, 'Reaction', [
       SchemaProperty('id', RealmPropertyType.objectid,
           mapTo: '_id', primaryKey: true),
       SchemaProperty('ownerId', RealmPropertyType.string, mapTo: 'owner_id'),
@@ -258,7 +372,10 @@ class Reaction extends _Reaction
           optional: true, linkTarget: 'Message'),
       SchemaProperty('emojiUnicode', RealmPropertyType.int),
     ]);
-  }
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
 }
 
 class UserProfile extends _UserProfile
@@ -370,14 +487,66 @@ class UserProfile extends _UserProfile
       RealmObjectBase.getChanges<UserProfile>(this);
 
   @override
+  Stream<RealmObjectChanges<UserProfile>> changesFor(
+          [List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<UserProfile>(this, keyPaths);
+
+  @override
   UserProfile freeze() => RealmObjectBase.freezeObject<UserProfile>(this);
 
-  static SchemaObject get schema => _schema ??= _initSchema();
-  static SchemaObject? _schema;
-  static SchemaObject _initSchema() {
+  EJsonValue toEJson() {
+    return <String, dynamic>{
+      '_id': id.toEJson(),
+      'owner_id': ownerId.toEJson(),
+      'deactivated': deactivated.toEJson(),
+      'name': name.toEJson(),
+      'email': email.toEJson(),
+      'age': age.toEJson(),
+      'gender': genderAsInt.toEJson(),
+      'status_emoji': statusEmojiUnicode.toEJson(),
+      'typing': typing.toEJson(),
+      'channels': channels.toEJson(),
+      'bodies': bodies.toEJson(),
+    };
+  }
+
+  static EJsonValue _toEJson(UserProfile value) => value.toEJson();
+  static UserProfile _fromEJson(EJsonValue ejson) {
+    return switch (ejson) {
+      {
+        '_id': EJsonValue id,
+        'owner_id': EJsonValue ownerId,
+        'deactivated': EJsonValue deactivated,
+        'name': EJsonValue name,
+        'email': EJsonValue email,
+        'age': EJsonValue age,
+        'gender': EJsonValue genderAsInt,
+        'status_emoji': EJsonValue statusEmojiUnicode,
+        'typing': EJsonValue typing,
+        'channels': EJsonValue channels,
+        'bodies': EJsonValue bodies,
+      } =>
+        UserProfile(
+          fromEJson(id),
+          fromEJson(ownerId),
+          deactivated: fromEJson(deactivated),
+          name: fromEJson(name),
+          email: fromEJson(email),
+          age: fromEJson(age),
+          genderAsInt: fromEJson(genderAsInt),
+          statusEmojiUnicode: fromEJson(statusEmojiUnicode),
+          typing: fromEJson(typing),
+          channels: fromEJson(channels),
+          bodies: fromEJson(bodies),
+        ),
+      _ => raiseInvalidEJson(ejson),
+    };
+  }
+
+  static final schema = () {
     RealmObjectBase.registerFactory(UserProfile._);
-    return const SchemaObject(
-        ObjectType.realmObject, UserProfile, 'UserProfile', [
+    register(_toEJson, _fromEJson);
+    return SchemaObject(ObjectType.realmObject, UserProfile, 'UserProfile', [
       SchemaProperty('id', RealmPropertyType.string,
           mapTo: '_id', primaryKey: true),
       SchemaProperty('ownerId', RealmPropertyType.string, mapTo: 'owner_id'),
@@ -394,5 +563,8 @@ class UserProfile extends _UserProfile
       SchemaProperty('bodies', RealmPropertyType.object,
           linkTarget: 'UserProfile', collectionType: RealmCollectionType.set),
     ]);
-  }
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
 }
