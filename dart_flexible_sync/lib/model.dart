@@ -1,5 +1,6 @@
 import 'package:realm_dart/realm.dart';
-part 'model.g.dart';
+
+part 'model.realm.dart';
 
 @RealmModel()
 class _Task {

@@ -38,7 +38,7 @@ class MyCart extends StatelessWidget {
 class _CartList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var itemNameStyle = Theme.of(context).textTheme.titleLarge;
+    var itemNameStyle = Theme.of(context).textTheme.headlineSmall;
     // This gets the current state of CartModel and also tells Flutter
     // to rebuild this widget when CartModel notifies listeners (in other words,
     // when it changes).

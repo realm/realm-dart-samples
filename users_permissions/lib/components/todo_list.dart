@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/components/todo_item.dart';
 import 'package:flutter_todo/components/widgets.dart';
-import 'package:flutter_todo/realm/schemas.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_todo/realm/realm_services.dart';
 import 'package:realm/realm.dart';
 import 'package:flutter_todo/theme.dart';
 
 class TodoList extends StatefulWidget {
-  const TodoList({Key? key}) : super(key: key);
+  const TodoList({super.key});
 
   @override
   State<TodoList> createState() => _TodoListState();

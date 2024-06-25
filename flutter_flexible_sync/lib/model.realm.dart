@@ -51,18 +51,52 @@ class Task extends _Task with RealmEntity, RealmObjectBase, RealmObject {
       RealmObjectBase.getChanges<Task>(this);
 
   @override
+  Stream<RealmObjectChanges<Task>> changesFor([List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<Task>(this, keyPaths);
+
+  @override
   Task freeze() => RealmObjectBase.freezeObject<Task>(this);
 
-  static SchemaObject get schema => _schema ??= _initSchema();
-  static SchemaObject? _schema;
-  static SchemaObject _initSchema() {
+  EJsonValue toEJson() {
+    return <String, dynamic>{
+      '_id': id.toEJson(),
+      'title': title.toEJson(),
+      'isCompleted': isCompleted.toEJson(),
+      'isImportant': isImportant.toEJson(),
+    };
+  }
+
+  static EJsonValue _toEJson(Task value) => value.toEJson();
+  static Task _fromEJson(EJsonValue ejson) {
+    return switch (ejson) {
+      {
+        '_id': EJsonValue id,
+        'title': EJsonValue title,
+        'isCompleted': EJsonValue isCompleted,
+        'isImportant': EJsonValue isImportant,
+      } =>
+        Task(
+          fromEJson(id),
+          fromEJson(title),
+          fromEJson(isCompleted),
+          fromEJson(isImportant),
+        ),
+      _ => raiseInvalidEJson(ejson),
+    };
+  }
+
+  static final schema = () {
     RealmObjectBase.registerFactory(Task._);
-    return const SchemaObject(ObjectType.realmObject, Task, 'Task', [
+    register(_toEJson, _fromEJson);
+    return SchemaObject(ObjectType.realmObject, Task, 'Task', [
       SchemaProperty('id', RealmPropertyType.objectid,
           mapTo: '_id', primaryKey: true),
       SchemaProperty('title', RealmPropertyType.string),
       SchemaProperty('isCompleted', RealmPropertyType.bool),
       SchemaProperty('isImportant', RealmPropertyType.bool),
     ]);
-  }
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
 }

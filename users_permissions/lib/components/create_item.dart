@@ -4,7 +4,7 @@ import 'package:flutter_todo/realm/realm_services.dart';
 import 'package:provider/provider.dart';
 
 class CreateItemAction extends StatelessWidget {
-  const CreateItemAction({Key? key}) : super(key: key);
+  const CreateItemAction({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,13 +12,13 @@ class CreateItemAction extends StatelessWidget {
         onPressed: () => showModalBottomSheet(
               isScrollControlled: true,
               context: context,
-              builder: (_) => Wrap(children: const [CreateItemForm()]),
+              builder: (_) => const Wrap(children: [CreateItemForm()]),
             ));
   }
 }
 
 class CreateItemForm extends StatefulWidget {
-  const CreateItemForm({Key? key}) : super(key: key);
+  const CreateItemForm({super.key});
 
   @override
   createState() => _CreateItemFormState();
@@ -51,7 +51,7 @@ class _CreateItemFormState extends State<CreateItemForm> {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text("Create a new item", style: theme.headline6),
+              Text("Create a new item", style: theme.titleLarge),
               TextFormField(
                 controller: _itemEditingController,
                 validator: (value) => (value ?? "").isEmpty ? "Please enter some text" : null,

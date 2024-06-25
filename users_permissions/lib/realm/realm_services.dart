@@ -1,10 +1,9 @@
-import 'package:flutter_todo/realm/schemas.dart';
 import 'package:realm/realm.dart';
 import 'package:flutter/material.dart';
 
 class RealmServices with ChangeNotifier {
-  static const String queryAllName = "getAllItemsSubscriptoion";
-  static const String queryMyItemsName = "getMyItemsSubscriptoion";
+  static const String queryAllName = "getAllItemsSubscription";
+  static const String queryMyItemsName = "getMyItemsSubscription";
 
   bool showAll = false;
   bool offlineModeOn = false;

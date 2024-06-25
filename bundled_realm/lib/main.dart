@@ -28,7 +28,7 @@ Future<Realm> initRealm(String assetKey) async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   void _addRandomCar() {
     const cars = ['Mercedes', 'VW', 'Ford', 'Tesla', 'Ferrari', 'Polestar', 'Volvo', 'BMW'];

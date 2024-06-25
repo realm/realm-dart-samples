@@ -76,14 +76,55 @@ class AllPrimitiveOptional extends _AllPrimitiveOptional
       RealmObjectBase.getChanges<AllPrimitiveOptional>(this);
 
   @override
+  Stream<RealmObjectChanges<AllPrimitiveOptional>> changesFor(
+          [List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<AllPrimitiveOptional>(this, keyPaths);
+
+  @override
   AllPrimitiveOptional freeze() =>
       RealmObjectBase.freezeObject<AllPrimitiveOptional>(this);
 
-  static SchemaObject get schema => _schema ??= _initSchema();
-  static SchemaObject? _schema;
-  static SchemaObject _initSchema() {
+  EJsonValue toEJson() {
+    return <String, dynamic>{
+      'stringProp': stringProp.toEJson(),
+      'boolProp': boolProp.toEJson(),
+      'dateProp': dateProp.toEJson(),
+      'doubleProp': doubleProp.toEJson(),
+      'objectIdProp': objectIdProp.toEJson(),
+      'uuidProp': uuidProp.toEJson(),
+      'intProp': intProp.toEJson(),
+    };
+  }
+
+  static EJsonValue _toEJson(AllPrimitiveOptional value) => value.toEJson();
+  static AllPrimitiveOptional _fromEJson(EJsonValue ejson) {
+    return switch (ejson) {
+      {
+        'stringProp': EJsonValue stringProp,
+        'boolProp': EJsonValue boolProp,
+        'dateProp': EJsonValue dateProp,
+        'doubleProp': EJsonValue doubleProp,
+        'objectIdProp': EJsonValue objectIdProp,
+        'uuidProp': EJsonValue uuidProp,
+        'intProp': EJsonValue intProp,
+      } =>
+        AllPrimitiveOptional(
+          stringProp: fromEJson(stringProp),
+          boolProp: fromEJson(boolProp),
+          dateProp: fromEJson(dateProp),
+          doubleProp: fromEJson(doubleProp),
+          objectIdProp: fromEJson(objectIdProp),
+          uuidProp: fromEJson(uuidProp),
+          intProp: fromEJson(intProp),
+        ),
+      _ => raiseInvalidEJson(ejson),
+    };
+  }
+
+  static final schema = () {
     RealmObjectBase.registerFactory(AllPrimitiveOptional._);
-    return const SchemaObject(
+    register(_toEJson, _fromEJson);
+    return SchemaObject(
         ObjectType.realmObject, AllPrimitiveOptional, 'AllPrimitiveOptional', [
       SchemaProperty('stringProp', RealmPropertyType.string, optional: true),
       SchemaProperty('boolProp', RealmPropertyType.bool, optional: true),
@@ -94,7 +135,10 @@ class AllPrimitiveOptional extends _AllPrimitiveOptional
       SchemaProperty('uuidProp', RealmPropertyType.uuid, optional: true),
       SchemaProperty('intProp', RealmPropertyType.int, optional: true),
     ]);
-  }
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
 }
 
 class AllPrimitiveRequired extends _AllPrimitiveRequired
@@ -173,14 +217,58 @@ class AllPrimitiveRequired extends _AllPrimitiveRequired
       RealmObjectBase.getChanges<AllPrimitiveRequired>(this);
 
   @override
+  Stream<RealmObjectChanges<AllPrimitiveRequired>> changesFor(
+          [List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<AllPrimitiveRequired>(this, keyPaths);
+
+  @override
   AllPrimitiveRequired freeze() =>
       RealmObjectBase.freezeObject<AllPrimitiveRequired>(this);
 
-  static SchemaObject get schema => _schema ??= _initSchema();
-  static SchemaObject? _schema;
-  static SchemaObject _initSchema() {
+  EJsonValue toEJson() {
+    return <String, dynamic>{
+      '_id': id.toEJson(),
+      'stringProp': stringProp.toEJson(),
+      'boolProp': boolProp.toEJson(),
+      'dateProp': dateProp.toEJson(),
+      'doubleProp': doubleProp.toEJson(),
+      'objectIdProp': objectIdProp.toEJson(),
+      'uuidProp': uuidProp.toEJson(),
+      'intProp': intProp.toEJson(),
+    };
+  }
+
+  static EJsonValue _toEJson(AllPrimitiveRequired value) => value.toEJson();
+  static AllPrimitiveRequired _fromEJson(EJsonValue ejson) {
+    return switch (ejson) {
+      {
+        '_id': EJsonValue id,
+        'stringProp': EJsonValue stringProp,
+        'boolProp': EJsonValue boolProp,
+        'dateProp': EJsonValue dateProp,
+        'doubleProp': EJsonValue doubleProp,
+        'objectIdProp': EJsonValue objectIdProp,
+        'uuidProp': EJsonValue uuidProp,
+        'intProp': EJsonValue intProp,
+      } =>
+        AllPrimitiveRequired(
+          fromEJson(id),
+          fromEJson(stringProp),
+          fromEJson(boolProp),
+          fromEJson(dateProp),
+          fromEJson(doubleProp),
+          fromEJson(objectIdProp),
+          fromEJson(uuidProp),
+          fromEJson(intProp),
+        ),
+      _ => raiseInvalidEJson(ejson),
+    };
+  }
+
+  static final schema = () {
     RealmObjectBase.registerFactory(AllPrimitiveRequired._);
-    return const SchemaObject(
+    register(_toEJson, _fromEJson);
+    return SchemaObject(
         ObjectType.realmObject, AllPrimitiveRequired, 'AllPrimitiveRequired', [
       SchemaProperty('id', RealmPropertyType.objectid,
           mapTo: '_id', primaryKey: true),
@@ -192,7 +280,10 @@ class AllPrimitiveRequired extends _AllPrimitiveRequired
       SchemaProperty('uuidProp', RealmPropertyType.uuid),
       SchemaProperty('intProp', RealmPropertyType.int),
     ]);
-  }
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
 }
 
 class AllPrimitiveLists extends _AllPrimitiveLists
@@ -274,14 +365,55 @@ class AllPrimitiveLists extends _AllPrimitiveLists
       RealmObjectBase.getChanges<AllPrimitiveLists>(this);
 
   @override
+  Stream<RealmObjectChanges<AllPrimitiveLists>> changesFor(
+          [List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<AllPrimitiveLists>(this, keyPaths);
+
+  @override
   AllPrimitiveLists freeze() =>
       RealmObjectBase.freezeObject<AllPrimitiveLists>(this);
 
-  static SchemaObject get schema => _schema ??= _initSchema();
-  static SchemaObject? _schema;
-  static SchemaObject _initSchema() {
+  EJsonValue toEJson() {
+    return <String, dynamic>{
+      'strings': strings.toEJson(),
+      'bools': bools.toEJson(),
+      'dates': dates.toEJson(),
+      'doubles': doubles.toEJson(),
+      'objectIds': objectIds.toEJson(),
+      'uuids': uuids.toEJson(),
+      'ints': ints.toEJson(),
+    };
+  }
+
+  static EJsonValue _toEJson(AllPrimitiveLists value) => value.toEJson();
+  static AllPrimitiveLists _fromEJson(EJsonValue ejson) {
+    return switch (ejson) {
+      {
+        'strings': EJsonValue strings,
+        'bools': EJsonValue bools,
+        'dates': EJsonValue dates,
+        'doubles': EJsonValue doubles,
+        'objectIds': EJsonValue objectIds,
+        'uuids': EJsonValue uuids,
+        'ints': EJsonValue ints,
+      } =>
+        AllPrimitiveLists(
+          strings: fromEJson(strings),
+          bools: fromEJson(bools),
+          dates: fromEJson(dates),
+          doubles: fromEJson(doubles),
+          objectIds: fromEJson(objectIds),
+          uuids: fromEJson(uuids),
+          ints: fromEJson(ints),
+        ),
+      _ => raiseInvalidEJson(ejson),
+    };
+  }
+
+  static final schema = () {
     RealmObjectBase.registerFactory(AllPrimitiveLists._);
-    return const SchemaObject(
+    register(_toEJson, _fromEJson);
+    return SchemaObject(
         ObjectType.realmObject, AllPrimitiveLists, 'AllPrimitiveLists', [
       SchemaProperty('strings', RealmPropertyType.string,
           collectionType: RealmCollectionType.list),
@@ -298,5 +430,8 @@ class AllPrimitiveLists extends _AllPrimitiveLists
       SchemaProperty('ints', RealmPropertyType.int,
           collectionType: RealmCollectionType.list),
     ]);
-  }
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
 }

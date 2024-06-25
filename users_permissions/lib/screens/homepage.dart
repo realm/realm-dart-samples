@@ -6,17 +6,17 @@ import 'package:flutter_todo/components/app_bar.dart';
 import 'package:flutter_todo/realm/realm_services.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Provider.of<RealmServices?>(context, listen: false) == null
         ? Container()
-        : Scaffold(
+        : const Scaffold(
       appBar: TodoAppBar(),
-      body: const TodoList(),
+      body: TodoList(),
             floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-            floatingActionButton: const CreateItemAction(),
+            floatingActionButton: CreateItemAction(),
     );
   }
 }
