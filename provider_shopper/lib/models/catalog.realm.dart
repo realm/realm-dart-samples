@@ -47,16 +47,47 @@ class Item extends _Item with RealmEntity, RealmObjectBase, RealmObject {
       RealmObjectBase.getChanges<Item>(this);
 
   @override
+  Stream<RealmObjectChanges<Item>> changesFor([List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<Item>(this, keyPaths);
+
+  @override
   Item freeze() => RealmObjectBase.freezeObject<Item>(this);
 
-  static SchemaObject get schema => _schema ??= _initSchema();
-  static SchemaObject? _schema;
-  static SchemaObject _initSchema() {
+  EJsonValue toEJson() {
+    return <String, dynamic>{
+      'id': id.toEJson(),
+      'name': name.toEJson(),
+      'price': price.toEJson(),
+    };
+  }
+
+  static EJsonValue _toEJson(Item value) => value.toEJson();
+  static Item _fromEJson(EJsonValue ejson) {
+    return switch (ejson) {
+      {
+        'id': EJsonValue id,
+        'name': EJsonValue name,
+        'price': EJsonValue price,
+      } =>
+        Item(
+          fromEJson(id),
+          fromEJson(name),
+          price: fromEJson(price),
+        ),
+      _ => raiseInvalidEJson(ejson),
+    };
+  }
+
+  static final schema = () {
     RealmObjectBase.registerFactory(Item._);
-    return const SchemaObject(ObjectType.realmObject, Item, 'Item', [
+    register(_toEJson, _fromEJson);
+    return SchemaObject(ObjectType.realmObject, Item, 'Item', [
       SchemaProperty('id', RealmPropertyType.int, primaryKey: true),
       SchemaProperty('name', RealmPropertyType.string),
       SchemaProperty('price', RealmPropertyType.int),
     ]);
-  }
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
 }

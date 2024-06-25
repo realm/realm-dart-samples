@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:realm/realm.dart';
 
 // Realm: Declare a part file
-part 'catalog.g.dart';
+part 'catalog.realm.dart';
 
 // Realm: Creating a Realm object data model class
 @RealmModel()
