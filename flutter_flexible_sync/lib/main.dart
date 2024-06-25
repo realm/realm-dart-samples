@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
   static late Realm importantTasksRealm;
   static late Realm normalTasksRealm;
 
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({super.key, required this.title});
 
   final String title;
 
@@ -127,11 +127,11 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const Text('Important tasks count:', style: TextStyle(fontWeight: FontWeight.bold)),
-              Text('$_importantTasksCount', style: Theme.of(context).textTheme.headline4),
+              Text('$_importantTasksCount', style: Theme.of(context).textTheme.headlineMedium),
               const Text('Normal tasks count:', style: TextStyle(fontWeight: FontWeight.bold)),
-              Text('$_normalTasksCount', style: Theme.of(context).textTheme.headline4),
+              Text('$_normalTasksCount', style: Theme.of(context).textTheme.headlineMedium),
               const Text('All tasks count:', style: TextStyle(fontWeight: FontWeight.bold)),
-              Text('$_allTasksCount', style: Theme.of(context).textTheme.headline4),
+              Text('$_allTasksCount', style: Theme.of(context).textTheme.headlineMedium),
             ],
           ),
         ),

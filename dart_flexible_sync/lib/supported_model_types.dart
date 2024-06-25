@@ -1,5 +1,6 @@
 import 'package:realm_dart/realm.dart';
-part 'supported_model_types.g.dart';
+
+part 'supported_model_types.realm.dart';
 
 @RealmModel()
 class _AllPrimitiveOptional {

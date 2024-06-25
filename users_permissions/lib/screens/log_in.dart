@@ -5,6 +5,8 @@ import 'package:flutter_todo/components/widgets.dart';
 import 'package:flutter_todo/realm/app_services.dart';
 
 class LogIn extends StatefulWidget {
+  const LogIn({super.key});
+
   @override
   _LogInState createState() => _LogInState();
 }

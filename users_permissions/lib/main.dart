@@ -26,7 +26,7 @@ void main() async {
 }
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class App extends StatelessWidget {
         title: 'Realm Flutter Todo',
         theme: appThemeData(),
         initialRoute: currentUser != null ? '/' : '/login',
-        routes: {'/': (context) => const HomePage(), '/login': (context) => LogIn()},
+        routes: {'/': (context) => const HomePage(), '/login': (context) => const LogIn()},
       ),
     );
   }

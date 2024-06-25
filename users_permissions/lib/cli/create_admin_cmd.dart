@@ -3,7 +3,6 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:args/command_runner.dart';
 import 'package:flutter_todo/cli/create_admin_params.dart';
-import 'package:flutter_todo/realm/schemas.dart';
 import 'package:realm/realm.dart';
 
 class CreateAdminUserCommand extends Command<void> {

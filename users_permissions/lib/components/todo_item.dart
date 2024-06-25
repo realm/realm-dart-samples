@@ -3,7 +3,6 @@ import 'package:flutter_todo/components/modify_item.dart';
 import 'package:flutter_todo/components/widgets.dart';
 import 'package:flutter_todo/theme.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_todo/realm/schemas.dart';
 import 'package:flutter_todo/realm/realm_services.dart';
 
 enum MenuOption { edit, delete }
@@ -11,7 +10,7 @@ enum MenuOption { edit, delete }
 class TodoItem extends StatelessWidget {
   final Item item;
 
-  const TodoItem(this.item, {Key? key}) : super(key: key);
+  const TodoItem(this.item, {super.key});
 
   @override
   Widget build(BuildContext context) {

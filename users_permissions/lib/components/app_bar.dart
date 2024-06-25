@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_todo/realm/realm_services.dart';
 
 class TodoAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const TodoAppBar({Key? key}) : super(key: key);
+  const TodoAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {

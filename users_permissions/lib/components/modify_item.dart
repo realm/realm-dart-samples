@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_todo/realm/schemas.dart';
 import 'package:flutter_todo/realm/realm_services.dart';
 import 'package:flutter_todo/components/widgets.dart';
 
 class ModifyItemForm extends StatefulWidget {
   final Item item;
-  const ModifyItemForm(this.item, {Key? key}) : super(key: key);
+  const ModifyItemForm(this.item, {super.key});
 
   @override
   _ModifyItemFormState createState() => _ModifyItemFormState(item);
@@ -47,7 +46,7 @@ class _ModifyItemFormState extends State<ModifyItemForm> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Text("Update your item", style: myTextTheme.headline6),
+                Text("Update your item", style: myTextTheme.titleLarge),
                 TextFormField(
                   controller: _summaryController,
                   validator: (value) => (value ?? "").isEmpty ? "Please enter some text" : null,

@@ -27,16 +27,41 @@ class Category extends _Category
       RealmObjectBase.getChanges<Category>(this);
 
   @override
+  Stream<RealmObjectChanges<Category>> changesFor([List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<Category>(this, keyPaths);
+
+  @override
   Category freeze() => RealmObjectBase.freezeObject<Category>(this);
 
-  static SchemaObject get schema => _schema ??= _initSchema();
-  static SchemaObject? _schema;
-  static SchemaObject _initSchema() {
+  EJsonValue toEJson() {
+    return <String, dynamic>{
+      'name': name.toEJson(),
+    };
+  }
+
+  static EJsonValue _toEJson(Category value) => value.toEJson();
+  static Category _fromEJson(EJsonValue ejson) {
+    return switch (ejson) {
+      {
+        'name': EJsonValue name,
+      } =>
+        Category(
+          fromEJson(name),
+        ),
+      _ => raiseInvalidEJson(ejson),
+    };
+  }
+
+  static final schema = () {
     RealmObjectBase.registerFactory(Category._);
-    return const SchemaObject(ObjectType.realmObject, Category, 'Category', [
+    register(_toEJson, _fromEJson);
+    return SchemaObject(ObjectType.realmObject, Category, 'Category', [
       SchemaProperty('name', RealmPropertyType.string, primaryKey: true),
     ]);
-  }
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
 }
 
 class Now extends _Now with RealmEntity, RealmObjectBase, RealmObject {
@@ -67,17 +92,45 @@ class Now extends _Now with RealmEntity, RealmObjectBase, RealmObject {
       RealmObjectBase.getChanges<Now>(this);
 
   @override
+  Stream<RealmObjectChanges<Now>> changesFor([List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<Now>(this, keyPaths);
+
+  @override
   Now freeze() => RealmObjectBase.freezeObject<Now>(this);
 
-  static SchemaObject get schema => _schema ??= _initSchema();
-  static SchemaObject? _schema;
-  static SchemaObject _initSchema() {
+  EJsonValue toEJson() {
+    return <String, dynamic>{
+      'time': time.toEJson(),
+      'category': category.toEJson(),
+    };
+  }
+
+  static EJsonValue _toEJson(Now value) => value.toEJson();
+  static Now _fromEJson(EJsonValue ejson) {
+    return switch (ejson) {
+      {
+        'time': EJsonValue time,
+        'category': EJsonValue category,
+      } =>
+        Now(
+          fromEJson(time),
+          category: fromEJson(category),
+        ),
+      _ => raiseInvalidEJson(ejson),
+    };
+  }
+
+  static final schema = () {
     RealmObjectBase.registerFactory(Now._);
-    return const SchemaObject(ObjectType.realmObject, Now, 'Now', [
+    register(_toEJson, _fromEJson);
+    return SchemaObject(ObjectType.realmObject, Now, 'Now', [
       SchemaProperty('time', RealmPropertyType.int,
           indexType: RealmIndexType.regular),
       SchemaProperty('category', RealmPropertyType.object,
           optional: true, linkTarget: 'Category'),
     ]);
-  }
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
 }

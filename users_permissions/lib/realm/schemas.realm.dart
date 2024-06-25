@@ -54,20 +54,54 @@ class Item extends _Item with RealmEntity, RealmObjectBase, RealmObject {
       RealmObjectBase.getChanges<Item>(this);
 
   @override
+  Stream<RealmObjectChanges<Item>> changesFor([List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<Item>(this, keyPaths);
+
+  @override
   Item freeze() => RealmObjectBase.freezeObject<Item>(this);
 
-  static SchemaObject get schema => _schema ??= _initSchema();
-  static SchemaObject? _schema;
-  static SchemaObject _initSchema() {
+  EJsonValue toEJson() {
+    return <String, dynamic>{
+      '_id': id.toEJson(),
+      'isComplete': isComplete.toEJson(),
+      'summary': summary.toEJson(),
+      'owner_id': ownerId.toEJson(),
+    };
+  }
+
+  static EJsonValue _toEJson(Item value) => value.toEJson();
+  static Item _fromEJson(EJsonValue ejson) {
+    return switch (ejson) {
+      {
+        '_id': EJsonValue id,
+        'isComplete': EJsonValue isComplete,
+        'summary': EJsonValue summary,
+        'owner_id': EJsonValue ownerId,
+      } =>
+        Item(
+          fromEJson(id),
+          fromEJson(summary),
+          fromEJson(ownerId),
+          isComplete: fromEJson(isComplete),
+        ),
+      _ => raiseInvalidEJson(ejson),
+    };
+  }
+
+  static final schema = () {
     RealmObjectBase.registerFactory(Item._);
-    return const SchemaObject(ObjectType.realmObject, Item, 'Item', [
+    register(_toEJson, _fromEJson);
+    return SchemaObject(ObjectType.realmObject, Item, 'Item', [
       SchemaProperty('id', RealmPropertyType.objectid,
           mapTo: '_id', primaryKey: true),
       SchemaProperty('isComplete', RealmPropertyType.bool),
       SchemaProperty('summary', RealmPropertyType.string),
       SchemaProperty('ownerId', RealmPropertyType.string, mapTo: 'owner_id'),
     ]);
-  }
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
 }
 
 class Role extends _Role with RealmEntity, RealmObjectBase, RealmObject {
@@ -110,17 +144,48 @@ class Role extends _Role with RealmEntity, RealmObjectBase, RealmObject {
       RealmObjectBase.getChanges<Role>(this);
 
   @override
+  Stream<RealmObjectChanges<Role>> changesFor([List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<Role>(this, keyPaths);
+
+  @override
   Role freeze() => RealmObjectBase.freezeObject<Role>(this);
 
-  static SchemaObject get schema => _schema ??= _initSchema();
-  static SchemaObject? _schema;
-  static SchemaObject _initSchema() {
+  EJsonValue toEJson() {
+    return <String, dynamic>{
+      '_id': id.toEJson(),
+      'isAdmin': isAdmin.toEJson(),
+      'owner_id': ownerId.toEJson(),
+    };
+  }
+
+  static EJsonValue _toEJson(Role value) => value.toEJson();
+  static Role _fromEJson(EJsonValue ejson) {
+    return switch (ejson) {
+      {
+        '_id': EJsonValue id,
+        'isAdmin': EJsonValue isAdmin,
+        'owner_id': EJsonValue ownerId,
+      } =>
+        Role(
+          fromEJson(id),
+          fromEJson(ownerId),
+          isAdmin: fromEJson(isAdmin),
+        ),
+      _ => raiseInvalidEJson(ejson),
+    };
+  }
+
+  static final schema = () {
     RealmObjectBase.registerFactory(Role._);
-    return const SchemaObject(ObjectType.realmObject, Role, 'Role', [
+    register(_toEJson, _fromEJson);
+    return SchemaObject(ObjectType.realmObject, Role, 'Role', [
       SchemaProperty('id', RealmPropertyType.objectid,
           mapTo: '_id', primaryKey: true),
       SchemaProperty('isAdmin', RealmPropertyType.bool),
       SchemaProperty('ownerId', RealmPropertyType.string, mapTo: 'owner_id'),
     ]);
-  }
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
 }

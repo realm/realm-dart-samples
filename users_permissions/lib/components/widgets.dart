@@ -35,10 +35,10 @@ Widget loginButton(BuildContext context,
     margin: const EdgeInsets.symmetric(vertical: 25),
     child: ElevatedButton(
       style: ButtonStyle(
-          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-          textStyle: MaterialStateProperty.all<TextStyle>(
+          foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+          textStyle: WidgetStateProperty.all<TextStyle>(
               const TextStyle(color: Colors.white, fontSize: 20)),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)))),
       onPressed: onPressed,
@@ -54,7 +54,7 @@ Widget templateButton(BuildContext context,
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 10),
     child: ElevatedButton(
-      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(color)),
+      style: ButtonStyle(backgroundColor: WidgetStateProperty.all(color)),
       onPressed: onPressed,
       child: Text(text),
     ),

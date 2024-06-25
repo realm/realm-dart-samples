@@ -15,6 +15,7 @@
 // limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+library;
 
 import 'dart:math';
 
@@ -22,7 +23,7 @@ import 'package:args/command_runner.dart';
 import 'package:dart_console/dart_console.dart';
 import 'package:realm_dart/realm.dart';
 
-part 'time_track.g.dart';
+part 'time_track.realm.dart';
 
 @RealmModel()
 class _Category {
